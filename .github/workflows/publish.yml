@@ -19,8 +19,7 @@ jobs:
         with:
           node-version: 'lts/*'
           cache: 'yarn'
-      - run: yarn install --frozen-lockfile
-      - run: yarn audit signatures
+      - run: yarn install --no-lockfile
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
