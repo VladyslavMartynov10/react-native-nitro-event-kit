@@ -42,12 +42,12 @@
     "type": "git",
     "url": "git+https://github.com/mrousavy/nitro.git"
   },
-  "author": "Vlad Martynov <me@vladyslav.martynov.10@gmail.com> (https://github.com/mrousavy)",
+  "author": "Vlad Martynov <me@vladyslav.martynov.10@gmail.com> (https://github.com/VladyslavMartynov10)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mrousavy/nitro/issues"
+    "url": "https://github.com/VladyslavMartynov10/react-native-nitro-event-kit/issues"
   },
-  "homepage": "https://github.com/mrousavy/nitro#readme",
+  "homepage": "https://github.com/VladyslavMartynov10/react-native-nitro-event-kit",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
