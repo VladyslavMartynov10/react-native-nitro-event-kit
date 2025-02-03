@@ -19,8 +19,7 @@ jobs:
         with:
           node-version: 'lts/*'
           cache: 'yarn'
-      - run: yarn install --no-lockfile
-      - run: yarn build
+      - run: yarn install --frozen-lockfile
       - run: yarn audit signatures
       - name: Release
         env:
