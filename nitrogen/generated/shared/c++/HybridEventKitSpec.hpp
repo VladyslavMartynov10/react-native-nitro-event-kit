@@ -43,7 +43,7 @@ namespace margelo::nitro::eventkit {
       explicit HybridEventKitSpec(): HybridObject(TAG) { }
 
       // Destructor
-      virtual ~HybridEventKitSpec() { }
+      ~HybridEventKitSpec() override = default;
 
     public:
       // Properties

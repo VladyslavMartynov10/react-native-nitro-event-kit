@@ -50,7 +50,9 @@ namespace margelo::nitro::eventkit {
 
   public:
     // Get the Swift part
-    inline NitroEventKit::HybridEventKitSpec_cxx getSwiftPart() noexcept { return _swiftPart; }
+    inline NitroEventKit::HybridEventKitSpec_cxx& getSwiftPart() noexcept {
+      return _swiftPart;
+    }
 
   public:
     // Get memory pressure

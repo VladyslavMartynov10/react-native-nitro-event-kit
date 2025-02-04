@@ -10,17 +10,23 @@
 // Forward declarations of C++ defined types
 // Forward declaration of `EKEventAvailability` to properly resolve imports.
 namespace margelo::nitro::eventkit { enum class EKEventAvailability; }
+// Forward declaration of `EKEventPermissionResult` to properly resolve imports.
+namespace margelo::nitro::eventkit { enum class EKEventPermissionResult; }
 // Forward declaration of `EKEventStatus` to properly resolve imports.
 namespace margelo::nitro::eventkit { enum class EKEventStatus; }
 // Forward declaration of `EKEvent` to properly resolve imports.
 namespace margelo::nitro::eventkit { struct EKEvent; }
+// Forward declaration of `HybridCalendarPermissionSpec` to properly resolve imports.
+namespace margelo::nitro::eventkit { class HybridCalendarPermissionSpec; }
 // Forward declaration of `HybridEventKitSpec` to properly resolve imports.
 namespace margelo::nitro::eventkit { class HybridEventKitSpec; }
 
 // Include C++ defined types
 #include "EKEvent.hpp"
 #include "EKEventAvailability.hpp"
+#include "EKEventPermissionResult.hpp"
 #include "EKEventStatus.hpp"
+#include "HybridCalendarPermissionSpec.hpp"
 #include "HybridEventKitSpec.hpp"
 #include <NitroModules/Promise.hpp>
 #include <NitroModules/Result.hpp>
@@ -40,6 +46,8 @@ namespace margelo::nitro::eventkit { class HybridEventKitSpec; }
 #include <NitroModules/RuntimeError.hpp>
 
 // Forward declarations of Swift defined types
+// Forward declaration of `HybridCalendarPermissionSpec_cxx` to properly resolve imports.
+namespace NitroEventKit { class HybridCalendarPermissionSpec_cxx; }
 // Forward declaration of `HybridEventKitSpec_cxx` to properly resolve imports.
 namespace NitroEventKit { class HybridEventKitSpec_cxx; }
 

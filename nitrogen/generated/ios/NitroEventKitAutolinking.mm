@@ -11,6 +11,7 @@
 #import <type_traits>
 
 #include "HybridEventKitSpecSwift.hpp"
+#include "HybridCalendarPermissionSpecSwift.hpp"
 
 @interface NitroEventKitAutolinking : NSObject
 @end
@@ -25,6 +26,13 @@
     "EventKit",
     []() -> std::shared_ptr<HybridObject> {
       std::shared_ptr<margelo::nitro::eventkit::HybridEventKitSpec> hybridObject = NitroEventKit::NitroEventKitAutolinking::createEventKit();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "CalendarPermission",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<margelo::nitro::eventkit::HybridCalendarPermissionSpec> hybridObject = NitroEventKit::NitroEventKitAutolinking::createCalendarPermission();
       return hybridObject;
     }
   );

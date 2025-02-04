@@ -8,16 +8,17 @@
 #include "NitroEventKit-Swift-Cxx-Bridge.hpp"
 
 // Include C++ implementation defined types
+#include "HybridCalendarPermissionSpecSwift.hpp"
 #include "HybridEventKitSpecSwift.hpp"
 #include "NitroEventKit-Swift-Cxx-Umbrella.hpp"
 
 namespace margelo::nitro::eventkit::bridge::swift {
 
-  // pragma MARK: std::function<void(const std::vector<EKEvent>& /* result */)>
-  Func_void_std__vector_EKEvent_ create_Func_void_std__vector_EKEvent_(void* _Nonnull swiftClosureWrapper) {
-    auto swiftClosure = NitroEventKit::Func_void_std__vector_EKEvent_::fromUnsafe(swiftClosureWrapper);
-    return [swiftClosure = std::move(swiftClosure)](const std::vector<EKEvent>& result) mutable -> void {
-      swiftClosure.call(result);
+  // pragma MARK: std::function<void(EKEventPermissionResult /* result */)>
+  Func_void_EKEventPermissionResult create_Func_void_EKEventPermissionResult(void* _Nonnull swiftClosureWrapper) {
+    auto swiftClosure = NitroEventKit::Func_void_EKEventPermissionResult::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](EKEventPermissionResult result) mutable -> void {
+      swiftClosure.call(static_cast<int>(result));
     };
   }
   
@@ -26,6 +27,30 @@ namespace margelo::nitro::eventkit::bridge::swift {
     auto swiftClosure = NitroEventKit::Func_void_std__exception_ptr::fromUnsafe(swiftClosureWrapper);
     return [swiftClosure = std::move(swiftClosure)](const std::exception_ptr& error) mutable -> void {
       swiftClosure.call(error);
+    };
+  }
+  
+  // pragma MARK: std::shared_ptr<margelo::nitro::eventkit::HybridCalendarPermissionSpec>
+  std::shared_ptr<margelo::nitro::eventkit::HybridCalendarPermissionSpec> create_std__shared_ptr_margelo__nitro__eventkit__HybridCalendarPermissionSpec_(void* _Nonnull swiftUnsafePointer) {
+    NitroEventKit::HybridCalendarPermissionSpec_cxx swiftPart = NitroEventKit::HybridCalendarPermissionSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::eventkit::HybridCalendarPermissionSpecSwift>(swiftPart);
+  }
+  void* _Nonnull get_std__shared_ptr_margelo__nitro__eventkit__HybridCalendarPermissionSpec_(std__shared_ptr_margelo__nitro__eventkit__HybridCalendarPermissionSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::eventkit::HybridCalendarPermissionSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::eventkit::HybridCalendarPermissionSpecSwift>(cppType);
+  #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridCalendarPermissionSpec\" is not implemented in Swift!");
+    }
+  #endif
+    NitroEventKit::HybridCalendarPermissionSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+  
+  // pragma MARK: std::function<void(const std::vector<EKEvent>& /* result */)>
+  Func_void_std__vector_EKEvent_ create_Func_void_std__vector_EKEvent_(void* _Nonnull swiftClosureWrapper) {
+    auto swiftClosure = NitroEventKit::Func_void_std__vector_EKEvent_::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const std::vector<EKEvent>& result) mutable -> void {
+      swiftClosure.call(result);
     };
   }
   
@@ -41,7 +66,7 @@ namespace margelo::nitro::eventkit::bridge::swift {
       throw std::runtime_error("Class \"HybridEventKitSpec\" is not implemented in Swift!");
     }
   #endif
-    NitroEventKit::HybridEventKitSpec_cxx swiftPart = swiftWrapper->getSwiftPart();
+    NitroEventKit::HybridEventKitSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
 

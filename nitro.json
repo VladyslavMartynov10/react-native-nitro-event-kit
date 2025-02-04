@@ -11,6 +11,9 @@
   "autolinking": {
     "EventKit": {
       "swift": "HybridEventKit"
+    },
+    "CalendarPermission": {
+      "swift": "HybridCalendarPermission"
     }
   },
   "ignorePaths": ["**/node_modules"]
