@@ -9,7 +9,7 @@ import Foundation
 import NitroModules
 
 /// See ``HybridEventKitSpec``
-public protocol HybridEventKitSpec_protocol: AnyObject {
+public protocol HybridEventKitSpec_protocol: HybridObject {
   // Properties
   
 
@@ -18,7 +18,7 @@ public protocol HybridEventKitSpec_protocol: AnyObject {
 }
 
 /// See ``HybridEventKitSpec``
-public class HybridEventKitSpec_base: HybridObjectSpec {
+public class HybridEventKitSpec_base {
   private weak var cxxWrapper: HybridEventKitSpec_cxx? = nil
   public func getCxxWrapper() -> HybridEventKitSpec_cxx {
   #if DEBUG
@@ -34,7 +34,6 @@ public class HybridEventKitSpec_base: HybridObjectSpec {
       return cxxWrapper
     }
   }
-  public var memorySize: Int { return 0 }
 }
 
 /**

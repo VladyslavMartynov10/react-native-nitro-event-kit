@@ -6,21 +6,38 @@ import {
   useColorScheme,
   Button,
 } from 'react-native';
-import {NitroEventKit} from 'react-native-nitro-event-kit';
+import {
+  NitroEventKit,
+  NitroEventKitCalendarPermission,
+} from 'react-native-nitro-event-kit';
 
-import {Colors, Header} from 'react-native/Libraries/NewAppScreen';
+import { Colors, Header } from 'react-native/Libraries/NewAppScreen';
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
-    flex: 1,
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
   const getMonthlyCalendarEvents = async () => {
-    const events = await NitroEventKit.getMonthlyCalendarEvents();
-    console.log(events);
+    try {
+      const events = await NitroEventKit.getMonthlyCalendarEvents();
+
+      console.log(events);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const requestCalendarPermission = async () => {
+    const status = await NitroEventKitCalendarPermission.requestPermission();
+    console.log(status);
+  };
+
+  const checkCalendarPermission = () => {
+    const status = NitroEventKitCalendarPermission.getPermissionsStatus();
+    console.log(status);
   };
 
   return (
@@ -35,6 +52,14 @@ function App(): React.JSX.Element {
         <Header />
 
         <Button title="Get Monthly Events" onPress={getMonthlyCalendarEvents} />
+        <Button
+          title="Request Calendar Permission"
+          onPress={requestCalendarPermission}
+        />
+        <Button
+          title="Check Calendar Permission"
+          onPress={checkCalendarPermission}
+        />
       </ScrollView>
     </SafeAreaView>
   );

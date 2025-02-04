@@ -43,3 +43,11 @@ export interface EKEvent {
   occurrenceDate?: number
   birthdayContactIdentifier?: string
 }
+
+export type EKEventPermissionResult =
+  | 'denied'
+  | 'notDetermined'
+  | 'restricted'
+  | 'fullAccess'
+  | 'writeOnly'
+  | 'unavailable'

@@ -10,21 +10,29 @@
 // Forward declarations of C++ defined types
 // Forward declaration of `EKEventAvailability` to properly resolve imports.
 namespace margelo::nitro::eventkit { enum class EKEventAvailability; }
+// Forward declaration of `EKEventPermissionResult` to properly resolve imports.
+namespace margelo::nitro::eventkit { enum class EKEventPermissionResult; }
 // Forward declaration of `EKEventStatus` to properly resolve imports.
 namespace margelo::nitro::eventkit { enum class EKEventStatus; }
 // Forward declaration of `EKEvent` to properly resolve imports.
 namespace margelo::nitro::eventkit { struct EKEvent; }
+// Forward declaration of `HybridCalendarPermissionSpec` to properly resolve imports.
+namespace margelo::nitro::eventkit { class HybridCalendarPermissionSpec; }
 // Forward declaration of `HybridEventKitSpec` to properly resolve imports.
 namespace margelo::nitro::eventkit { class HybridEventKitSpec; }
 
 // Forward declarations of Swift defined types
+// Forward declaration of `HybridCalendarPermissionSpec_cxx` to properly resolve imports.
+namespace NitroEventKit { class HybridCalendarPermissionSpec_cxx; }
 // Forward declaration of `HybridEventKitSpec_cxx` to properly resolve imports.
 namespace NitroEventKit { class HybridEventKitSpec_cxx; }
 
 // Include C++ defined types
 #include "EKEvent.hpp"
 #include "EKEventAvailability.hpp"
+#include "EKEventPermissionResult.hpp"
 #include "EKEventStatus.hpp"
+#include "HybridCalendarPermissionSpec.hpp"
 #include "HybridEventKitSpec.hpp"
 #include <NitroModules/Promise.hpp>
 #include <NitroModules/PromiseHolder.hpp>
@@ -42,6 +50,92 @@ namespace NitroEventKit { class HybridEventKitSpec_cxx; }
  */
 namespace margelo::nitro::eventkit::bridge::swift {
 
+  // pragma MARK: std::shared_ptr<Promise<EKEventPermissionResult>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<EKEventPermissionResult>>`.
+   */
+  using std__shared_ptr_Promise_EKEventPermissionResult__ = std::shared_ptr<Promise<EKEventPermissionResult>>;
+  inline std::shared_ptr<Promise<EKEventPermissionResult>> create_std__shared_ptr_Promise_EKEventPermissionResult__() {
+    return Promise<EKEventPermissionResult>::create();
+  }
+  inline PromiseHolder<EKEventPermissionResult> wrap_std__shared_ptr_Promise_EKEventPermissionResult__(std::shared_ptr<Promise<EKEventPermissionResult>> promise) {
+    return PromiseHolder<EKEventPermissionResult>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(EKEventPermissionResult /* result */)>
+  /**
+   * Specialized version of `std::function<void(EKEventPermissionResult)>`.
+   */
+  using Func_void_EKEventPermissionResult = std::function<void(EKEventPermissionResult /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(EKEventPermissionResult / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_EKEventPermissionResult_Wrapper final {
+  public:
+    explicit Func_void_EKEventPermissionResult_Wrapper(std::function<void(EKEventPermissionResult /* result */)>&& func): _function(std::make_shared<std::function<void(EKEventPermissionResult /* result */)>>(std::move(func))) {}
+    inline void call(int result) const {
+      _function->operator()(static_cast<EKEventPermissionResult>(result));
+    }
+  private:
+    std::shared_ptr<std::function<void(EKEventPermissionResult /* result */)>> _function;
+  };
+  Func_void_EKEventPermissionResult create_Func_void_EKEventPermissionResult(void* _Nonnull swiftClosureWrapper);
+  inline Func_void_EKEventPermissionResult_Wrapper wrap_Func_void_EKEventPermissionResult(Func_void_EKEventPermissionResult value) {
+    return Func_void_EKEventPermissionResult_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::function<void(const std::exception_ptr& /* error */)>
+  /**
+   * Specialized version of `std::function<void(const std::exception_ptr&)>`.
+   */
+  using Func_void_std__exception_ptr = std::function<void(const std::exception_ptr& /* error */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::exception_ptr& / * error * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__exception_ptr_Wrapper final {
+  public:
+    explicit Func_void_std__exception_ptr_Wrapper(std::function<void(const std::exception_ptr& /* error */)>&& func): _function(std::make_shared<std::function<void(const std::exception_ptr& /* error */)>>(std::move(func))) {}
+    inline void call(std::exception_ptr error) const {
+      _function->operator()(error);
+    }
+  private:
+    std::shared_ptr<std::function<void(const std::exception_ptr& /* error */)>> _function;
+  };
+  Func_void_std__exception_ptr create_Func_void_std__exception_ptr(void* _Nonnull swiftClosureWrapper);
+  inline Func_void_std__exception_ptr_Wrapper wrap_Func_void_std__exception_ptr(Func_void_std__exception_ptr value) {
+    return Func_void_std__exception_ptr_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<margelo::nitro::eventkit::HybridCalendarPermissionSpec>
+  /**
+   * Specialized version of `std::shared_ptr<margelo::nitro::eventkit::HybridCalendarPermissionSpec>`.
+   */
+  using std__shared_ptr_margelo__nitro__eventkit__HybridCalendarPermissionSpec_ = std::shared_ptr<margelo::nitro::eventkit::HybridCalendarPermissionSpec>;
+  std::shared_ptr<margelo::nitro::eventkit::HybridCalendarPermissionSpec> create_std__shared_ptr_margelo__nitro__eventkit__HybridCalendarPermissionSpec_(void* _Nonnull swiftUnsafePointer);
+  void* _Nonnull get_std__shared_ptr_margelo__nitro__eventkit__HybridCalendarPermissionSpec_(std__shared_ptr_margelo__nitro__eventkit__HybridCalendarPermissionSpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<margelo::nitro::eventkit::HybridCalendarPermissionSpec>
+  using std__weak_ptr_margelo__nitro__eventkit__HybridCalendarPermissionSpec_ = std::weak_ptr<margelo::nitro::eventkit::HybridCalendarPermissionSpec>;
+  inline std__weak_ptr_margelo__nitro__eventkit__HybridCalendarPermissionSpec_ weakify_std__shared_ptr_margelo__nitro__eventkit__HybridCalendarPermissionSpec_(const std::shared_ptr<margelo::nitro::eventkit::HybridCalendarPermissionSpec>& strong) { return strong; }
+  
+  // pragma MARK: Result<EKEventPermissionResult>
+  using Result_EKEventPermissionResult_ = Result<EKEventPermissionResult>;
+  inline Result_EKEventPermissionResult_ create_Result_EKEventPermissionResult_(EKEventPermissionResult value) {
+    return Result<EKEventPermissionResult>::withValue(std::move(value));
+  }
+  inline Result_EKEventPermissionResult_ create_Result_EKEventPermissionResult_(const std::exception_ptr& error) {
+    return Result<EKEventPermissionResult>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<EKEventPermissionResult>>>
+  using Result_std__shared_ptr_Promise_EKEventPermissionResult___ = Result<std::shared_ptr<Promise<EKEventPermissionResult>>>;
+  inline Result_std__shared_ptr_Promise_EKEventPermissionResult___ create_Result_std__shared_ptr_Promise_EKEventPermissionResult___(const std::shared_ptr<Promise<EKEventPermissionResult>>& value) {
+    return Result<std::shared_ptr<Promise<EKEventPermissionResult>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_EKEventPermissionResult___ create_Result_std__shared_ptr_Promise_EKEventPermissionResult___(const std::exception_ptr& error) {
+    return Result<std::shared_ptr<Promise<EKEventPermissionResult>>>::withError(error);
+  }
+  
   // pragma MARK: std::optional<double>
   /**
    * Specialized version of `std::optional<double>`.
@@ -103,28 +197,6 @@ namespace margelo::nitro::eventkit::bridge::swift {
   Func_void_std__vector_EKEvent_ create_Func_void_std__vector_EKEvent_(void* _Nonnull swiftClosureWrapper);
   inline Func_void_std__vector_EKEvent__Wrapper wrap_Func_void_std__vector_EKEvent_(Func_void_std__vector_EKEvent_ value) {
     return Func_void_std__vector_EKEvent__Wrapper(std::move(value));
-  }
-  
-  // pragma MARK: std::function<void(const std::exception_ptr& /* error */)>
-  /**
-   * Specialized version of `std::function<void(const std::exception_ptr&)>`.
-   */
-  using Func_void_std__exception_ptr = std::function<void(const std::exception_ptr& /* error */)>;
-  /**
-   * Wrapper class for a `std::function<void(const std::exception_ptr& / * error * /)>`, this can be used from Swift.
-   */
-  class Func_void_std__exception_ptr_Wrapper final {
-  public:
-    explicit Func_void_std__exception_ptr_Wrapper(std::function<void(const std::exception_ptr& /* error */)>&& func): _function(std::make_shared<std::function<void(const std::exception_ptr& /* error */)>>(std::move(func))) {}
-    inline void call(std::exception_ptr error) const {
-      _function->operator()(error);
-    }
-  private:
-    std::shared_ptr<std::function<void(const std::exception_ptr& /* error */)>> _function;
-  };
-  Func_void_std__exception_ptr create_Func_void_std__exception_ptr(void* _Nonnull swiftClosureWrapper);
-  inline Func_void_std__exception_ptr_Wrapper wrap_Func_void_std__exception_ptr(Func_void_std__exception_ptr value) {
-    return Func_void_std__exception_ptr_Wrapper(std::move(value));
   }
   
   // pragma MARK: std::shared_ptr<margelo::nitro::eventkit::HybridEventKitSpec>
