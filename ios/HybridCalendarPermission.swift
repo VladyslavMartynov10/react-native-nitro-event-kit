@@ -52,38 +52,6 @@ class HybridCalendarPermission: HybridCalendarPermissionSpec {
         return promise
     }
 
-//    func requestPermission() throws -> NitroModules.Promise<EKEventPermissionResult> {
-//        let promise = Promise<EKEventPermissionResult>()
-//
-//        let completion: (Bool, Error?) -> Void = { granted, error in
-//            if let error = error {
-//                promise.reject(withError: error)
-//                return
-//            }
-//
-//            if granted {
-//                EventKitManager.shared.updateCalendarAccessStatus()
-//                
-//                promise.resolve(withResult: .fullaccess)
-//            } else {
-//                do {
-//                    let status = try self.getPermissionsStatus()
-//                    promise.resolve(withResult: status)
-//                } catch {
-//                    promise.reject(withError: error)
-//                }
-//            }
-//        }
-//
-//        if #available(iOS 17.0, *) {
-//            self.eventStore.requestFullAccessToEvents(completion: completion)
-//        } else {
-//            self.eventStore.requestAccess(to: .event, completion: completion)
-//        }
-//
-//        return promise
-//    }
-
     private func parseStatus(_ status: EKAuthorizationStatus) -> EKEventPermissionResult {
         switch status {
         case .denied:
