@@ -33,7 +33,8 @@
     "typescript": "tsc --noEmit",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
-    "husky": "husky"
+    "husky": "husky",
+    "specs": "typescript && nitro-codegen --logLevel=\"debug\""
   },
   "keywords": [
     "react-native",
