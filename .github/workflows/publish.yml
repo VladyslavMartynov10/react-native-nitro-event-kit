@@ -13,14 +13,24 @@ permissions:
 jobs:
   release:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: ⬇️ Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Set up Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 'lts/*'
           cache: 'yarn'
-      - run: yarn install --no-lockfile
-      - name: Release
+
+      - name: 📦 Install Dependencies
+        run: yarn install --no-lockfile
+
+      - name: 🛠 Build the Package
+        run: yarn build
+
+      - name: 🚀 Release to NPM and GitHub
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

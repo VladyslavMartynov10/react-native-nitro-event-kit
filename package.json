@@ -2,9 +2,9 @@
   "name": "react-native-nitro-event-kit",
   "version": "0.0.1",
   "description": "react-native-nitro-event-kit",
-  "main": "lib/index",
-  "module": "lib/index",
-  "types": "lib/index.d.ts",
+  "main": "lib/commonjs/index",
+  "module": "lib/module/index",
+  "types": "lib/typescript/commonjs/index.d.ts",
   "react-native": "src/index",
   "source": "src/index",
   "files": [
@@ -26,7 +26,9 @@
     "README.md"
   ],
   "scripts": {
-    "postinstall": "tsc || exit 0;",
+    "postinstall": "yarn prepare",
+    "prepare": "bob build",
+    "build": "bob build",
     "typecheck": "tsc --noEmit",
     "clean": "rm -rf android/build node_modules/**/android/build lib",
     "lint-ci": "eslint \"**/*.{js,ts,tsx}\" -f @jamesacarr/github-actions",
@@ -67,6 +69,7 @@
     "prettier": "^3.4.2",
     "react": "18.3.1",
     "react-native": "0.77.0",
+    "react-native-builder-bob": "^0.36.0",
     "react-native-nitro-modules": "*",
     "typescript": "^5.5.4"
   },
@@ -111,5 +114,30 @@
   },
   "directories": {
     "lib": "lib"
+  },
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      [
+        "commonjs",
+        {
+          "esm": true
+        }
+      ],
+      [
+        "module",
+        {
+          "esm": true
+        }
+      ],
+      [
+        "typescript",
+        {
+          "esm": true,
+          "tsc": "./node_modules/.bin/tsc"
+        }
+      ]
+    ]
   }
 }
