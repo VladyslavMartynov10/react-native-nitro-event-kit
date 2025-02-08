@@ -33,12 +33,20 @@ npm install react-native-nitro-event-kit react-native-nitro-modules
 cd ios && pod install
 ```
 
-📝 Examples
+Edit **`Info.plist`**. Add the following item (Set **Value** as desired):
 
-📆 Fetch Local Events
+| Key                                     | Type     | Value                                                                              |
+| --------------------------------------- | -------- | ---------------------------------------------------------------------------------- |
+| _Privacy - NSCalendarsUsageDescription_ | `String` | _CHANGEME: This app requires access to your calendar to create and manage events._ |
+
+📝 Example usage
 
 ```
-import { NitroEventKit } from 'react-native-nitro-eventkit'
+
+import {
+  NitroEventKit,
+  NitroEventKitCalendarPermission,
+} from 'react-native-nitro-event-kit';
 
 const fetchEvents = async () => {
   try {
@@ -49,5 +57,14 @@ const fetchEvents = async () => {
   }
 }
 
-fetchEvents()
+const requestCalendarPermission = async () => {
+    const status = await NitroEventKitCalendarPermission.requestPermission();
+    console.log(status);
+};
+
+const checkCalendarPermission = () => {
+    const status = NitroEventKitCalendarPermission.getPermissionsStatus();
+    console.log(status);
+};
+
 ```
