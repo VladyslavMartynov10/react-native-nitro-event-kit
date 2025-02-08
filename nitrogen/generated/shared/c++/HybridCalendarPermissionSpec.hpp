@@ -13,10 +13,10 @@
 #error NitroModules cannot be found! Are you sure you installed NitroModules properly?
 #endif
 
-// Forward declaration of `EKEventPermissionResult` to properly resolve imports.
-namespace margelo::nitro::eventkit { enum class EKEventPermissionResult; }
+// Forward declaration of `EventKitPermissionResult` to properly resolve imports.
+namespace margelo::nitro::eventkit { enum class EventKitPermissionResult; }
 
-#include "EKEventPermissionResult.hpp"
+#include "EventKitPermissionResult.hpp"
 #include <NitroModules/Promise.hpp>
 
 namespace margelo::nitro::eventkit {
@@ -50,8 +50,8 @@ namespace margelo::nitro::eventkit {
 
     public:
       // Methods
-      virtual EKEventPermissionResult getPermissionsStatus() = 0;
-      virtual std::shared_ptr<Promise<EKEventPermissionResult>> requestPermission() = 0;
+      virtual EventKitPermissionResult getPermissionsStatus() = 0;
+      virtual std::shared_ptr<Promise<EventKitPermissionResult>> requestPermission() = 0;
 
     protected:
       // Hybrid Setup

@@ -26,7 +26,7 @@
     "README.md"
   ],
   "scripts": {
-    "prepare": "bob build",
+    "codegen": "rm -rf node_modules nitrogen lib && yarn install && npx nitro-codegen && cd example && rm -rf node_modules && yarn install && npx pod-install",
     "build": "bob build",
     "typecheck": "tsc --noEmit",
     "clean": "rm -rf android/build node_modules/**/android/build lib",

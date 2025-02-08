@@ -13,7 +13,7 @@ import {
 
 import { Colors, Header } from 'react-native/Libraries/NewAppScreen';
 
-function App(): React.JSX.Element {
+function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -25,6 +25,16 @@ function App(): React.JSX.Element {
       const events = await NitroEventKit.getMonthlyCalendarEvents();
 
       console.log(events);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getActiveCalendars = async () => {
+    try {
+      const calendars = await NitroEventKit.getActiveCalendars();
+
+      console.log(calendars);
     } catch (error) {
       console.log(error);
     }
@@ -60,6 +70,8 @@ function App(): React.JSX.Element {
           title="Check Calendar Permission"
           onPress={checkCalendarPermission}
         />
+
+        <Button title="Get Active Calendars" onPress={getActiveCalendars} />
       </ScrollView>
     </SafeAreaView>
   );

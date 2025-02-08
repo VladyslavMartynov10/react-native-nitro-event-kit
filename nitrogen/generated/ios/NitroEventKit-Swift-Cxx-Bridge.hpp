@@ -8,14 +8,26 @@
 #pragma once
 
 // Forward declarations of C++ defined types
-// Forward declaration of `EKEventAvailability` to properly resolve imports.
-namespace margelo::nitro::eventkit { enum class EKEventAvailability; }
-// Forward declaration of `EKEventPermissionResult` to properly resolve imports.
-namespace margelo::nitro::eventkit { enum class EKEventPermissionResult; }
-// Forward declaration of `EKEventStatus` to properly resolve imports.
-namespace margelo::nitro::eventkit { enum class EKEventStatus; }
-// Forward declaration of `EKEvent` to properly resolve imports.
-namespace margelo::nitro::eventkit { struct EKEvent; }
+// Forward declaration of `EventKitAvailability` to properly resolve imports.
+namespace margelo::nitro::eventkit { enum class EventKitAvailability; }
+// Forward declaration of `EventKitCalendarEventAvailabilityMask` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct EventKitCalendarEventAvailabilityMask; }
+// Forward declaration of `EventKitCalendarType` to properly resolve imports.
+namespace margelo::nitro::eventkit { enum class EventKitCalendarType; }
+// Forward declaration of `EventKitCalendar` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct EventKitCalendar; }
+// Forward declaration of `EventKitEntityMask` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct EventKitEntityMask; }
+// Forward declaration of `EventKitEvent` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct EventKitEvent; }
+// Forward declaration of `EventKitPermissionResult` to properly resolve imports.
+namespace margelo::nitro::eventkit { enum class EventKitPermissionResult; }
+// Forward declaration of `EventKitSourceType` to properly resolve imports.
+namespace margelo::nitro::eventkit { enum class EventKitSourceType; }
+// Forward declaration of `EventKitSource` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct EventKitSource; }
+// Forward declaration of `EventKitStatus` to properly resolve imports.
+namespace margelo::nitro::eventkit { enum class EventKitStatus; }
 // Forward declaration of `HybridCalendarPermissionSpec` to properly resolve imports.
 namespace margelo::nitro::eventkit { class HybridCalendarPermissionSpec; }
 // Forward declaration of `HybridEventKitSpec` to properly resolve imports.
@@ -28,10 +40,16 @@ namespace NitroEventKit { class HybridCalendarPermissionSpec_cxx; }
 namespace NitroEventKit { class HybridEventKitSpec_cxx; }
 
 // Include C++ defined types
-#include "EKEvent.hpp"
-#include "EKEventAvailability.hpp"
-#include "EKEventPermissionResult.hpp"
-#include "EKEventStatus.hpp"
+#include "EventKitAvailability.hpp"
+#include "EventKitCalendar.hpp"
+#include "EventKitCalendarEventAvailabilityMask.hpp"
+#include "EventKitCalendarType.hpp"
+#include "EventKitEntityMask.hpp"
+#include "EventKitEvent.hpp"
+#include "EventKitPermissionResult.hpp"
+#include "EventKitSource.hpp"
+#include "EventKitSourceType.hpp"
+#include "EventKitStatus.hpp"
 #include "HybridCalendarPermissionSpec.hpp"
 #include "HybridEventKitSpec.hpp"
 #include <NitroModules/Promise.hpp>
@@ -50,38 +68,38 @@ namespace NitroEventKit { class HybridEventKitSpec_cxx; }
  */
 namespace margelo::nitro::eventkit::bridge::swift {
 
-  // pragma MARK: std::shared_ptr<Promise<EKEventPermissionResult>>
+  // pragma MARK: std::shared_ptr<Promise<EventKitPermissionResult>>
   /**
-   * Specialized version of `std::shared_ptr<Promise<EKEventPermissionResult>>`.
+   * Specialized version of `std::shared_ptr<Promise<EventKitPermissionResult>>`.
    */
-  using std__shared_ptr_Promise_EKEventPermissionResult__ = std::shared_ptr<Promise<EKEventPermissionResult>>;
-  inline std::shared_ptr<Promise<EKEventPermissionResult>> create_std__shared_ptr_Promise_EKEventPermissionResult__() {
-    return Promise<EKEventPermissionResult>::create();
+  using std__shared_ptr_Promise_EventKitPermissionResult__ = std::shared_ptr<Promise<EventKitPermissionResult>>;
+  inline std::shared_ptr<Promise<EventKitPermissionResult>> create_std__shared_ptr_Promise_EventKitPermissionResult__() {
+    return Promise<EventKitPermissionResult>::create();
   }
-  inline PromiseHolder<EKEventPermissionResult> wrap_std__shared_ptr_Promise_EKEventPermissionResult__(std::shared_ptr<Promise<EKEventPermissionResult>> promise) {
-    return PromiseHolder<EKEventPermissionResult>(std::move(promise));
+  inline PromiseHolder<EventKitPermissionResult> wrap_std__shared_ptr_Promise_EventKitPermissionResult__(std::shared_ptr<Promise<EventKitPermissionResult>> promise) {
+    return PromiseHolder<EventKitPermissionResult>(std::move(promise));
   }
   
-  // pragma MARK: std::function<void(EKEventPermissionResult /* result */)>
+  // pragma MARK: std::function<void(EventKitPermissionResult /* result */)>
   /**
-   * Specialized version of `std::function<void(EKEventPermissionResult)>`.
+   * Specialized version of `std::function<void(EventKitPermissionResult)>`.
    */
-  using Func_void_EKEventPermissionResult = std::function<void(EKEventPermissionResult /* result */)>;
+  using Func_void_EventKitPermissionResult = std::function<void(EventKitPermissionResult /* result */)>;
   /**
-   * Wrapper class for a `std::function<void(EKEventPermissionResult / * result * /)>`, this can be used from Swift.
+   * Wrapper class for a `std::function<void(EventKitPermissionResult / * result * /)>`, this can be used from Swift.
    */
-  class Func_void_EKEventPermissionResult_Wrapper final {
+  class Func_void_EventKitPermissionResult_Wrapper final {
   public:
-    explicit Func_void_EKEventPermissionResult_Wrapper(std::function<void(EKEventPermissionResult /* result */)>&& func): _function(std::make_shared<std::function<void(EKEventPermissionResult /* result */)>>(std::move(func))) {}
+    explicit Func_void_EventKitPermissionResult_Wrapper(std::function<void(EventKitPermissionResult /* result */)>&& func): _function(std::make_shared<std::function<void(EventKitPermissionResult /* result */)>>(std::move(func))) {}
     inline void call(int result) const {
-      _function->operator()(static_cast<EKEventPermissionResult>(result));
+      _function->operator()(static_cast<EventKitPermissionResult>(result));
     }
   private:
-    std::shared_ptr<std::function<void(EKEventPermissionResult /* result */)>> _function;
+    std::shared_ptr<std::function<void(EventKitPermissionResult /* result */)>> _function;
   };
-  Func_void_EKEventPermissionResult create_Func_void_EKEventPermissionResult(void* _Nonnull swiftClosureWrapper);
-  inline Func_void_EKEventPermissionResult_Wrapper wrap_Func_void_EKEventPermissionResult(Func_void_EKEventPermissionResult value) {
-    return Func_void_EKEventPermissionResult_Wrapper(std::move(value));
+  Func_void_EventKitPermissionResult create_Func_void_EventKitPermissionResult(void* _Nonnull swiftClosureWrapper);
+  inline Func_void_EventKitPermissionResult_Wrapper wrap_Func_void_EventKitPermissionResult(Func_void_EventKitPermissionResult value) {
+    return Func_void_EventKitPermissionResult_Wrapper(std::move(value));
   }
   
   // pragma MARK: std::function<void(const std::exception_ptr& /* error */)>
@@ -118,22 +136,22 @@ namespace margelo::nitro::eventkit::bridge::swift {
   using std__weak_ptr_margelo__nitro__eventkit__HybridCalendarPermissionSpec_ = std::weak_ptr<margelo::nitro::eventkit::HybridCalendarPermissionSpec>;
   inline std__weak_ptr_margelo__nitro__eventkit__HybridCalendarPermissionSpec_ weakify_std__shared_ptr_margelo__nitro__eventkit__HybridCalendarPermissionSpec_(const std::shared_ptr<margelo::nitro::eventkit::HybridCalendarPermissionSpec>& strong) { return strong; }
   
-  // pragma MARK: Result<EKEventPermissionResult>
-  using Result_EKEventPermissionResult_ = Result<EKEventPermissionResult>;
-  inline Result_EKEventPermissionResult_ create_Result_EKEventPermissionResult_(EKEventPermissionResult value) {
-    return Result<EKEventPermissionResult>::withValue(std::move(value));
+  // pragma MARK: Result<EventKitPermissionResult>
+  using Result_EventKitPermissionResult_ = Result<EventKitPermissionResult>;
+  inline Result_EventKitPermissionResult_ create_Result_EventKitPermissionResult_(EventKitPermissionResult value) {
+    return Result<EventKitPermissionResult>::withValue(std::move(value));
   }
-  inline Result_EKEventPermissionResult_ create_Result_EKEventPermissionResult_(const std::exception_ptr& error) {
-    return Result<EKEventPermissionResult>::withError(error);
+  inline Result_EventKitPermissionResult_ create_Result_EventKitPermissionResult_(const std::exception_ptr& error) {
+    return Result<EventKitPermissionResult>::withError(error);
   }
   
-  // pragma MARK: Result<std::shared_ptr<Promise<EKEventPermissionResult>>>
-  using Result_std__shared_ptr_Promise_EKEventPermissionResult___ = Result<std::shared_ptr<Promise<EKEventPermissionResult>>>;
-  inline Result_std__shared_ptr_Promise_EKEventPermissionResult___ create_Result_std__shared_ptr_Promise_EKEventPermissionResult___(const std::shared_ptr<Promise<EKEventPermissionResult>>& value) {
-    return Result<std::shared_ptr<Promise<EKEventPermissionResult>>>::withValue(value);
+  // pragma MARK: Result<std::shared_ptr<Promise<EventKitPermissionResult>>>
+  using Result_std__shared_ptr_Promise_EventKitPermissionResult___ = Result<std::shared_ptr<Promise<EventKitPermissionResult>>>;
+  inline Result_std__shared_ptr_Promise_EventKitPermissionResult___ create_Result_std__shared_ptr_Promise_EventKitPermissionResult___(const std::shared_ptr<Promise<EventKitPermissionResult>>& value) {
+    return Result<std::shared_ptr<Promise<EventKitPermissionResult>>>::withValue(value);
   }
-  inline Result_std__shared_ptr_Promise_EKEventPermissionResult___ create_Result_std__shared_ptr_Promise_EKEventPermissionResult___(const std::exception_ptr& error) {
-    return Result<std::shared_ptr<Promise<EKEventPermissionResult>>>::withError(error);
+  inline Result_std__shared_ptr_Promise_EventKitPermissionResult___ create_Result_std__shared_ptr_Promise_EventKitPermissionResult___(const std::exception_ptr& error) {
+    return Result<std::shared_ptr<Promise<EventKitPermissionResult>>>::withError(error);
   }
   
   // pragma MARK: std::optional<double>
@@ -154,49 +172,137 @@ namespace margelo::nitro::eventkit::bridge::swift {
     return std::optional<std::string>(value);
   }
   
-  // pragma MARK: std::vector<EKEvent>
+  // pragma MARK: std::shared_ptr<Promise<EventKitEvent>>
   /**
-   * Specialized version of `std::vector<EKEvent>`.
+   * Specialized version of `std::shared_ptr<Promise<EventKitEvent>>`.
    */
-  using std__vector_EKEvent_ = std::vector<EKEvent>;
-  inline std::vector<EKEvent> create_std__vector_EKEvent_(size_t size) {
-    std::vector<EKEvent> vector;
+  using std__shared_ptr_Promise_EventKitEvent__ = std::shared_ptr<Promise<EventKitEvent>>;
+  inline std::shared_ptr<Promise<EventKitEvent>> create_std__shared_ptr_Promise_EventKitEvent__() {
+    return Promise<EventKitEvent>::create();
+  }
+  inline PromiseHolder<EventKitEvent> wrap_std__shared_ptr_Promise_EventKitEvent__(std::shared_ptr<Promise<EventKitEvent>> promise) {
+    return PromiseHolder<EventKitEvent>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const EventKitEvent& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const EventKitEvent&)>`.
+   */
+  using Func_void_EventKitEvent = std::function<void(const EventKitEvent& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const EventKitEvent& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_EventKitEvent_Wrapper final {
+  public:
+    explicit Func_void_EventKitEvent_Wrapper(std::function<void(const EventKitEvent& /* result */)>&& func): _function(std::make_shared<std::function<void(const EventKitEvent& /* result */)>>(std::move(func))) {}
+    inline void call(EventKitEvent result) const {
+      _function->operator()(result);
+    }
+  private:
+    std::shared_ptr<std::function<void(const EventKitEvent& /* result */)>> _function;
+  };
+  Func_void_EventKitEvent create_Func_void_EventKitEvent(void* _Nonnull swiftClosureWrapper);
+  inline Func_void_EventKitEvent_Wrapper wrap_Func_void_EventKitEvent(Func_void_EventKitEvent value) {
+    return Func_void_EventKitEvent_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::optional<bool>
+  /**
+   * Specialized version of `std::optional<bool>`.
+   */
+  using std__optional_bool_ = std::optional<bool>;
+  inline std::optional<bool> create_std__optional_bool_(const bool& value) {
+    return std::optional<bool>(value);
+  }
+  
+  // pragma MARK: std::vector<EventKitCalendar>
+  /**
+   * Specialized version of `std::vector<EventKitCalendar>`.
+   */
+  using std__vector_EventKitCalendar_ = std::vector<EventKitCalendar>;
+  inline std::vector<EventKitCalendar> create_std__vector_EventKitCalendar_(size_t size) {
+    std::vector<EventKitCalendar> vector;
     vector.reserve(size);
     return vector;
   }
   
-  // pragma MARK: std::shared_ptr<Promise<std::vector<EKEvent>>>
+  // pragma MARK: std::shared_ptr<Promise<std::vector<EventKitCalendar>>>
   /**
-   * Specialized version of `std::shared_ptr<Promise<std::vector<EKEvent>>>`.
+   * Specialized version of `std::shared_ptr<Promise<std::vector<EventKitCalendar>>>`.
    */
-  using std__shared_ptr_Promise_std__vector_EKEvent___ = std::shared_ptr<Promise<std::vector<EKEvent>>>;
-  inline std::shared_ptr<Promise<std::vector<EKEvent>>> create_std__shared_ptr_Promise_std__vector_EKEvent___() {
-    return Promise<std::vector<EKEvent>>::create();
+  using std__shared_ptr_Promise_std__vector_EventKitCalendar___ = std::shared_ptr<Promise<std::vector<EventKitCalendar>>>;
+  inline std::shared_ptr<Promise<std::vector<EventKitCalendar>>> create_std__shared_ptr_Promise_std__vector_EventKitCalendar___() {
+    return Promise<std::vector<EventKitCalendar>>::create();
   }
-  inline PromiseHolder<std::vector<EKEvent>> wrap_std__shared_ptr_Promise_std__vector_EKEvent___(std::shared_ptr<Promise<std::vector<EKEvent>>> promise) {
-    return PromiseHolder<std::vector<EKEvent>>(std::move(promise));
+  inline PromiseHolder<std::vector<EventKitCalendar>> wrap_std__shared_ptr_Promise_std__vector_EventKitCalendar___(std::shared_ptr<Promise<std::vector<EventKitCalendar>>> promise) {
+    return PromiseHolder<std::vector<EventKitCalendar>>(std::move(promise));
   }
   
-  // pragma MARK: std::function<void(const std::vector<EKEvent>& /* result */)>
+  // pragma MARK: std::function<void(const std::vector<EventKitCalendar>& /* result */)>
   /**
-   * Specialized version of `std::function<void(const std::vector<EKEvent>&)>`.
+   * Specialized version of `std::function<void(const std::vector<EventKitCalendar>&)>`.
    */
-  using Func_void_std__vector_EKEvent_ = std::function<void(const std::vector<EKEvent>& /* result */)>;
+  using Func_void_std__vector_EventKitCalendar_ = std::function<void(const std::vector<EventKitCalendar>& /* result */)>;
   /**
-   * Wrapper class for a `std::function<void(const std::vector<EKEvent>& / * result * /)>`, this can be used from Swift.
+   * Wrapper class for a `std::function<void(const std::vector<EventKitCalendar>& / * result * /)>`, this can be used from Swift.
    */
-  class Func_void_std__vector_EKEvent__Wrapper final {
+  class Func_void_std__vector_EventKitCalendar__Wrapper final {
   public:
-    explicit Func_void_std__vector_EKEvent__Wrapper(std::function<void(const std::vector<EKEvent>& /* result */)>&& func): _function(std::make_shared<std::function<void(const std::vector<EKEvent>& /* result */)>>(std::move(func))) {}
-    inline void call(std::vector<EKEvent> result) const {
+    explicit Func_void_std__vector_EventKitCalendar__Wrapper(std::function<void(const std::vector<EventKitCalendar>& /* result */)>&& func): _function(std::make_shared<std::function<void(const std::vector<EventKitCalendar>& /* result */)>>(std::move(func))) {}
+    inline void call(std::vector<EventKitCalendar> result) const {
       _function->operator()(result);
     }
   private:
-    std::shared_ptr<std::function<void(const std::vector<EKEvent>& /* result */)>> _function;
+    std::shared_ptr<std::function<void(const std::vector<EventKitCalendar>& /* result */)>> _function;
   };
-  Func_void_std__vector_EKEvent_ create_Func_void_std__vector_EKEvent_(void* _Nonnull swiftClosureWrapper);
-  inline Func_void_std__vector_EKEvent__Wrapper wrap_Func_void_std__vector_EKEvent_(Func_void_std__vector_EKEvent_ value) {
-    return Func_void_std__vector_EKEvent__Wrapper(std::move(value));
+  Func_void_std__vector_EventKitCalendar_ create_Func_void_std__vector_EventKitCalendar_(void* _Nonnull swiftClosureWrapper);
+  inline Func_void_std__vector_EventKitCalendar__Wrapper wrap_Func_void_std__vector_EventKitCalendar_(Func_void_std__vector_EventKitCalendar_ value) {
+    return Func_void_std__vector_EventKitCalendar__Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::vector<EventKitEvent>
+  /**
+   * Specialized version of `std::vector<EventKitEvent>`.
+   */
+  using std__vector_EventKitEvent_ = std::vector<EventKitEvent>;
+  inline std::vector<EventKitEvent> create_std__vector_EventKitEvent_(size_t size) {
+    std::vector<EventKitEvent> vector;
+    vector.reserve(size);
+    return vector;
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<std::vector<EventKitEvent>>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<std::vector<EventKitEvent>>>`.
+   */
+  using std__shared_ptr_Promise_std__vector_EventKitEvent___ = std::shared_ptr<Promise<std::vector<EventKitEvent>>>;
+  inline std::shared_ptr<Promise<std::vector<EventKitEvent>>> create_std__shared_ptr_Promise_std__vector_EventKitEvent___() {
+    return Promise<std::vector<EventKitEvent>>::create();
+  }
+  inline PromiseHolder<std::vector<EventKitEvent>> wrap_std__shared_ptr_Promise_std__vector_EventKitEvent___(std::shared_ptr<Promise<std::vector<EventKitEvent>>> promise) {
+    return PromiseHolder<std::vector<EventKitEvent>>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const std::vector<EventKitEvent>& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const std::vector<EventKitEvent>&)>`.
+   */
+  using Func_void_std__vector_EventKitEvent_ = std::function<void(const std::vector<EventKitEvent>& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::vector<EventKitEvent>& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__vector_EventKitEvent__Wrapper final {
+  public:
+    explicit Func_void_std__vector_EventKitEvent__Wrapper(std::function<void(const std::vector<EventKitEvent>& /* result */)>&& func): _function(std::make_shared<std::function<void(const std::vector<EventKitEvent>& /* result */)>>(std::move(func))) {}
+    inline void call(std::vector<EventKitEvent> result) const {
+      _function->operator()(result);
+    }
+  private:
+    std::shared_ptr<std::function<void(const std::vector<EventKitEvent>& /* result */)>> _function;
+  };
+  Func_void_std__vector_EventKitEvent_ create_Func_void_std__vector_EventKitEvent_(void* _Nonnull swiftClosureWrapper);
+  inline Func_void_std__vector_EventKitEvent__Wrapper wrap_Func_void_std__vector_EventKitEvent_(Func_void_std__vector_EventKitEvent_ value) {
+    return Func_void_std__vector_EventKitEvent__Wrapper(std::move(value));
   }
   
   // pragma MARK: std::shared_ptr<margelo::nitro::eventkit::HybridEventKitSpec>
@@ -211,13 +317,31 @@ namespace margelo::nitro::eventkit::bridge::swift {
   using std__weak_ptr_margelo__nitro__eventkit__HybridEventKitSpec_ = std::weak_ptr<margelo::nitro::eventkit::HybridEventKitSpec>;
   inline std__weak_ptr_margelo__nitro__eventkit__HybridEventKitSpec_ weakify_std__shared_ptr_margelo__nitro__eventkit__HybridEventKitSpec_(const std::shared_ptr<margelo::nitro::eventkit::HybridEventKitSpec>& strong) { return strong; }
   
-  // pragma MARK: Result<std::shared_ptr<Promise<std::vector<EKEvent>>>>
-  using Result_std__shared_ptr_Promise_std__vector_EKEvent____ = Result<std::shared_ptr<Promise<std::vector<EKEvent>>>>;
-  inline Result_std__shared_ptr_Promise_std__vector_EKEvent____ create_Result_std__shared_ptr_Promise_std__vector_EKEvent____(const std::shared_ptr<Promise<std::vector<EKEvent>>>& value) {
-    return Result<std::shared_ptr<Promise<std::vector<EKEvent>>>>::withValue(value);
+  // pragma MARK: Result<std::shared_ptr<Promise<EventKitEvent>>>
+  using Result_std__shared_ptr_Promise_EventKitEvent___ = Result<std::shared_ptr<Promise<EventKitEvent>>>;
+  inline Result_std__shared_ptr_Promise_EventKitEvent___ create_Result_std__shared_ptr_Promise_EventKitEvent___(const std::shared_ptr<Promise<EventKitEvent>>& value) {
+    return Result<std::shared_ptr<Promise<EventKitEvent>>>::withValue(value);
   }
-  inline Result_std__shared_ptr_Promise_std__vector_EKEvent____ create_Result_std__shared_ptr_Promise_std__vector_EKEvent____(const std::exception_ptr& error) {
-    return Result<std::shared_ptr<Promise<std::vector<EKEvent>>>>::withError(error);
+  inline Result_std__shared_ptr_Promise_EventKitEvent___ create_Result_std__shared_ptr_Promise_EventKitEvent___(const std::exception_ptr& error) {
+    return Result<std::shared_ptr<Promise<EventKitEvent>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<std::vector<EventKitCalendar>>>>
+  using Result_std__shared_ptr_Promise_std__vector_EventKitCalendar____ = Result<std::shared_ptr<Promise<std::vector<EventKitCalendar>>>>;
+  inline Result_std__shared_ptr_Promise_std__vector_EventKitCalendar____ create_Result_std__shared_ptr_Promise_std__vector_EventKitCalendar____(const std::shared_ptr<Promise<std::vector<EventKitCalendar>>>& value) {
+    return Result<std::shared_ptr<Promise<std::vector<EventKitCalendar>>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_std__vector_EventKitCalendar____ create_Result_std__shared_ptr_Promise_std__vector_EventKitCalendar____(const std::exception_ptr& error) {
+    return Result<std::shared_ptr<Promise<std::vector<EventKitCalendar>>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<std::vector<EventKitEvent>>>>
+  using Result_std__shared_ptr_Promise_std__vector_EventKitEvent____ = Result<std::shared_ptr<Promise<std::vector<EventKitEvent>>>>;
+  inline Result_std__shared_ptr_Promise_std__vector_EventKitEvent____ create_Result_std__shared_ptr_Promise_std__vector_EventKitEvent____(const std::shared_ptr<Promise<std::vector<EventKitEvent>>>& value) {
+    return Result<std::shared_ptr<Promise<std::vector<EventKitEvent>>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_std__vector_EventKitEvent____ create_Result_std__shared_ptr_Promise_std__vector_EventKitEvent____(const std::exception_ptr& error) {
+    return Result<std::shared_ptr<Promise<std::vector<EventKitEvent>>>>::withError(error);
   }
 
 } // namespace margelo::nitro::eventkit::bridge::swift

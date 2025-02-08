@@ -101,33 +101,33 @@ public class HybridCalendarPermissionSpec_cxx {
 
   // Methods
   @inline(__always)
-  public func getPermissionsStatus() -> bridge.Result_EKEventPermissionResult_ {
+  public func getPermissionsStatus() -> bridge.Result_EventKitPermissionResult_ {
     do {
       let __result = try self.__implementation.getPermissionsStatus()
       let __resultCpp = __result
-      return bridge.create_Result_EKEventPermissionResult_(__resultCpp)
+      return bridge.create_Result_EventKitPermissionResult_(__resultCpp)
     } catch (let __error) {
       let __exceptionPtr = __error.toCpp()
-      return bridge.create_Result_EKEventPermissionResult_(__exceptionPtr)
+      return bridge.create_Result_EventKitPermissionResult_(__exceptionPtr)
     }
   }
   
   @inline(__always)
-  public func requestPermission() -> bridge.Result_std__shared_ptr_Promise_EKEventPermissionResult___ {
+  public func requestPermission() -> bridge.Result_std__shared_ptr_Promise_EventKitPermissionResult___ {
     do {
       let __result = try self.__implementation.requestPermission()
-      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_EKEventPermissionResult__ in
-        let __promise = bridge.create_std__shared_ptr_Promise_EKEventPermissionResult__()
-        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_EKEventPermissionResult__(__promise)
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_EventKitPermissionResult__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_EventKitPermissionResult__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_EventKitPermissionResult__(__promise)
         __result
           .then({ __result in __promiseHolder.resolve(__result) })
           .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
         return __promise
       }()
-      return bridge.create_Result_std__shared_ptr_Promise_EKEventPermissionResult___(__resultCpp)
+      return bridge.create_Result_std__shared_ptr_Promise_EventKitPermissionResult___(__resultCpp)
     } catch (let __error) {
       let __exceptionPtr = __error.toCpp()
-      return bridge.create_Result_std__shared_ptr_Promise_EKEventPermissionResult___(__exceptionPtr)
+      return bridge.create_Result_std__shared_ptr_Promise_EventKitPermissionResult___(__exceptionPtr)
     }
   }
 }
