@@ -12,20 +12,41 @@
 // Forward declaration of `HybridEventKitSpec_cxx` to properly resolve imports.
 namespace NitroEventKit { class HybridEventKitSpec_cxx; }
 
-// Forward declaration of `EKEvent` to properly resolve imports.
-namespace margelo::nitro::eventkit { struct EKEvent; }
-// Forward declaration of `EKEventAvailability` to properly resolve imports.
-namespace margelo::nitro::eventkit { enum class EKEventAvailability; }
-// Forward declaration of `EKEventStatus` to properly resolve imports.
-namespace margelo::nitro::eventkit { enum class EKEventStatus; }
+// Forward declaration of `EventKitEvent` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct EventKitEvent; }
+// Forward declaration of `EventKitAvailability` to properly resolve imports.
+namespace margelo::nitro::eventkit { enum class EventKitAvailability; }
+// Forward declaration of `EventKitStatus` to properly resolve imports.
+namespace margelo::nitro::eventkit { enum class EventKitStatus; }
+// Forward declaration of `CreateEventOptions` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct CreateEventOptions; }
+// Forward declaration of `EventKitCalendar` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct EventKitCalendar; }
+// Forward declaration of `EventKitCalendarType` to properly resolve imports.
+namespace margelo::nitro::eventkit { enum class EventKitCalendarType; }
+// Forward declaration of `EventKitCalendarEventAvailabilityMask` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct EventKitCalendarEventAvailabilityMask; }
+// Forward declaration of `EventKitEntityMask` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct EventKitEntityMask; }
+// Forward declaration of `EventKitSource` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct EventKitSource; }
+// Forward declaration of `EventKitSourceType` to properly resolve imports.
+namespace margelo::nitro::eventkit { enum class EventKitSourceType; }
 
 #include <NitroModules/Promise.hpp>
-#include <vector>
-#include "EKEvent.hpp"
+#include "EventKitEvent.hpp"
 #include <string>
-#include "EKEventAvailability.hpp"
-#include "EKEventStatus.hpp"
+#include "EventKitAvailability.hpp"
+#include "EventKitStatus.hpp"
 #include <optional>
+#include "CreateEventOptions.hpp"
+#include <vector>
+#include "EventKitCalendar.hpp"
+#include "EventKitCalendarType.hpp"
+#include "EventKitCalendarEventAvailabilityMask.hpp"
+#include "EventKitEntityMask.hpp"
+#include "EventKitSource.hpp"
+#include "EventKitSourceType.hpp"
 
 #include "NitroEventKit-Swift-Cxx-Umbrella.hpp"
 
@@ -66,7 +87,23 @@ namespace margelo::nitro::eventkit {
 
   public:
     // Methods
-    inline std::shared_ptr<Promise<std::vector<EKEvent>>> getMonthlyCalendarEvents() override {
+    inline std::shared_ptr<Promise<EventKitEvent>> createEvent(const CreateEventOptions& options) override {
+      auto __result = _swiftPart.createEvent(options);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<std::vector<EventKitCalendar>>> getActiveCalendars() override {
+      auto __result = _swiftPart.getActiveCalendars();
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<std::vector<EventKitEvent>>> getMonthlyCalendarEvents() override {
       auto __result = _swiftPart.getMonthlyCalendarEvents();
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());

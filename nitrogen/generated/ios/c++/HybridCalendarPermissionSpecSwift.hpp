@@ -12,10 +12,10 @@
 // Forward declaration of `HybridCalendarPermissionSpec_cxx` to properly resolve imports.
 namespace NitroEventKit { class HybridCalendarPermissionSpec_cxx; }
 
-// Forward declaration of `EKEventPermissionResult` to properly resolve imports.
-namespace margelo::nitro::eventkit { enum class EKEventPermissionResult; }
+// Forward declaration of `EventKitPermissionResult` to properly resolve imports.
+namespace margelo::nitro::eventkit { enum class EventKitPermissionResult; }
 
-#include "EKEventPermissionResult.hpp"
+#include "EventKitPermissionResult.hpp"
 #include <NitroModules/Promise.hpp>
 
 #include "NitroEventKit-Swift-Cxx-Umbrella.hpp"
@@ -57,7 +57,7 @@ namespace margelo::nitro::eventkit {
 
   public:
     // Methods
-    inline EKEventPermissionResult getPermissionsStatus() override {
+    inline EventKitPermissionResult getPermissionsStatus() override {
       auto __result = _swiftPart.getPermissionsStatus();
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
@@ -65,7 +65,7 @@ namespace margelo::nitro::eventkit {
       auto __value = std::move(__result.value());
       return __value;
     }
-    inline std::shared_ptr<Promise<EKEventPermissionResult>> requestPermission() override {
+    inline std::shared_ptr<Promise<EventKitPermissionResult>> requestPermission() override {
       auto __result = _swiftPart.requestPermission();
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());

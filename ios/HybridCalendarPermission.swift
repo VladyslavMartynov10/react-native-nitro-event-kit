@@ -12,13 +12,13 @@ import EventKit
 class HybridCalendarPermission: HybridCalendarPermissionSpec {
     private let eventStore = EventKitManager.shared.eventStore
 
-    func getPermissionsStatus() throws -> EKEventPermissionResult {
+    func getPermissionsStatus() throws -> EventKitPermissionResult {
         let status = EKEventStore.authorizationStatus(for: .event)
         return parseStatus(status)
     }
     
-    func requestPermission() throws -> NitroModules.Promise<EKEventPermissionResult> {
-        let promise = Promise<EKEventPermissionResult>()
+    func requestPermission() throws -> NitroModules.Promise<EventKitPermissionResult> {
+        let promise = Promise<EventKitPermissionResult>()
 
         let completionHandler: EKEventStoreRequestAccessCompletionHandler = { [weak self] granted, error in
             DispatchQueue.main.async {
@@ -52,7 +52,7 @@ class HybridCalendarPermission: HybridCalendarPermissionSpec {
         return promise
     }
 
-    private func parseStatus(_ status: EKAuthorizationStatus) -> EKEventPermissionResult {
+    private func parseStatus(_ status: EKAuthorizationStatus) -> EventKitPermissionResult {
         switch status {
         case .denied:
             return .denied

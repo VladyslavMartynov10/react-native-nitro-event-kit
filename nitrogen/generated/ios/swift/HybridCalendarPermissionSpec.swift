@@ -14,8 +14,8 @@ public protocol HybridCalendarPermissionSpec_protocol: HybridObject {
   
 
   // Methods
-  func getPermissionsStatus() throws -> EKEventPermissionResult
-  func requestPermission() throws -> Promise<EKEventPermissionResult>
+  func getPermissionsStatus() throws -> EventKitPermissionResult
+  func requestPermission() throws -> Promise<EventKitPermissionResult>
 }
 
 /// See ``HybridCalendarPermissionSpec``

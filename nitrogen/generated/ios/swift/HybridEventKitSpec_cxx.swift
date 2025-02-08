@@ -101,15 +101,34 @@ public class HybridEventKitSpec_cxx {
 
   // Methods
   @inline(__always)
-  public func getMonthlyCalendarEvents() -> bridge.Result_std__shared_ptr_Promise_std__vector_EKEvent____ {
+  public func createEvent(options: CreateEventOptions) -> bridge.Result_std__shared_ptr_Promise_EventKitEvent___ {
     do {
-      let __result = try self.__implementation.getMonthlyCalendarEvents()
-      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_std__vector_EKEvent___ in
-        let __promise = bridge.create_std__shared_ptr_Promise_std__vector_EKEvent___()
-        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_std__vector_EKEvent___(__promise)
+      let __result = try self.__implementation.createEvent(options: options)
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_EventKitEvent__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_EventKitEvent__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_EventKitEvent__(__promise)
         __result
-          .then({ __result in __promiseHolder.resolve({ () -> bridge.std__vector_EKEvent_ in
-              var __vector = bridge.create_std__vector_EKEvent_(__result.count)
+          .then({ __result in __promiseHolder.resolve(__result) })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_EventKitEvent___(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_EventKitEvent___(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public func getActiveCalendars() -> bridge.Result_std__shared_ptr_Promise_std__vector_EventKitCalendar____ {
+    do {
+      let __result = try self.__implementation.getActiveCalendars()
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_std__vector_EventKitCalendar___ in
+        let __promise = bridge.create_std__shared_ptr_Promise_std__vector_EventKitCalendar___()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_std__vector_EventKitCalendar___(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve({ () -> bridge.std__vector_EventKitCalendar_ in
+              var __vector = bridge.create_std__vector_EventKitCalendar_(__result.count)
               for __item in __result {
                 __vector.push_back(__item)
               }
@@ -118,10 +137,35 @@ public class HybridEventKitSpec_cxx {
           .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
         return __promise
       }()
-      return bridge.create_Result_std__shared_ptr_Promise_std__vector_EKEvent____(__resultCpp)
+      return bridge.create_Result_std__shared_ptr_Promise_std__vector_EventKitCalendar____(__resultCpp)
     } catch (let __error) {
       let __exceptionPtr = __error.toCpp()
-      return bridge.create_Result_std__shared_ptr_Promise_std__vector_EKEvent____(__exceptionPtr)
+      return bridge.create_Result_std__shared_ptr_Promise_std__vector_EventKitCalendar____(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public func getMonthlyCalendarEvents() -> bridge.Result_std__shared_ptr_Promise_std__vector_EventKitEvent____ {
+    do {
+      let __result = try self.__implementation.getMonthlyCalendarEvents()
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_std__vector_EventKitEvent___ in
+        let __promise = bridge.create_std__shared_ptr_Promise_std__vector_EventKitEvent___()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_std__vector_EventKitEvent___(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve({ () -> bridge.std__vector_EventKitEvent_ in
+              var __vector = bridge.create_std__vector_EventKitEvent_(__result.count)
+              for __item in __result {
+                __vector.push_back(__item)
+              }
+              return __vector
+            }()) })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_std__vector_EventKitEvent____(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_std__vector_EventKitEvent____(__exceptionPtr)
     }
   }
 }
