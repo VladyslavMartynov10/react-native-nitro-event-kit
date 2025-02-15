@@ -54,9 +54,9 @@ class HybridEventKit: HybridEventKitSpec {
 
         let newEvent = EKEvent(eventStore: eventStore)
         
-        newEvent.startDate = Date(timeIntervalSince1970: options.event.startDate / 1000)
+        newEvent.startDate = options.event.startDate.asDateFromMilliseconds
         
-        newEvent.endDate = Date(timeIntervalSince1970: options.event.endDate / 1000)
+        newEvent.endDate = options.event.endDate.asDateFromMilliseconds
 
         newEvent.calendar = calendar
 

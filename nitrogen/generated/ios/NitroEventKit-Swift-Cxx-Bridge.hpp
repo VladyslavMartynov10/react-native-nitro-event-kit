@@ -24,8 +24,18 @@ namespace margelo::nitro::eventkit { struct EventKitEntityMask; }
 namespace margelo::nitro::eventkit { struct EventKitEvent; }
 // Forward declaration of `EventKitGeoLocation` to properly resolve imports.
 namespace margelo::nitro::eventkit { struct EventKitGeoLocation; }
+// Forward declaration of `EventKitParticipantRole` to properly resolve imports.
+namespace margelo::nitro::eventkit { enum class EventKitParticipantRole; }
+// Forward declaration of `EventKitParticipantStatus` to properly resolve imports.
+namespace margelo::nitro::eventkit { enum class EventKitParticipantStatus; }
+// Forward declaration of `EventKitParticipantType` to properly resolve imports.
+namespace margelo::nitro::eventkit { enum class EventKitParticipantType; }
+// Forward declaration of `EventKitParticipant` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct EventKitParticipant; }
 // Forward declaration of `EventKitPermissionResult` to properly resolve imports.
 namespace margelo::nitro::eventkit { enum class EventKitPermissionResult; }
+// Forward declaration of `EventKitPredicate` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct EventKitPredicate; }
 // Forward declaration of `EventKitSourceType` to properly resolve imports.
 namespace margelo::nitro::eventkit { enum class EventKitSourceType; }
 // Forward declaration of `EventKitSource` to properly resolve imports.
@@ -54,7 +64,12 @@ namespace NitroEventKit { class HybridEventKitSpec_cxx; }
 #include "EventKitEntityMask.hpp"
 #include "EventKitEvent.hpp"
 #include "EventKitGeoLocation.hpp"
+#include "EventKitParticipant.hpp"
+#include "EventKitParticipantRole.hpp"
+#include "EventKitParticipantStatus.hpp"
+#include "EventKitParticipantType.hpp"
 #include "EventKitPermissionResult.hpp"
+#include "EventKitPredicate.hpp"
 #include "EventKitSource.hpp"
 #include "EventKitSourceType.hpp"
 #include "EventKitStatus.hpp"
@@ -242,6 +257,15 @@ namespace margelo::nitro::eventkit::bridge::swift {
   using std__optional_EventKitStructuredLocation_ = std::optional<EventKitStructuredLocation>;
   inline std::optional<EventKitStructuredLocation> create_std__optional_EventKitStructuredLocation_(const EventKitStructuredLocation& value) {
     return std::optional<EventKitStructuredLocation>(value);
+  }
+  
+  // pragma MARK: std::optional<EventKitParticipant>
+  /**
+   * Specialized version of `std::optional<EventKitParticipant>`.
+   */
+  using std__optional_EventKitParticipant_ = std::optional<EventKitParticipant>;
+  inline std::optional<EventKitParticipant> create_std__optional_EventKitParticipant_(const EventKitParticipant& value) {
+    return std::optional<EventKitParticipant>(value);
   }
   
   // pragma MARK: std::optional<double>

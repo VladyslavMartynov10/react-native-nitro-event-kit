@@ -32,6 +32,16 @@ namespace margelo::nitro::eventkit { struct EventKitStructuredLocation; }
 namespace margelo::nitro::eventkit { struct EventKitGeoLocation; }
 // Forward declaration of `EventKitCoordinate` to properly resolve imports.
 namespace margelo::nitro::eventkit { struct EventKitCoordinate; }
+// Forward declaration of `EventKitParticipant` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct EventKitParticipant; }
+// Forward declaration of `EventKitParticipantStatus` to properly resolve imports.
+namespace margelo::nitro::eventkit { enum class EventKitParticipantStatus; }
+// Forward declaration of `EventKitParticipantRole` to properly resolve imports.
+namespace margelo::nitro::eventkit { enum class EventKitParticipantRole; }
+// Forward declaration of `EventKitParticipantType` to properly resolve imports.
+namespace margelo::nitro::eventkit { enum class EventKitParticipantType; }
+// Forward declaration of `EventKitPredicate` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct EventKitPredicate; }
 // Forward declaration of `EventKitAvailability` to properly resolve imports.
 namespace margelo::nitro::eventkit { enum class EventKitAvailability; }
 // Forward declaration of `EventKitStatus` to properly resolve imports.
@@ -53,6 +63,11 @@ namespace margelo::nitro::eventkit { struct CreateEventOptions; }
 #include "EventKitStructuredLocation.hpp"
 #include "EventKitGeoLocation.hpp"
 #include "EventKitCoordinate.hpp"
+#include "EventKitParticipant.hpp"
+#include "EventKitParticipantStatus.hpp"
+#include "EventKitParticipantRole.hpp"
+#include "EventKitParticipantType.hpp"
+#include "EventKitPredicate.hpp"
 #include "EventKitAvailability.hpp"
 #include "EventKitStatus.hpp"
 #include "CreateEventOptions.hpp"

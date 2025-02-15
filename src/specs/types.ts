@@ -162,12 +162,27 @@ export interface EventKitStructuredLocation {
   radius: number
 }
 
+export interface EventKitPredicate {
+  predicateFormat: string
+}
+
+export interface EventKitParticipant {
+  url: string
+  name?: string
+  participantStatus: EventKitParticipantStatus
+  participantRole: EventKitParticipantRole
+  participantType: EventKitParticipantType
+  isCurrentUser: boolean
+  contactPredicate: EventKitPredicate
+}
+
 export interface EventKitEvent {
   eventIdentifier: string
   isAllDay: boolean
   startDate: number
   endDate: number
   structuredLocation?: EventKitStructuredLocation
+  organizer?: EventKitParticipant
   availability: EventKitAvailability
   status: EventKitStatus
   isDetached: boolean
