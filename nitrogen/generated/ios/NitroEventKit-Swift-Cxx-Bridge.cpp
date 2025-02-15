@@ -46,14 +46,6 @@ namespace margelo::nitro::eventkit::bridge::swift {
     return swiftPart.toUnsafe();
   }
   
-  // pragma MARK: std::function<void(const EventKitEvent& /* result */)>
-  Func_void_EventKitEvent create_Func_void_EventKitEvent(void* _Nonnull swiftClosureWrapper) {
-    auto swiftClosure = NitroEventKit::Func_void_EventKitEvent::fromUnsafe(swiftClosureWrapper);
-    return [swiftClosure = std::move(swiftClosure)](const EventKitEvent& result) mutable -> void {
-      swiftClosure.call(result);
-    };
-  }
-  
   // pragma MARK: std::function<void(const std::vector<EventKitCalendar>& /* result */)>
   Func_void_std__vector_EventKitCalendar_ create_Func_void_std__vector_EventKitCalendar_(void* _Nonnull swiftClosureWrapper) {
     auto swiftClosure = NitroEventKit::Func_void_std__vector_EventKitCalendar_::fromUnsafe(swiftClosureWrapper);
@@ -66,6 +58,14 @@ namespace margelo::nitro::eventkit::bridge::swift {
   Func_void_std__vector_EventKitEvent_ create_Func_void_std__vector_EventKitEvent_(void* _Nonnull swiftClosureWrapper) {
     auto swiftClosure = NitroEventKit::Func_void_std__vector_EventKitEvent_::fromUnsafe(swiftClosureWrapper);
     return [swiftClosure = std::move(swiftClosure)](const std::vector<EventKitEvent>& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+  
+  // pragma MARK: std::function<void(const EventKitEvent& /* result */)>
+  Func_void_EventKitEvent create_Func_void_EventKitEvent(void* _Nonnull swiftClosureWrapper) {
+    auto swiftClosure = NitroEventKit::Func_void_EventKitEvent::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const EventKitEvent& result) mutable -> void {
       swiftClosure.call(result);
     };
   }

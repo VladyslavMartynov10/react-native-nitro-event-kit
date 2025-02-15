@@ -16,10 +16,14 @@ namespace margelo::nitro::eventkit { struct EventKitCalendarEventAvailabilityMas
 namespace margelo::nitro::eventkit { enum class EventKitCalendarType; }
 // Forward declaration of `EventKitCalendar` to properly resolve imports.
 namespace margelo::nitro::eventkit { struct EventKitCalendar; }
+// Forward declaration of `EventKitCoordinate` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct EventKitCoordinate; }
 // Forward declaration of `EventKitEntityMask` to properly resolve imports.
 namespace margelo::nitro::eventkit { struct EventKitEntityMask; }
 // Forward declaration of `EventKitEvent` to properly resolve imports.
 namespace margelo::nitro::eventkit { struct EventKitEvent; }
+// Forward declaration of `EventKitGeoLocation` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct EventKitGeoLocation; }
 // Forward declaration of `EventKitPermissionResult` to properly resolve imports.
 namespace margelo::nitro::eventkit { enum class EventKitPermissionResult; }
 // Forward declaration of `EventKitSourceType` to properly resolve imports.
@@ -28,6 +32,8 @@ namespace margelo::nitro::eventkit { enum class EventKitSourceType; }
 namespace margelo::nitro::eventkit { struct EventKitSource; }
 // Forward declaration of `EventKitStatus` to properly resolve imports.
 namespace margelo::nitro::eventkit { enum class EventKitStatus; }
+// Forward declaration of `EventKitStructuredLocation` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct EventKitStructuredLocation; }
 // Forward declaration of `HybridCalendarPermissionSpec` to properly resolve imports.
 namespace margelo::nitro::eventkit { class HybridCalendarPermissionSpec; }
 // Forward declaration of `HybridEventKitSpec` to properly resolve imports.
@@ -44,12 +50,15 @@ namespace NitroEventKit { class HybridEventKitSpec_cxx; }
 #include "EventKitCalendar.hpp"
 #include "EventKitCalendarEventAvailabilityMask.hpp"
 #include "EventKitCalendarType.hpp"
+#include "EventKitCoordinate.hpp"
 #include "EventKitEntityMask.hpp"
 #include "EventKitEvent.hpp"
+#include "EventKitGeoLocation.hpp"
 #include "EventKitPermissionResult.hpp"
 #include "EventKitSource.hpp"
 #include "EventKitSourceType.hpp"
 #include "EventKitStatus.hpp"
+#include "EventKitStructuredLocation.hpp"
 #include "HybridCalendarPermissionSpec.hpp"
 #include "HybridEventKitSpec.hpp"
 #include <NitroModules/Promise.hpp>
@@ -154,13 +163,13 @@ namespace margelo::nitro::eventkit::bridge::swift {
     return Result<std::shared_ptr<Promise<EventKitPermissionResult>>>::withError(error);
   }
   
-  // pragma MARK: std::optional<double>
+  // pragma MARK: std::optional<bool>
   /**
-   * Specialized version of `std::optional<double>`.
+   * Specialized version of `std::optional<bool>`.
    */
-  using std__optional_double_ = std::optional<double>;
-  inline std::optional<double> create_std__optional_double_(const double& value) {
-    return std::optional<double>(value);
+  using std__optional_bool_ = std::optional<bool>;
+  inline std::optional<bool> create_std__optional_bool_(const bool& value) {
+    return std::optional<bool>(value);
   }
   
   // pragma MARK: std::optional<std::string>
@@ -170,49 +179,6 @@ namespace margelo::nitro::eventkit::bridge::swift {
   using std__optional_std__string_ = std::optional<std::string>;
   inline std::optional<std::string> create_std__optional_std__string_(const std::string& value) {
     return std::optional<std::string>(value);
-  }
-  
-  // pragma MARK: std::shared_ptr<Promise<EventKitEvent>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<EventKitEvent>>`.
-   */
-  using std__shared_ptr_Promise_EventKitEvent__ = std::shared_ptr<Promise<EventKitEvent>>;
-  inline std::shared_ptr<Promise<EventKitEvent>> create_std__shared_ptr_Promise_EventKitEvent__() {
-    return Promise<EventKitEvent>::create();
-  }
-  inline PromiseHolder<EventKitEvent> wrap_std__shared_ptr_Promise_EventKitEvent__(std::shared_ptr<Promise<EventKitEvent>> promise) {
-    return PromiseHolder<EventKitEvent>(std::move(promise));
-  }
-  
-  // pragma MARK: std::function<void(const EventKitEvent& /* result */)>
-  /**
-   * Specialized version of `std::function<void(const EventKitEvent&)>`.
-   */
-  using Func_void_EventKitEvent = std::function<void(const EventKitEvent& /* result */)>;
-  /**
-   * Wrapper class for a `std::function<void(const EventKitEvent& / * result * /)>`, this can be used from Swift.
-   */
-  class Func_void_EventKitEvent_Wrapper final {
-  public:
-    explicit Func_void_EventKitEvent_Wrapper(std::function<void(const EventKitEvent& /* result */)>&& func): _function(std::make_shared<std::function<void(const EventKitEvent& /* result */)>>(std::move(func))) {}
-    inline void call(EventKitEvent result) const {
-      _function->operator()(result);
-    }
-  private:
-    std::shared_ptr<std::function<void(const EventKitEvent& /* result */)>> _function;
-  };
-  Func_void_EventKitEvent create_Func_void_EventKitEvent(void* _Nonnull swiftClosureWrapper);
-  inline Func_void_EventKitEvent_Wrapper wrap_Func_void_EventKitEvent(Func_void_EventKitEvent value) {
-    return Func_void_EventKitEvent_Wrapper(std::move(value));
-  }
-  
-  // pragma MARK: std::optional<bool>
-  /**
-   * Specialized version of `std::optional<bool>`.
-   */
-  using std__optional_bool_ = std::optional<bool>;
-  inline std::optional<bool> create_std__optional_bool_(const bool& value) {
-    return std::optional<bool>(value);
   }
   
   // pragma MARK: std::vector<EventKitCalendar>
@@ -260,6 +226,33 @@ namespace margelo::nitro::eventkit::bridge::swift {
     return Func_void_std__vector_EventKitCalendar__Wrapper(std::move(value));
   }
   
+  // pragma MARK: std::optional<EventKitGeoLocation>
+  /**
+   * Specialized version of `std::optional<EventKitGeoLocation>`.
+   */
+  using std__optional_EventKitGeoLocation_ = std::optional<EventKitGeoLocation>;
+  inline std::optional<EventKitGeoLocation> create_std__optional_EventKitGeoLocation_(const EventKitGeoLocation& value) {
+    return std::optional<EventKitGeoLocation>(value);
+  }
+  
+  // pragma MARK: std::optional<EventKitStructuredLocation>
+  /**
+   * Specialized version of `std::optional<EventKitStructuredLocation>`.
+   */
+  using std__optional_EventKitStructuredLocation_ = std::optional<EventKitStructuredLocation>;
+  inline std::optional<EventKitStructuredLocation> create_std__optional_EventKitStructuredLocation_(const EventKitStructuredLocation& value) {
+    return std::optional<EventKitStructuredLocation>(value);
+  }
+  
+  // pragma MARK: std::optional<double>
+  /**
+   * Specialized version of `std::optional<double>`.
+   */
+  using std__optional_double_ = std::optional<double>;
+  inline std::optional<double> create_std__optional_double_(const double& value) {
+    return std::optional<double>(value);
+  }
+  
   // pragma MARK: std::vector<EventKitEvent>
   /**
    * Specialized version of `std::vector<EventKitEvent>`.
@@ -305,6 +298,40 @@ namespace margelo::nitro::eventkit::bridge::swift {
     return Func_void_std__vector_EventKitEvent__Wrapper(std::move(value));
   }
   
+  // pragma MARK: std::shared_ptr<Promise<EventKitEvent>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<EventKitEvent>>`.
+   */
+  using std__shared_ptr_Promise_EventKitEvent__ = std::shared_ptr<Promise<EventKitEvent>>;
+  inline std::shared_ptr<Promise<EventKitEvent>> create_std__shared_ptr_Promise_EventKitEvent__() {
+    return Promise<EventKitEvent>::create();
+  }
+  inline PromiseHolder<EventKitEvent> wrap_std__shared_ptr_Promise_EventKitEvent__(std::shared_ptr<Promise<EventKitEvent>> promise) {
+    return PromiseHolder<EventKitEvent>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const EventKitEvent& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const EventKitEvent&)>`.
+   */
+  using Func_void_EventKitEvent = std::function<void(const EventKitEvent& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const EventKitEvent& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_EventKitEvent_Wrapper final {
+  public:
+    explicit Func_void_EventKitEvent_Wrapper(std::function<void(const EventKitEvent& /* result */)>&& func): _function(std::make_shared<std::function<void(const EventKitEvent& /* result */)>>(std::move(func))) {}
+    inline void call(EventKitEvent result) const {
+      _function->operator()(result);
+    }
+  private:
+    std::shared_ptr<std::function<void(const EventKitEvent& /* result */)>> _function;
+  };
+  Func_void_EventKitEvent create_Func_void_EventKitEvent(void* _Nonnull swiftClosureWrapper);
+  inline Func_void_EventKitEvent_Wrapper wrap_Func_void_EventKitEvent(Func_void_EventKitEvent value) {
+    return Func_void_EventKitEvent_Wrapper(std::move(value));
+  }
+  
   // pragma MARK: std::shared_ptr<margelo::nitro::eventkit::HybridEventKitSpec>
   /**
    * Specialized version of `std::shared_ptr<margelo::nitro::eventkit::HybridEventKitSpec>`.
@@ -316,15 +343,6 @@ namespace margelo::nitro::eventkit::bridge::swift {
   // pragma MARK: std::weak_ptr<margelo::nitro::eventkit::HybridEventKitSpec>
   using std__weak_ptr_margelo__nitro__eventkit__HybridEventKitSpec_ = std::weak_ptr<margelo::nitro::eventkit::HybridEventKitSpec>;
   inline std__weak_ptr_margelo__nitro__eventkit__HybridEventKitSpec_ weakify_std__shared_ptr_margelo__nitro__eventkit__HybridEventKitSpec_(const std::shared_ptr<margelo::nitro::eventkit::HybridEventKitSpec>& strong) { return strong; }
-  
-  // pragma MARK: Result<std::shared_ptr<Promise<EventKitEvent>>>
-  using Result_std__shared_ptr_Promise_EventKitEvent___ = Result<std::shared_ptr<Promise<EventKitEvent>>>;
-  inline Result_std__shared_ptr_Promise_EventKitEvent___ create_Result_std__shared_ptr_Promise_EventKitEvent___(const std::shared_ptr<Promise<EventKitEvent>>& value) {
-    return Result<std::shared_ptr<Promise<EventKitEvent>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_EventKitEvent___ create_Result_std__shared_ptr_Promise_EventKitEvent___(const std::exception_ptr& error) {
-    return Result<std::shared_ptr<Promise<EventKitEvent>>>::withError(error);
-  }
   
   // pragma MARK: Result<std::shared_ptr<Promise<std::vector<EventKitCalendar>>>>
   using Result_std__shared_ptr_Promise_std__vector_EventKitCalendar____ = Result<std::shared_ptr<Promise<std::vector<EventKitCalendar>>>>;
@@ -342,6 +360,15 @@ namespace margelo::nitro::eventkit::bridge::swift {
   }
   inline Result_std__shared_ptr_Promise_std__vector_EventKitEvent____ create_Result_std__shared_ptr_Promise_std__vector_EventKitEvent____(const std::exception_ptr& error) {
     return Result<std::shared_ptr<Promise<std::vector<EventKitEvent>>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<EventKitEvent>>>
+  using Result_std__shared_ptr_Promise_EventKitEvent___ = Result<std::shared_ptr<Promise<EventKitEvent>>>;
+  inline Result_std__shared_ptr_Promise_EventKitEvent___ create_Result_std__shared_ptr_Promise_EventKitEvent___(const std::shared_ptr<Promise<EventKitEvent>>& value) {
+    return Result<std::shared_ptr<Promise<EventKitEvent>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_EventKitEvent___ create_Result_std__shared_ptr_Promise_EventKitEvent___(const std::exception_ptr& error) {
+    return Result<std::shared_ptr<Promise<EventKitEvent>>>::withError(error);
   }
 
 } // namespace margelo::nitro::eventkit::bridge::swift

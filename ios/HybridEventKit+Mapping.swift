@@ -16,6 +16,7 @@ extension HybridEventKit {
             isAllDay: event.isAllDay,
             startDate: event.startDate.timeIntervalSince1970,
             endDate: event.endDate.timeIntervalSince1970,
+            structuredLocation: mapToNitroStructuredLocation(structuredLocation: event.structuredLocation),
             availability: mapToNitroAvailability(event.availability),
             status: mapToNitroStatus(event.status),
             isDetached: event.isDetached,
@@ -147,6 +148,28 @@ extension HybridEventKit {
         return EventKitEntityMask(
             Event: mask.contains(.event),
             Reminder: mask.contains(.reminder)
+        )
+    }
+
+    private func mapToNitroGeoLocation(geolocation: CLLocation?) -> EventKitGeoLocation? {
+        guard let geolocation = geolocation else {
+            return nil
+        }
+        
+        let timestamp = geolocation.timestamp.timeIntervalSince1970 * 1000
+        
+        let coordinate = EventKitCoordinate(latitude: geolocation.coordinate.latitude, longitude: geolocation.coordinate.longitude)
+        
+        return EventKitGeoLocation(coordinate: coordinate, altitude: geolocation.altitude, ellipsoidalAltitude: geolocation.ellipsoidalAltitude, horizontalAccuracy: geolocation.horizontalAccuracy, verticalAccuracy: geolocation.verticalAccuracy, course: geolocation.course, courseAccuracy: geolocation.courseAccuracy, speed: geolocation.speed, speedAccuracy: geolocation.speedAccuracy, timestamp:  timestamp)
+    }
+    
+    private func mapToNitroStructuredLocation(structuredLocation: EventKit.EKStructuredLocation?) -> EventKitStructuredLocation? {
+        guard let structuredLocation = structuredLocation else { return nil }
+
+        return EventKitStructuredLocation(
+            title: structuredLocation.title,
+            geoLocation: mapToNitroGeoLocation(geolocation: structuredLocation.geoLocation),
+            radius: structuredLocation.radius
         )
     }
 }

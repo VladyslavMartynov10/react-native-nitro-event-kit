@@ -11,6 +11,7 @@ enum EventKitError: Int {
     case calendarAvailability = 1
     case calendarExistence = 2
     case eventCreationFailed = 3
+    case rootViewControllerNotFound = 4
 
     var message: String {
         switch self {
@@ -20,6 +21,8 @@ enum EventKitError: Int {
             return "Calendar with the given identifier was not found"
         case .eventCreationFailed:
             return "Failed to create event"
+        case .rootViewControllerNotFound:
+            return "Failed to find rootViewController"
         }
     }
 

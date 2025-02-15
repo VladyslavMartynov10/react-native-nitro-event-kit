@@ -14,9 +14,9 @@ public protocol HybridEventKitSpec_protocol: HybridObject {
   
 
   // Methods
-  func createEvent(options: CreateEventOptions) throws -> Promise<EventKitEvent>
   func getActiveCalendars() throws -> Promise<[EventKitCalendar]>
   func getMonthlyCalendarEvents() throws -> Promise<[EventKitEvent]>
+  func createEvent(options: CreateEventOptions) throws -> Promise<EventKitEvent>
 }
 
 /// See ``HybridEventKitSpec``

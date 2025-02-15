@@ -138,11 +138,36 @@ export enum EventKitReminderPriority {
   Low = 9,
 }
 
+export interface EventKitCoordinate {
+  latitude: number
+  longitude: number
+}
+
+export interface EventKitGeoLocation {
+  coordinate: EventKitCoordinate
+  altitude: number
+  ellipsoidalAltitude: number
+  horizontalAccuracy: number
+  verticalAccuracy: number
+  course: number
+  courseAccuracy: number
+  speed: number
+  speedAccuracy: number
+  timestamp: number
+}
+
+export interface EventKitStructuredLocation {
+  title?: string
+  geoLocation?: EventKitGeoLocation
+  radius: number
+}
+
 export interface EventKitEvent {
   eventIdentifier: string
   isAllDay: boolean
   startDate: number
   endDate: number
+  structuredLocation?: EventKitStructuredLocation
   availability: EventKitAvailability
   status: EventKitStatus
   isDetached: boolean

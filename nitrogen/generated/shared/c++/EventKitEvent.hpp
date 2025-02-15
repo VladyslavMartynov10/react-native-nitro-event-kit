@@ -18,15 +18,18 @@
 #error NitroModules cannot be found! Are you sure you installed NitroModules properly?
 #endif
 
+// Forward declaration of `EventKitStructuredLocation` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct EventKitStructuredLocation; }
 // Forward declaration of `EventKitAvailability` to properly resolve imports.
 namespace margelo::nitro::eventkit { enum class EventKitAvailability; }
 // Forward declaration of `EventKitStatus` to properly resolve imports.
 namespace margelo::nitro::eventkit { enum class EventKitStatus; }
 
 #include <string>
+#include <optional>
+#include "EventKitStructuredLocation.hpp"
 #include "EventKitAvailability.hpp"
 #include "EventKitStatus.hpp"
-#include <optional>
 
 namespace margelo::nitro::eventkit {
 
@@ -39,6 +42,7 @@ namespace margelo::nitro::eventkit {
     bool isAllDay     SWIFT_PRIVATE;
     double startDate     SWIFT_PRIVATE;
     double endDate     SWIFT_PRIVATE;
+    std::optional<EventKitStructuredLocation> structuredLocation     SWIFT_PRIVATE;
     EventKitAvailability availability     SWIFT_PRIVATE;
     EventKitStatus status     SWIFT_PRIVATE;
     bool isDetached     SWIFT_PRIVATE;
@@ -46,7 +50,7 @@ namespace margelo::nitro::eventkit {
     std::optional<std::string> birthdayContactIdentifier     SWIFT_PRIVATE;
 
   public:
-    explicit EventKitEvent(std::string eventIdentifier, bool isAllDay, double startDate, double endDate, EventKitAvailability availability, EventKitStatus status, bool isDetached, std::optional<double> occurrenceDate, std::optional<std::string> birthdayContactIdentifier): eventIdentifier(eventIdentifier), isAllDay(isAllDay), startDate(startDate), endDate(endDate), availability(availability), status(status), isDetached(isDetached), occurrenceDate(occurrenceDate), birthdayContactIdentifier(birthdayContactIdentifier) {}
+    explicit EventKitEvent(std::string eventIdentifier, bool isAllDay, double startDate, double endDate, std::optional<EventKitStructuredLocation> structuredLocation, EventKitAvailability availability, EventKitStatus status, bool isDetached, std::optional<double> occurrenceDate, std::optional<std::string> birthdayContactIdentifier): eventIdentifier(eventIdentifier), isAllDay(isAllDay), startDate(startDate), endDate(endDate), structuredLocation(structuredLocation), availability(availability), status(status), isDetached(isDetached), occurrenceDate(occurrenceDate), birthdayContactIdentifier(birthdayContactIdentifier) {}
   };
 
 } // namespace margelo::nitro::eventkit
@@ -65,6 +69,7 @@ namespace margelo::nitro {
         JSIConverter<bool>::fromJSI(runtime, obj.getProperty(runtime, "isAllDay")),
         JSIConverter<double>::fromJSI(runtime, obj.getProperty(runtime, "startDate")),
         JSIConverter<double>::fromJSI(runtime, obj.getProperty(runtime, "endDate")),
+        JSIConverter<std::optional<EventKitStructuredLocation>>::fromJSI(runtime, obj.getProperty(runtime, "structuredLocation")),
         JSIConverter<EventKitAvailability>::fromJSI(runtime, obj.getProperty(runtime, "availability")),
         JSIConverter<EventKitStatus>::fromJSI(runtime, obj.getProperty(runtime, "status")),
         JSIConverter<bool>::fromJSI(runtime, obj.getProperty(runtime, "isDetached")),
@@ -78,6 +83,7 @@ namespace margelo::nitro {
       obj.setProperty(runtime, "isAllDay", JSIConverter<bool>::toJSI(runtime, arg.isAllDay));
       obj.setProperty(runtime, "startDate", JSIConverter<double>::toJSI(runtime, arg.startDate));
       obj.setProperty(runtime, "endDate", JSIConverter<double>::toJSI(runtime, arg.endDate));
+      obj.setProperty(runtime, "structuredLocation", JSIConverter<std::optional<EventKitStructuredLocation>>::toJSI(runtime, arg.structuredLocation));
       obj.setProperty(runtime, "availability", JSIConverter<EventKitAvailability>::toJSI(runtime, arg.availability));
       obj.setProperty(runtime, "status", JSIConverter<EventKitStatus>::toJSI(runtime, arg.status));
       obj.setProperty(runtime, "isDetached", JSIConverter<bool>::toJSI(runtime, arg.isDetached));
@@ -94,6 +100,7 @@ namespace margelo::nitro {
       if (!JSIConverter<bool>::canConvert(runtime, obj.getProperty(runtime, "isAllDay"))) return false;
       if (!JSIConverter<double>::canConvert(runtime, obj.getProperty(runtime, "startDate"))) return false;
       if (!JSIConverter<double>::canConvert(runtime, obj.getProperty(runtime, "endDate"))) return false;
+      if (!JSIConverter<std::optional<EventKitStructuredLocation>>::canConvert(runtime, obj.getProperty(runtime, "structuredLocation"))) return false;
       if (!JSIConverter<EventKitAvailability>::canConvert(runtime, obj.getProperty(runtime, "availability"))) return false;
       if (!JSIConverter<EventKitStatus>::canConvert(runtime, obj.getProperty(runtime, "status"))) return false;
       if (!JSIConverter<bool>::canConvert(runtime, obj.getProperty(runtime, "isDetached"))) return false;

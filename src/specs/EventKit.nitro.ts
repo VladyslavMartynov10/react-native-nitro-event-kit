@@ -6,7 +6,7 @@ import type {
 } from './types'
 
 export interface EventKit extends HybridObject<{ ios: 'swift' }> {
-  createEvent(options: CreateEventOptions): Promise<EventKitEvent>
   getActiveCalendars(): Promise<EventKitCalendar[]>
   getMonthlyCalendarEvents(): Promise<EventKitEvent[]>
+  createEvent(options: CreateEventOptions): Promise<EventKitEvent>
 }
