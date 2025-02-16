@@ -16,18 +16,34 @@ namespace margelo::nitro::eventkit { struct EventKitCalendarEventAvailabilityMas
 namespace margelo::nitro::eventkit { enum class EventKitCalendarType; }
 // Forward declaration of `EventKitCalendar` to properly resolve imports.
 namespace margelo::nitro::eventkit { struct EventKitCalendar; }
+// Forward declaration of `EventKitCoordinate` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct EventKitCoordinate; }
 // Forward declaration of `EventKitEntityMask` to properly resolve imports.
 namespace margelo::nitro::eventkit { struct EventKitEntityMask; }
 // Forward declaration of `EventKitEvent` to properly resolve imports.
 namespace margelo::nitro::eventkit { struct EventKitEvent; }
+// Forward declaration of `EventKitGeoLocation` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct EventKitGeoLocation; }
+// Forward declaration of `EventKitParticipantRole` to properly resolve imports.
+namespace margelo::nitro::eventkit { enum class EventKitParticipantRole; }
+// Forward declaration of `EventKitParticipantStatus` to properly resolve imports.
+namespace margelo::nitro::eventkit { enum class EventKitParticipantStatus; }
+// Forward declaration of `EventKitParticipantType` to properly resolve imports.
+namespace margelo::nitro::eventkit { enum class EventKitParticipantType; }
+// Forward declaration of `EventKitParticipant` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct EventKitParticipant; }
 // Forward declaration of `EventKitPermissionResult` to properly resolve imports.
 namespace margelo::nitro::eventkit { enum class EventKitPermissionResult; }
+// Forward declaration of `EventKitPredicate` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct EventKitPredicate; }
 // Forward declaration of `EventKitSourceType` to properly resolve imports.
 namespace margelo::nitro::eventkit { enum class EventKitSourceType; }
 // Forward declaration of `EventKitSource` to properly resolve imports.
 namespace margelo::nitro::eventkit { struct EventKitSource; }
 // Forward declaration of `EventKitStatus` to properly resolve imports.
 namespace margelo::nitro::eventkit { enum class EventKitStatus; }
+// Forward declaration of `EventKitStructuredLocation` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct EventKitStructuredLocation; }
 // Forward declaration of `HybridCalendarPermissionSpec` to properly resolve imports.
 namespace margelo::nitro::eventkit { class HybridCalendarPermissionSpec; }
 // Forward declaration of `HybridEventKitSpec` to properly resolve imports.
@@ -44,12 +60,20 @@ namespace NitroEventKit { class HybridEventKitSpec_cxx; }
 #include "EventKitCalendar.hpp"
 #include "EventKitCalendarEventAvailabilityMask.hpp"
 #include "EventKitCalendarType.hpp"
+#include "EventKitCoordinate.hpp"
 #include "EventKitEntityMask.hpp"
 #include "EventKitEvent.hpp"
+#include "EventKitGeoLocation.hpp"
+#include "EventKitParticipant.hpp"
+#include "EventKitParticipantRole.hpp"
+#include "EventKitParticipantStatus.hpp"
+#include "EventKitParticipantType.hpp"
 #include "EventKitPermissionResult.hpp"
+#include "EventKitPredicate.hpp"
 #include "EventKitSource.hpp"
 #include "EventKitSourceType.hpp"
 #include "EventKitStatus.hpp"
+#include "EventKitStructuredLocation.hpp"
 #include "HybridCalendarPermissionSpec.hpp"
 #include "HybridEventKitSpec.hpp"
 #include <NitroModules/Promise.hpp>
@@ -154,13 +178,13 @@ namespace margelo::nitro::eventkit::bridge::swift {
     return Result<std::shared_ptr<Promise<EventKitPermissionResult>>>::withError(error);
   }
   
-  // pragma MARK: std::optional<double>
+  // pragma MARK: std::optional<bool>
   /**
-   * Specialized version of `std::optional<double>`.
+   * Specialized version of `std::optional<bool>`.
    */
-  using std__optional_double_ = std::optional<double>;
-  inline std::optional<double> create_std__optional_double_(const double& value) {
-    return std::optional<double>(value);
+  using std__optional_bool_ = std::optional<bool>;
+  inline std::optional<bool> create_std__optional_bool_(const bool& value) {
+    return std::optional<bool>(value);
   }
   
   // pragma MARK: std::optional<std::string>
@@ -170,49 +194,6 @@ namespace margelo::nitro::eventkit::bridge::swift {
   using std__optional_std__string_ = std::optional<std::string>;
   inline std::optional<std::string> create_std__optional_std__string_(const std::string& value) {
     return std::optional<std::string>(value);
-  }
-  
-  // pragma MARK: std::shared_ptr<Promise<EventKitEvent>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<EventKitEvent>>`.
-   */
-  using std__shared_ptr_Promise_EventKitEvent__ = std::shared_ptr<Promise<EventKitEvent>>;
-  inline std::shared_ptr<Promise<EventKitEvent>> create_std__shared_ptr_Promise_EventKitEvent__() {
-    return Promise<EventKitEvent>::create();
-  }
-  inline PromiseHolder<EventKitEvent> wrap_std__shared_ptr_Promise_EventKitEvent__(std::shared_ptr<Promise<EventKitEvent>> promise) {
-    return PromiseHolder<EventKitEvent>(std::move(promise));
-  }
-  
-  // pragma MARK: std::function<void(const EventKitEvent& /* result */)>
-  /**
-   * Specialized version of `std::function<void(const EventKitEvent&)>`.
-   */
-  using Func_void_EventKitEvent = std::function<void(const EventKitEvent& /* result */)>;
-  /**
-   * Wrapper class for a `std::function<void(const EventKitEvent& / * result * /)>`, this can be used from Swift.
-   */
-  class Func_void_EventKitEvent_Wrapper final {
-  public:
-    explicit Func_void_EventKitEvent_Wrapper(std::function<void(const EventKitEvent& /* result */)>&& func): _function(std::make_shared<std::function<void(const EventKitEvent& /* result */)>>(std::move(func))) {}
-    inline void call(EventKitEvent result) const {
-      _function->operator()(result);
-    }
-  private:
-    std::shared_ptr<std::function<void(const EventKitEvent& /* result */)>> _function;
-  };
-  Func_void_EventKitEvent create_Func_void_EventKitEvent(void* _Nonnull swiftClosureWrapper);
-  inline Func_void_EventKitEvent_Wrapper wrap_Func_void_EventKitEvent(Func_void_EventKitEvent value) {
-    return Func_void_EventKitEvent_Wrapper(std::move(value));
-  }
-  
-  // pragma MARK: std::optional<bool>
-  /**
-   * Specialized version of `std::optional<bool>`.
-   */
-  using std__optional_bool_ = std::optional<bool>;
-  inline std::optional<bool> create_std__optional_bool_(const bool& value) {
-    return std::optional<bool>(value);
   }
   
   // pragma MARK: std::vector<EventKitCalendar>
@@ -260,6 +241,42 @@ namespace margelo::nitro::eventkit::bridge::swift {
     return Func_void_std__vector_EventKitCalendar__Wrapper(std::move(value));
   }
   
+  // pragma MARK: std::optional<EventKitGeoLocation>
+  /**
+   * Specialized version of `std::optional<EventKitGeoLocation>`.
+   */
+  using std__optional_EventKitGeoLocation_ = std::optional<EventKitGeoLocation>;
+  inline std::optional<EventKitGeoLocation> create_std__optional_EventKitGeoLocation_(const EventKitGeoLocation& value) {
+    return std::optional<EventKitGeoLocation>(value);
+  }
+  
+  // pragma MARK: std::optional<EventKitStructuredLocation>
+  /**
+   * Specialized version of `std::optional<EventKitStructuredLocation>`.
+   */
+  using std__optional_EventKitStructuredLocation_ = std::optional<EventKitStructuredLocation>;
+  inline std::optional<EventKitStructuredLocation> create_std__optional_EventKitStructuredLocation_(const EventKitStructuredLocation& value) {
+    return std::optional<EventKitStructuredLocation>(value);
+  }
+  
+  // pragma MARK: std::optional<EventKitParticipant>
+  /**
+   * Specialized version of `std::optional<EventKitParticipant>`.
+   */
+  using std__optional_EventKitParticipant_ = std::optional<EventKitParticipant>;
+  inline std::optional<EventKitParticipant> create_std__optional_EventKitParticipant_(const EventKitParticipant& value) {
+    return std::optional<EventKitParticipant>(value);
+  }
+  
+  // pragma MARK: std::optional<double>
+  /**
+   * Specialized version of `std::optional<double>`.
+   */
+  using std__optional_double_ = std::optional<double>;
+  inline std::optional<double> create_std__optional_double_(const double& value) {
+    return std::optional<double>(value);
+  }
+  
   // pragma MARK: std::vector<EventKitEvent>
   /**
    * Specialized version of `std::vector<EventKitEvent>`.
@@ -305,6 +322,108 @@ namespace margelo::nitro::eventkit::bridge::swift {
     return Func_void_std__vector_EventKitEvent__Wrapper(std::move(value));
   }
   
+  // pragma MARK: std::shared_ptr<Promise<EventKitEvent>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<EventKitEvent>>`.
+   */
+  using std__shared_ptr_Promise_EventKitEvent__ = std::shared_ptr<Promise<EventKitEvent>>;
+  inline std::shared_ptr<Promise<EventKitEvent>> create_std__shared_ptr_Promise_EventKitEvent__() {
+    return Promise<EventKitEvent>::create();
+  }
+  inline PromiseHolder<EventKitEvent> wrap_std__shared_ptr_Promise_EventKitEvent__(std::shared_ptr<Promise<EventKitEvent>> promise) {
+    return PromiseHolder<EventKitEvent>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const EventKitEvent& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const EventKitEvent&)>`.
+   */
+  using Func_void_EventKitEvent = std::function<void(const EventKitEvent& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const EventKitEvent& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_EventKitEvent_Wrapper final {
+  public:
+    explicit Func_void_EventKitEvent_Wrapper(std::function<void(const EventKitEvent& /* result */)>&& func): _function(std::make_shared<std::function<void(const EventKitEvent& /* result */)>>(std::move(func))) {}
+    inline void call(EventKitEvent result) const {
+      _function->operator()(result);
+    }
+  private:
+    std::shared_ptr<std::function<void(const EventKitEvent& /* result */)>> _function;
+  };
+  Func_void_EventKitEvent create_Func_void_EventKitEvent(void* _Nonnull swiftClosureWrapper);
+  inline Func_void_EventKitEvent_Wrapper wrap_Func_void_EventKitEvent(Func_void_EventKitEvent value) {
+    return Func_void_EventKitEvent_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<bool>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<bool>>`.
+   */
+  using std__shared_ptr_Promise_bool__ = std::shared_ptr<Promise<bool>>;
+  inline std::shared_ptr<Promise<bool>> create_std__shared_ptr_Promise_bool__() {
+    return Promise<bool>::create();
+  }
+  inline PromiseHolder<bool> wrap_std__shared_ptr_Promise_bool__(std::shared_ptr<Promise<bool>> promise) {
+    return PromiseHolder<bool>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(bool /* result */)>
+  /**
+   * Specialized version of `std::function<void(bool)>`.
+   */
+  using Func_void_bool = std::function<void(bool /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(bool / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_bool_Wrapper final {
+  public:
+    explicit Func_void_bool_Wrapper(std::function<void(bool /* result */)>&& func): _function(std::make_shared<std::function<void(bool /* result */)>>(std::move(func))) {}
+    inline void call(bool result) const {
+      _function->operator()(result);
+    }
+  private:
+    std::shared_ptr<std::function<void(bool /* result */)>> _function;
+  };
+  Func_void_bool create_Func_void_bool(void* _Nonnull swiftClosureWrapper);
+  inline Func_void_bool_Wrapper wrap_Func_void_bool(Func_void_bool value) {
+    return Func_void_bool_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<void>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<void>>`.
+   */
+  using std__shared_ptr_Promise_void__ = std::shared_ptr<Promise<void>>;
+  inline std::shared_ptr<Promise<void>> create_std__shared_ptr_Promise_void__() {
+    return Promise<void>::create();
+  }
+  inline PromiseHolder<void> wrap_std__shared_ptr_Promise_void__(std::shared_ptr<Promise<void>> promise) {
+    return PromiseHolder<void>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void()>
+  /**
+   * Specialized version of `std::function<void()>`.
+   */
+  using Func_void = std::function<void()>;
+  /**
+   * Wrapper class for a `std::function<void()>`, this can be used from Swift.
+   */
+  class Func_void_Wrapper final {
+  public:
+    explicit Func_void_Wrapper(std::function<void()>&& func): _function(std::make_shared<std::function<void()>>(std::move(func))) {}
+    inline void call() const {
+      _function->operator()();
+    }
+  private:
+    std::shared_ptr<std::function<void()>> _function;
+  };
+  Func_void create_Func_void(void* _Nonnull swiftClosureWrapper);
+  inline Func_void_Wrapper wrap_Func_void(Func_void value) {
+    return Func_void_Wrapper(std::move(value));
+  }
+  
   // pragma MARK: std::shared_ptr<margelo::nitro::eventkit::HybridEventKitSpec>
   /**
    * Specialized version of `std::shared_ptr<margelo::nitro::eventkit::HybridEventKitSpec>`.
@@ -316,15 +435,6 @@ namespace margelo::nitro::eventkit::bridge::swift {
   // pragma MARK: std::weak_ptr<margelo::nitro::eventkit::HybridEventKitSpec>
   using std__weak_ptr_margelo__nitro__eventkit__HybridEventKitSpec_ = std::weak_ptr<margelo::nitro::eventkit::HybridEventKitSpec>;
   inline std__weak_ptr_margelo__nitro__eventkit__HybridEventKitSpec_ weakify_std__shared_ptr_margelo__nitro__eventkit__HybridEventKitSpec_(const std::shared_ptr<margelo::nitro::eventkit::HybridEventKitSpec>& strong) { return strong; }
-  
-  // pragma MARK: Result<std::shared_ptr<Promise<EventKitEvent>>>
-  using Result_std__shared_ptr_Promise_EventKitEvent___ = Result<std::shared_ptr<Promise<EventKitEvent>>>;
-  inline Result_std__shared_ptr_Promise_EventKitEvent___ create_Result_std__shared_ptr_Promise_EventKitEvent___(const std::shared_ptr<Promise<EventKitEvent>>& value) {
-    return Result<std::shared_ptr<Promise<EventKitEvent>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_EventKitEvent___ create_Result_std__shared_ptr_Promise_EventKitEvent___(const std::exception_ptr& error) {
-    return Result<std::shared_ptr<Promise<EventKitEvent>>>::withError(error);
-  }
   
   // pragma MARK: Result<std::shared_ptr<Promise<std::vector<EventKitCalendar>>>>
   using Result_std__shared_ptr_Promise_std__vector_EventKitCalendar____ = Result<std::shared_ptr<Promise<std::vector<EventKitCalendar>>>>;
@@ -342,6 +452,33 @@ namespace margelo::nitro::eventkit::bridge::swift {
   }
   inline Result_std__shared_ptr_Promise_std__vector_EventKitEvent____ create_Result_std__shared_ptr_Promise_std__vector_EventKitEvent____(const std::exception_ptr& error) {
     return Result<std::shared_ptr<Promise<std::vector<EventKitEvent>>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<EventKitEvent>>>
+  using Result_std__shared_ptr_Promise_EventKitEvent___ = Result<std::shared_ptr<Promise<EventKitEvent>>>;
+  inline Result_std__shared_ptr_Promise_EventKitEvent___ create_Result_std__shared_ptr_Promise_EventKitEvent___(const std::shared_ptr<Promise<EventKitEvent>>& value) {
+    return Result<std::shared_ptr<Promise<EventKitEvent>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_EventKitEvent___ create_Result_std__shared_ptr_Promise_EventKitEvent___(const std::exception_ptr& error) {
+    return Result<std::shared_ptr<Promise<EventKitEvent>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<bool>>>
+  using Result_std__shared_ptr_Promise_bool___ = Result<std::shared_ptr<Promise<bool>>>;
+  inline Result_std__shared_ptr_Promise_bool___ create_Result_std__shared_ptr_Promise_bool___(const std::shared_ptr<Promise<bool>>& value) {
+    return Result<std::shared_ptr<Promise<bool>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_bool___ create_Result_std__shared_ptr_Promise_bool___(const std::exception_ptr& error) {
+    return Result<std::shared_ptr<Promise<bool>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<void>>>
+  using Result_std__shared_ptr_Promise_void___ = Result<std::shared_ptr<Promise<void>>>;
+  inline Result_std__shared_ptr_Promise_void___ create_Result_std__shared_ptr_Promise_void___(const std::shared_ptr<Promise<void>>& value) {
+    return Result<std::shared_ptr<Promise<void>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_void___ create_Result_std__shared_ptr_Promise_void___(const std::exception_ptr& error) {
+    return Result<std::shared_ptr<Promise<void>>>::withError(error);
   }
 
 } // namespace margelo::nitro::eventkit::bridge::swift

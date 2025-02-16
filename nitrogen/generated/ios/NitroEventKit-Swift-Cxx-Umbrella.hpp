@@ -18,22 +18,42 @@ namespace margelo::nitro::eventkit { struct EventKitCalendarEventAvailabilityMas
 namespace margelo::nitro::eventkit { enum class EventKitCalendarType; }
 // Forward declaration of `EventKitCalendar` to properly resolve imports.
 namespace margelo::nitro::eventkit { struct EventKitCalendar; }
+// Forward declaration of `EventKitCoordinate` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct EventKitCoordinate; }
 // Forward declaration of `EventKitEntityMask` to properly resolve imports.
 namespace margelo::nitro::eventkit { struct EventKitEntityMask; }
+// Forward declaration of `EventKitEntityType` to properly resolve imports.
+namespace margelo::nitro::eventkit { enum class EventKitEntityType; }
 // Forward declaration of `EventKitEvent` to properly resolve imports.
 namespace margelo::nitro::eventkit { struct EventKitEvent; }
+// Forward declaration of `EventKitGeoLocation` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct EventKitGeoLocation; }
+// Forward declaration of `EventKitParticipantRole` to properly resolve imports.
+namespace margelo::nitro::eventkit { enum class EventKitParticipantRole; }
+// Forward declaration of `EventKitParticipantStatus` to properly resolve imports.
+namespace margelo::nitro::eventkit { enum class EventKitParticipantStatus; }
+// Forward declaration of `EventKitParticipantType` to properly resolve imports.
+namespace margelo::nitro::eventkit { enum class EventKitParticipantType; }
+// Forward declaration of `EventKitParticipant` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct EventKitParticipant; }
 // Forward declaration of `EventKitPermissionResult` to properly resolve imports.
 namespace margelo::nitro::eventkit { enum class EventKitPermissionResult; }
+// Forward declaration of `EventKitPredicate` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct EventKitPredicate; }
 // Forward declaration of `EventKitSourceType` to properly resolve imports.
 namespace margelo::nitro::eventkit { enum class EventKitSourceType; }
 // Forward declaration of `EventKitSource` to properly resolve imports.
 namespace margelo::nitro::eventkit { struct EventKitSource; }
 // Forward declaration of `EventKitStatus` to properly resolve imports.
 namespace margelo::nitro::eventkit { enum class EventKitStatus; }
+// Forward declaration of `EventKitStructuredLocation` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct EventKitStructuredLocation; }
 // Forward declaration of `HybridCalendarPermissionSpec` to properly resolve imports.
 namespace margelo::nitro::eventkit { class HybridCalendarPermissionSpec; }
 // Forward declaration of `HybridEventKitSpec` to properly resolve imports.
 namespace margelo::nitro::eventkit { class HybridEventKitSpec; }
+// Forward declaration of `RangeEventOptions` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct RangeEventOptions; }
 
 // Include C++ defined types
 #include "CreateEventOptions.hpp"
@@ -41,14 +61,24 @@ namespace margelo::nitro::eventkit { class HybridEventKitSpec; }
 #include "EventKitCalendar.hpp"
 #include "EventKitCalendarEventAvailabilityMask.hpp"
 #include "EventKitCalendarType.hpp"
+#include "EventKitCoordinate.hpp"
 #include "EventKitEntityMask.hpp"
+#include "EventKitEntityType.hpp"
 #include "EventKitEvent.hpp"
+#include "EventKitGeoLocation.hpp"
+#include "EventKitParticipant.hpp"
+#include "EventKitParticipantRole.hpp"
+#include "EventKitParticipantStatus.hpp"
+#include "EventKitParticipantType.hpp"
 #include "EventKitPermissionResult.hpp"
+#include "EventKitPredicate.hpp"
 #include "EventKitSource.hpp"
 #include "EventKitSourceType.hpp"
 #include "EventKitStatus.hpp"
+#include "EventKitStructuredLocation.hpp"
 #include "HybridCalendarPermissionSpec.hpp"
 #include "HybridEventKitSpec.hpp"
+#include "RangeEventOptions.hpp"
 #include <NitroModules/Promise.hpp>
 #include <NitroModules/Result.hpp>
 #include <exception>

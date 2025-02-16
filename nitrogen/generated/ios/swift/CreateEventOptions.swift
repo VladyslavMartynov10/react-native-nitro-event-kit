@@ -18,14 +18,20 @@ public extension CreateEventOptions {
   /**
    * Create a new instance of `CreateEventOptions`.
    */
-  init(event: EventKitEvent, calendarIdentifier: String?, scheduleAlarm: Bool?, scheduleAlarmMinutesBefore: Double?) {
-    self.init(event, { () -> bridge.std__optional_std__string_ in
-      if let __unwrappedValue = calendarIdentifier {
+  init(startDate: Double, endDate: Double, title: String, location: String?, notes: String?, calendarIdentifier: String, isCalendarImmutable: Bool, scheduleAlarm: Bool?, scheduleAlarmMinutesBefore: Double?) {
+    self.init(startDate, endDate, std.string(title), { () -> bridge.std__optional_std__string_ in
+      if let __unwrappedValue = location {
         return bridge.create_std__optional_std__string_(std.string(__unwrappedValue))
       } else {
         return .init()
       }
-    }(), { () -> bridge.std__optional_bool_ in
+    }(), { () -> bridge.std__optional_std__string_ in
+      if let __unwrappedValue = notes {
+        return bridge.create_std__optional_std__string_(std.string(__unwrappedValue))
+      } else {
+        return .init()
+      }
+    }(), std.string(calendarIdentifier), isCalendarImmutable, { () -> bridge.std__optional_bool_ in
       if let __unwrappedValue = scheduleAlarm {
         return bridge.create_std__optional_bool_(__unwrappedValue)
       } else {
@@ -40,22 +46,44 @@ public extension CreateEventOptions {
     }())
   }
 
-  var event: EventKitEvent {
+  var startDate: Double {
     @inline(__always)
     get {
-      return self.__event
+      return self.__startDate
     }
     @inline(__always)
     set {
-      self.__event = newValue
+      self.__startDate = newValue
     }
   }
   
-  var calendarIdentifier: String? {
+  var endDate: Double {
+    @inline(__always)
+    get {
+      return self.__endDate
+    }
+    @inline(__always)
+    set {
+      self.__endDate = newValue
+    }
+  }
+  
+  var title: String {
+    @inline(__always)
+    get {
+      return String(self.__title)
+    }
+    @inline(__always)
+    set {
+      self.__title = std.string(newValue)
+    }
+  }
+  
+  var location: String? {
     @inline(__always)
     get {
       return { () -> String? in
-        if let __unwrapped = self.__calendarIdentifier.value {
+        if let __unwrapped = self.__location.value {
           return String(__unwrapped)
         } else {
           return nil
@@ -64,13 +92,58 @@ public extension CreateEventOptions {
     }
     @inline(__always)
     set {
-      self.__calendarIdentifier = { () -> bridge.std__optional_std__string_ in
+      self.__location = { () -> bridge.std__optional_std__string_ in
         if let __unwrappedValue = newValue {
           return bridge.create_std__optional_std__string_(std.string(__unwrappedValue))
         } else {
           return .init()
         }
       }()
+    }
+  }
+  
+  var notes: String? {
+    @inline(__always)
+    get {
+      return { () -> String? in
+        if let __unwrapped = self.__notes.value {
+          return String(__unwrapped)
+        } else {
+          return nil
+        }
+      }()
+    }
+    @inline(__always)
+    set {
+      self.__notes = { () -> bridge.std__optional_std__string_ in
+        if let __unwrappedValue = newValue {
+          return bridge.create_std__optional_std__string_(std.string(__unwrappedValue))
+        } else {
+          return .init()
+        }
+      }()
+    }
+  }
+  
+  var calendarIdentifier: String {
+    @inline(__always)
+    get {
+      return String(self.__calendarIdentifier)
+    }
+    @inline(__always)
+    set {
+      self.__calendarIdentifier = std.string(newValue)
+    }
+  }
+  
+  var isCalendarImmutable: Bool {
+    @inline(__always)
+    get {
+      return self.__isCalendarImmutable
+    }
+    @inline(__always)
+    set {
+      self.__isCalendarImmutable = newValue
     }
   }
   

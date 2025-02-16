@@ -16,6 +16,8 @@ extension HybridEventKit {
             isAllDay: event.isAllDay,
             startDate: event.startDate.timeIntervalSince1970,
             endDate: event.endDate.timeIntervalSince1970,
+            structuredLocation: mapToNitroStructuredLocation(structuredLocation: event.structuredLocation),
+            organizer: mapToNitroOrganizer(organizer: event.organizer),
             availability: mapToNitroAvailability(event.availability),
             status: mapToNitroStatus(event.status),
             isDetached: event.isDetached,
@@ -24,7 +26,7 @@ extension HybridEventKit {
         )
     }
     
-    private func mapToNitroAvailability(_ availability: EventKit.EKEventAvailability) -> EventKitAvailability {
+    func mapToNitroAvailability(_ availability: EventKit.EKEventAvailability) -> EventKitAvailability {
         switch availability {
         case .notSupported:
             return .notsupported
@@ -76,7 +78,16 @@ extension HybridEventKit {
         )
     }
     
-    private func mapToNitroCalendarType(_ type: EventKit.EKCalendarType) -> EventKitCalendarType {
+    func mapToEVKitEntityType (_ entityType: EventKitEntityType) -> EventKit.EKEntityType {
+        switch entityType {
+        case .event:
+            return .event
+        case .reminder:
+            return .reminder
+        }
+    }
+    
+    func mapToNitroCalendarType(_ type: EventKit.EKCalendarType) -> EventKitCalendarType {
         switch type {
         case .local:
             return .local
@@ -148,6 +159,95 @@ extension HybridEventKit {
             Event: mask.contains(.event),
             Reminder: mask.contains(.reminder)
         )
+    }
+
+    private func mapToNitroGeoLocation(geolocation: CLLocation?) -> EventKitGeoLocation? {
+        guard let geolocation = geolocation else {
+            return nil
+        }
+        
+        let timestamp = geolocation.timestamp.unixTimestampInMilliseconds
+        
+        let coordinate = EventKitCoordinate(latitude: geolocation.coordinate.latitude, longitude: geolocation.coordinate.longitude)
+        
+        return EventKitGeoLocation(coordinate: coordinate, altitude: geolocation.altitude, ellipsoidalAltitude: geolocation.ellipsoidalAltitude, horizontalAccuracy: geolocation.horizontalAccuracy, verticalAccuracy: geolocation.verticalAccuracy, course: geolocation.course, courseAccuracy: geolocation.courseAccuracy, speed: geolocation.speed, speedAccuracy: geolocation.speedAccuracy, timestamp:  timestamp)
+    }
+    
+    private func mapToNitroStructuredLocation (structuredLocation: EventKit.EKStructuredLocation?) -> EventKitStructuredLocation? {
+        guard let structuredLocation = structuredLocation else { return nil }
+
+        return EventKitStructuredLocation(
+            title: structuredLocation.title,
+            geoLocation: mapToNitroGeoLocation(geolocation: structuredLocation.geoLocation),
+            radius: structuredLocation.radius
+        )
+    }
+    
+    private func mapToNitroParticipantStatus (_ participantStatus: EventKit.EKParticipantStatus) -> EventKitParticipantStatus {
+        switch participantStatus {
+        case .unknown:
+            return .unknown
+        case .pending:
+            return .pending
+        case .accepted:
+            return .accepted
+        case .declined:
+            return .declined
+        case .tentative:
+            return .tentative
+        case .delegated:
+            return .delegated
+        case .completed:
+            return .completed
+        case .inProcess:
+            return .inprocess
+        @unknown default:
+            return .unknown
+        }
+    }
+    
+    private func maptToNitroParticipantRole (_ participantRole: EventKit.EKParticipantRole) -> EventKitParticipantRole {
+        switch participantRole {
+        case .unknown:
+            return .unknown
+        case .required:
+            return .required
+        case .optional:
+            return .optional
+        case .chair:
+            return .chair
+        case .nonParticipant:
+            return .nonparticipant
+        @unknown default:
+            return .unknown
+        }
+    }
+    
+    private func mapToParticipantType (_ participantType: EventKit.EKParticipantType) -> EventKitParticipantType {
+        switch participantType {
+        case .unknown:
+            return .unknown
+        case .person:
+            return .person
+        case .room:
+            return .room
+        case .resource:
+            return .resource
+        case .group:
+            return .group
+        @unknown default:
+            return .unknown
+        }
+    }
+    
+    private func mapToNitroOrganizer (organizer: EventKit.EKParticipant?) -> EventKitParticipant? {
+        guard let organizer = organizer else {
+            return nil
+        }
+        
+        let contactPredicate = EventKitPredicate(predicateFormat: organizer.contactPredicate.predicateFormat)
+        
+        return EventKitParticipant(url: organizer.url.absoluteString, name: organizer.name, participantStatus: mapToNitroParticipantStatus(organizer.participantStatus), participantRole: maptToNitroParticipantRole(organizer.participantRole), participantType: mapToParticipantType(organizer.participantType), isCurrentUser: organizer.isCurrentUser, contactPredicate: contactPredicate)
     }
 }
 

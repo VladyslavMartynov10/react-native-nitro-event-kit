@@ -138,11 +138,51 @@ export enum EventKitReminderPriority {
   Low = 9,
 }
 
+export interface EventKitCoordinate {
+  latitude: number
+  longitude: number
+}
+
+export interface EventKitGeoLocation {
+  coordinate: EventKitCoordinate
+  altitude: number
+  ellipsoidalAltitude: number
+  horizontalAccuracy: number
+  verticalAccuracy: number
+  course: number
+  courseAccuracy: number
+  speed: number
+  speedAccuracy: number
+  timestamp: number
+}
+
+export interface EventKitStructuredLocation {
+  title?: string
+  geoLocation?: EventKitGeoLocation
+  radius: number
+}
+
+export interface EventKitPredicate {
+  predicateFormat: string
+}
+
+export interface EventKitParticipant {
+  url: string
+  name?: string
+  participantStatus: EventKitParticipantStatus
+  participantRole: EventKitParticipantRole
+  participantType: EventKitParticipantType
+  isCurrentUser: boolean
+  contactPredicate: EventKitPredicate
+}
+
 export interface EventKitEvent {
   eventIdentifier: string
   isAllDay: boolean
   startDate: number
   endDate: number
+  structuredLocation?: EventKitStructuredLocation
+  organizer?: EventKitParticipant
   availability: EventKitAvailability
   status: EventKitStatus
   isDetached: boolean
@@ -172,8 +212,19 @@ export interface EventKitCalendar {
 }
 
 export interface CreateEventOptions {
-  event: EventKitEvent
-  calendarIdentifier?: string
+  startDate: number
+  endDate: number
+  title: string
+  location?: string
+  notes?: string
+  calendarIdentifier: string
+  isCalendarImmutable: boolean
   scheduleAlarm?: boolean
   scheduleAlarmMinutesBefore?: number
+}
+
+export interface RangeEventOptions {
+  startDate: number
+  endDate: number
+  entityType: EventKitEntityType
 }

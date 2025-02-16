@@ -1,4 +1,3 @@
-// TODO: Export all HybridObjects here for the user
 import { NitroModules } from 'react-native-nitro-modules'
 
 import type { EventKit } from './specs/EventKit.nitro'
@@ -10,5 +9,4 @@ export const NitroEventKit =
 export const NitroEventKitCalendarPermission =
   NitroModules.createHybridObject<CalendarPermission>('CalendarPermission')
 
-export * from './specs/EventKit.nitro'
-export * from './specs/CalendarPermission.nitro'
+export * from './specs/types'

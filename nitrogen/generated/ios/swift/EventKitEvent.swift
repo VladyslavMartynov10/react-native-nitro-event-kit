@@ -18,8 +18,20 @@ public extension EventKitEvent {
   /**
    * Create a new instance of `EventKitEvent`.
    */
-  init(eventIdentifier: String, isAllDay: Bool, startDate: Double, endDate: Double, availability: EventKitAvailability, status: EventKitStatus, isDetached: Bool, occurrenceDate: Double?, birthdayContactIdentifier: String?) {
-    self.init(std.string(eventIdentifier), isAllDay, startDate, endDate, availability, status, isDetached, { () -> bridge.std__optional_double_ in
+  init(eventIdentifier: String, isAllDay: Bool, startDate: Double, endDate: Double, structuredLocation: EventKitStructuredLocation?, organizer: EventKitParticipant?, availability: EventKitAvailability, status: EventKitStatus, isDetached: Bool, occurrenceDate: Double?, birthdayContactIdentifier: String?) {
+    self.init(std.string(eventIdentifier), isAllDay, startDate, endDate, { () -> bridge.std__optional_EventKitStructuredLocation_ in
+      if let __unwrappedValue = structuredLocation {
+        return bridge.create_std__optional_EventKitStructuredLocation_(__unwrappedValue)
+      } else {
+        return .init()
+      }
+    }(), { () -> bridge.std__optional_EventKitParticipant_ in
+      if let __unwrappedValue = organizer {
+        return bridge.create_std__optional_EventKitParticipant_(__unwrappedValue)
+      } else {
+        return .init()
+      }
+    }(), availability, status, isDetached, { () -> bridge.std__optional_double_ in
       if let __unwrappedValue = occurrenceDate {
         return bridge.create_std__optional_double_(__unwrappedValue)
       } else {
@@ -75,6 +87,52 @@ public extension EventKitEvent {
     @inline(__always)
     set {
       self.__endDate = newValue
+    }
+  }
+  
+  var structuredLocation: EventKitStructuredLocation? {
+    @inline(__always)
+    get {
+      return { () -> EventKitStructuredLocation? in
+        if let __unwrapped = self.__structuredLocation.value {
+          return __unwrapped
+        } else {
+          return nil
+        }
+      }()
+    }
+    @inline(__always)
+    set {
+      self.__structuredLocation = { () -> bridge.std__optional_EventKitStructuredLocation_ in
+        if let __unwrappedValue = newValue {
+          return bridge.create_std__optional_EventKitStructuredLocation_(__unwrappedValue)
+        } else {
+          return .init()
+        }
+      }()
+    }
+  }
+  
+  var organizer: EventKitParticipant? {
+    @inline(__always)
+    get {
+      return { () -> EventKitParticipant? in
+        if let __unwrapped = self.__organizer.value {
+          return __unwrapped
+        } else {
+          return nil
+        }
+      }()
+    }
+    @inline(__always)
+    set {
+      self.__organizer = { () -> bridge.std__optional_EventKitParticipant_ in
+        if let __unwrappedValue = newValue {
+          return bridge.create_std__optional_EventKitParticipant_(__unwrappedValue)
+        } else {
+          return .init()
+        }
+      }()
     }
   }
   
