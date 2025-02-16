@@ -212,8 +212,13 @@ export interface EventKitCalendar {
 }
 
 export interface CreateEventOptions {
-  event: EventKitEvent
-  calendarIdentifier?: string
+  startDate: number
+  endDate: number
+  title: string
+  location?: string
+  notes?: string
+  calendarIdentifier: string
+  isCalendarImmutable: boolean
   scheduleAlarm?: boolean
   scheduleAlarmMinutesBefore?: number
 }

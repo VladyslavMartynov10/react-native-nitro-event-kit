@@ -26,7 +26,7 @@ extension HybridEventKit {
         )
     }
     
-    private func mapToNitroAvailability(_ availability: EventKit.EKEventAvailability) -> EventKitAvailability {
+    func mapToNitroAvailability(_ availability: EventKit.EKEventAvailability) -> EventKitAvailability {
         switch availability {
         case .notSupported:
             return .notsupported
@@ -78,7 +78,16 @@ extension HybridEventKit {
         )
     }
     
-    private func mapToNitroCalendarType(_ type: EventKit.EKCalendarType) -> EventKitCalendarType {
+    func mapToEVKitEntityType (_ entityType: EventKitEntityType) -> EventKit.EKEntityType {
+        switch entityType {
+        case .event:
+            return .event
+        case .reminder:
+            return .reminder
+        }
+    }
+    
+    func mapToNitroCalendarType(_ type: EventKit.EKCalendarType) -> EventKitCalendarType {
         switch type {
         case .local:
             return .local

@@ -17,6 +17,7 @@ namespace margelo::nitro::eventkit {
       prototype.registerHybridMethod("getActiveCalendars", &HybridEventKitSpec::getActiveCalendars);
       prototype.registerHybridMethod("getMonthlyCalendarEvents", &HybridEventKitSpec::getMonthlyCalendarEvents);
       prototype.registerHybridMethod("createEvent", &HybridEventKitSpec::createEvent);
+      prototype.registerHybridMethod("openCalendarEvent", &HybridEventKitSpec::openCalendarEvent);
     });
   }
 

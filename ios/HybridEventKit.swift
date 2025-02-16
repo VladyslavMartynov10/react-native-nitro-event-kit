@@ -9,11 +9,13 @@ import Foundation
 import NitroModules
 import UIKit
 import EventKit
+import EventKitUI
 
 class HybridEventKit: HybridEventKitSpec {
     private let eventStore = EventKitManager.shared.eventStore
-            
-    func getMonthlyCalendarEvents() -> NitroModules.Promise<[EventKitEvent]> {
+    
+    func getMonthlyCalendarEvents(entityType: EventKitEntityType) throws -> NitroModules.Promise<[EventKitEvent]> {
+        
         guard EventKitManager.shared.isCalendarAccessAvailable else {
             return Promise.rejected(withError: EventKitError.calendarAvailability.nsError)
         }
@@ -24,7 +26,7 @@ class HybridEventKit: HybridEventKitSpec {
         
         let endDate = Calendar.current.date(byAdding: .day, value: 31, to: startDate) ?? Date()
         
-        let calendars = self.eventStore.calendars(for: .event)
+        let calendars = self.eventStore.calendars(for: self.mapToEVKitEntityType(entityType))
         
         var allEvents: [EventKitEvent] = []
         
@@ -44,22 +46,26 @@ class HybridEventKit: HybridEventKitSpec {
         guard EventKitManager.shared.isCalendarAccessAvailable else {
             return Promise.rejected(withError: EventKitError.calendarAvailability.nsError)
         }
-
-        guard let calendarIdentifier = options.calendarIdentifier,
-              let calendar = eventStore.calendar(withIdentifier: calendarIdentifier) else {
+        
+        guard let calendar = eventStore.calendar(withIdentifier: options.calendarIdentifier) else {
             return Promise.rejected(withError: EventKitError.calendarExistence.nsError)
         }
-
+        
+       
         let promise = Promise<EventKitEvent>()
 
         let newEvent = EKEvent(eventStore: eventStore)
         
-        newEvent.startDate = options.event.startDate.asDateFromMilliseconds
+        newEvent.startDate = options.startDate.asDateFromMilliseconds
         
-        newEvent.endDate = options.event.endDate.asDateFromMilliseconds
+        newEvent.endDate = options.endDate.asDateFromMilliseconds
 
         newEvent.calendar = calendar
-
+        
+        newEvent.notes = options.notes
+        
+        newEvent.title = options.title
+        
         if let minutesBefore = options.scheduleAlarmMinutesBefore, let scheduleAlarm = options.scheduleAlarm, scheduleAlarm {
             let secondsPerMinute: TimeInterval = 60
             let alarm = EKAlarm(relativeOffset: TimeInterval(minutesBefore * -secondsPerMinute))
@@ -88,5 +94,33 @@ class HybridEventKit: HybridEventKitSpec {
         promise.resolve(withResult: calendars)
         
         return promise
+    }
+    
+    func openCalendarEvent(eventIdentifier: String) throws -> NitroModules.Promise<Void> {
+        guard EventKitManager.shared.isCalendarAccessAvailable else {
+               return Promise.rejected(withError: EventKitError.calendarAvailability.nsError)
+           }
+
+           let promise = Promise<Void>()
+        
+           DispatchQueue.main.async {
+               
+               guard let rootViewController = UIApplication.shared.rootViewController else {
+                   promise.reject(withError: EventKitError.rootViewControllerNotFound.nsError)
+                   return
+               }
+               
+    
+               let eventPreviewController = EventPreviewController(eventIdentifier: eventIdentifier)
+               
+               let navigationController = UINavigationController(rootViewController: eventPreviewController)
+
+               rootViewController.present(navigationController, animated: true) {
+                   promise.resolve(withResult: ())
+               }
+            
+           }
+
+           return promise
     }
 }

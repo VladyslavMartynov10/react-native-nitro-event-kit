@@ -17,6 +17,8 @@
 namespace margelo::nitro::eventkit { struct EventKitCalendar; }
 // Forward declaration of `EventKitEvent` to properly resolve imports.
 namespace margelo::nitro::eventkit { struct EventKitEvent; }
+// Forward declaration of `EventKitEntityType` to properly resolve imports.
+namespace margelo::nitro::eventkit { enum class EventKitEntityType; }
 // Forward declaration of `CreateEventOptions` to properly resolve imports.
 namespace margelo::nitro::eventkit { struct CreateEventOptions; }
 
@@ -24,7 +26,9 @@ namespace margelo::nitro::eventkit { struct CreateEventOptions; }
 #include <vector>
 #include "EventKitCalendar.hpp"
 #include "EventKitEvent.hpp"
+#include "EventKitEntityType.hpp"
 #include "CreateEventOptions.hpp"
+#include <string>
 
 namespace margelo::nitro::eventkit {
 
@@ -58,8 +62,9 @@ namespace margelo::nitro::eventkit {
     public:
       // Methods
       virtual std::shared_ptr<Promise<std::vector<EventKitCalendar>>> getActiveCalendars() = 0;
-      virtual std::shared_ptr<Promise<std::vector<EventKitEvent>>> getMonthlyCalendarEvents() = 0;
+      virtual std::shared_ptr<Promise<std::vector<EventKitEvent>>> getMonthlyCalendarEvents(EventKitEntityType entityType) = 0;
       virtual std::shared_ptr<Promise<EventKitEvent>> createEvent(const CreateEventOptions& options) = 0;
+      virtual std::shared_ptr<Promise<void>> openCalendarEvent(const std::string& eventIdentifier) = 0;
 
     protected:
       // Hybrid Setup

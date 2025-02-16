@@ -10,17 +10,19 @@ import Foundation
 import UIKit
 
 extension UIApplication {
-    var topViewController: UIViewController? {
+    var rootViewController: UIViewController? {
         guard let rootVc = connectedScenes
             .compactMap({ $0 as? UIWindowScene })
             .flatMap(\.windows)
             .first(where: { $0.isKeyWindow })?
             .rootViewController else { return nil }
 
-        var topController = rootVc
-        while let presentedViewController = topController.presentedViewController {
-            topController = presentedViewController
+        var activeController = rootVc
+        
+        while let presentedViewController = activeController.presentedViewController {
+            activeController = presentedViewController
         }
-        return topController
+        
+        return activeController
     }
 }

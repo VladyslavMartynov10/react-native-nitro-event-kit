@@ -9,7 +9,10 @@ import {
 import {
   NitroEventKit,
   NitroEventKitCalendarPermission,
+  EventKitEntityType,
+  CreateEventOptions,
 } from 'react-native-nitro-event-kit';
+import dayjs from 'dayjs';
 
 import { Colors, Header } from 'react-native/Libraries/NewAppScreen';
 
@@ -20,9 +23,9 @@ function App(): JSX.Element {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-  const getMonthlyCalendarEvents = async () => {
+  const getMonthlyCalendarEvents = async (entityType: EventKitEntityType) => {
     try {
-      const events = await NitroEventKit.getMonthlyCalendarEvents();
+      const events = await NitroEventKit.getMonthlyCalendarEvents(entityType);
 
       console.log(events);
     } catch (error) {
@@ -50,6 +53,38 @@ function App(): JSX.Element {
     console.log(status);
   };
 
+  const openCalendarEvent = async (eventIdentifier: string) => {
+    try {
+      await NitroEventKit.openCalendarEvent(eventIdentifier);
+    } catch (error) {
+      console.log(error, 'error');
+    }
+  };
+
+  const createEvent = async () => {
+    const event = {
+      notes: 'Test Event',
+      location: 'Test Location',
+      title: 'Test Event',
+      startDate: dayjs().add(1, 'hour').valueOf(),
+      endDate: dayjs().add(2, 'hour').valueOf(),
+      isCalendarImmutable: false,
+      scheduleAlarmMinutesBefore: 10,
+      scheduleAlarm: true,
+      calendarIdentifier: '66C97F38-EB2B-4F6F-9E51-EEE42646A7BC',
+    } satisfies CreateEventOptions;
+
+    try {
+      const test = await NitroEventKit.createEvent(event);
+
+      console.log(test, 'test event');
+    } catch (error) {
+      console.log(error);
+
+      console.log('here errror');
+    }
+  };
+
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar
@@ -61,15 +96,31 @@ function App(): JSX.Element {
         style={backgroundStyle}>
         <Header />
 
-        <Button title="Get Monthly Events" onPress={getMonthlyCalendarEvents} />
+        <Button
+          title="Get Monthly Events"
+          onPress={() => getMonthlyCalendarEvents(EventKitEntityType.Event)}
+        />
+
         <Button
           title="Request Calendar Permission"
           onPress={requestCalendarPermission}
         />
+
         <Button
           title="Check Calendar Permission"
           onPress={checkCalendarPermission}
         />
+
+        <Button
+          title="Open Calendar Event"
+          onPress={() =>
+            openCalendarEvent(
+              '4AAD3EF8-BA21-4AF1-8D4D-7977C4457FA9:338C2180-D6AC-446F-B7B8-CD9FA12664C1',
+            )
+          }
+        />
+
+        <Button title="Create Event" onPress={createEvent} />
 
         <Button title="Get Active Calendars" onPress={getActiveCalendars} />
       </ScrollView>

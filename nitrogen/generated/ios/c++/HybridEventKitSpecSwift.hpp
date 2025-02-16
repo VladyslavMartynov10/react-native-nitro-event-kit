@@ -46,6 +46,8 @@ namespace margelo::nitro::eventkit { struct EventKitPredicate; }
 namespace margelo::nitro::eventkit { enum class EventKitAvailability; }
 // Forward declaration of `EventKitStatus` to properly resolve imports.
 namespace margelo::nitro::eventkit { enum class EventKitStatus; }
+// Forward declaration of `EventKitEntityType` to properly resolve imports.
+namespace margelo::nitro::eventkit { enum class EventKitEntityType; }
 // Forward declaration of `CreateEventOptions` to properly resolve imports.
 namespace margelo::nitro::eventkit { struct CreateEventOptions; }
 
@@ -70,6 +72,7 @@ namespace margelo::nitro::eventkit { struct CreateEventOptions; }
 #include "EventKitPredicate.hpp"
 #include "EventKitAvailability.hpp"
 #include "EventKitStatus.hpp"
+#include "EventKitEntityType.hpp"
 #include "CreateEventOptions.hpp"
 
 #include "NitroEventKit-Swift-Cxx-Umbrella.hpp"
@@ -119,8 +122,8 @@ namespace margelo::nitro::eventkit {
       auto __value = std::move(__result.value());
       return __value;
     }
-    inline std::shared_ptr<Promise<std::vector<EventKitEvent>>> getMonthlyCalendarEvents() override {
-      auto __result = _swiftPart.getMonthlyCalendarEvents();
+    inline std::shared_ptr<Promise<std::vector<EventKitEvent>>> getMonthlyCalendarEvents(EventKitEntityType entityType) override {
+      auto __result = _swiftPart.getMonthlyCalendarEvents(static_cast<int>(entityType));
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }
@@ -129,6 +132,14 @@ namespace margelo::nitro::eventkit {
     }
     inline std::shared_ptr<Promise<EventKitEvent>> createEvent(const CreateEventOptions& options) override {
       auto __result = _swiftPart.createEvent(options);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<void>> openCalendarEvent(const std::string& eventIdentifier) override {
+      auto __result = _swiftPart.openCalendarEvent(eventIdentifier);
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }

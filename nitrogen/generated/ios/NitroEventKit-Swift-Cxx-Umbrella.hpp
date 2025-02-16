@@ -22,6 +22,8 @@ namespace margelo::nitro::eventkit { struct EventKitCalendar; }
 namespace margelo::nitro::eventkit { struct EventKitCoordinate; }
 // Forward declaration of `EventKitEntityMask` to properly resolve imports.
 namespace margelo::nitro::eventkit { struct EventKitEntityMask; }
+// Forward declaration of `EventKitEntityType` to properly resolve imports.
+namespace margelo::nitro::eventkit { enum class EventKitEntityType; }
 // Forward declaration of `EventKitEvent` to properly resolve imports.
 namespace margelo::nitro::eventkit { struct EventKitEvent; }
 // Forward declaration of `EventKitGeoLocation` to properly resolve imports.
@@ -59,6 +61,7 @@ namespace margelo::nitro::eventkit { class HybridEventKitSpec; }
 #include "EventKitCalendarType.hpp"
 #include "EventKitCoordinate.hpp"
 #include "EventKitEntityMask.hpp"
+#include "EventKitEntityType.hpp"
 #include "EventKitEvent.hpp"
 #include "EventKitGeoLocation.hpp"
 #include "EventKitParticipant.hpp"
