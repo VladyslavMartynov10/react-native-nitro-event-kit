@@ -48,6 +48,8 @@ namespace margelo::nitro::eventkit { enum class EventKitAvailability; }
 namespace margelo::nitro::eventkit { enum class EventKitStatus; }
 // Forward declaration of `EventKitEntityType` to properly resolve imports.
 namespace margelo::nitro::eventkit { enum class EventKitEntityType; }
+// Forward declaration of `RangeEventOptions` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct RangeEventOptions; }
 // Forward declaration of `CreateEventOptions` to properly resolve imports.
 namespace margelo::nitro::eventkit { struct CreateEventOptions; }
 
@@ -73,6 +75,7 @@ namespace margelo::nitro::eventkit { struct CreateEventOptions; }
 #include "EventKitAvailability.hpp"
 #include "EventKitStatus.hpp"
 #include "EventKitEntityType.hpp"
+#include "RangeEventOptions.hpp"
 #include "CreateEventOptions.hpp"
 
 #include "NitroEventKit-Swift-Cxx-Umbrella.hpp"
@@ -130,8 +133,24 @@ namespace margelo::nitro::eventkit {
       auto __value = std::move(__result.value());
       return __value;
     }
+    inline std::shared_ptr<Promise<std::vector<EventKitEvent>>> getCalendarEventsByRange(const RangeEventOptions& options) override {
+      auto __result = _swiftPart.getCalendarEventsByRange(options);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
     inline std::shared_ptr<Promise<EventKitEvent>> createEvent(const CreateEventOptions& options) override {
       auto __result = _swiftPart.createEvent(options);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<bool>> deleteEvent(const std::string& eventIdentifier) override {
+      auto __result = _swiftPart.deleteEvent(eventIdentifier);
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }

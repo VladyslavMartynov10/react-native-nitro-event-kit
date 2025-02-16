@@ -11,6 +11,7 @@ import {
   NitroEventKitCalendarPermission,
   EventKitEntityType,
   CreateEventOptions,
+  RangeEventOptions,
 } from 'react-native-nitro-event-kit';
 import dayjs from 'dayjs';
 
@@ -61,6 +62,16 @@ function App(): JSX.Element {
     }
   };
 
+  const deleteEvent = async (eventIdentifier: string) => {
+    try {
+      const test = await NitroEventKit.deleteEvent(eventIdentifier);
+
+      console.log(test, 'test');
+    } catch (error) {
+      console.log(error, 'error');
+    }
+  };
+
   const createEvent = async () => {
     const event = {
       notes: 'Test Event',
@@ -82,6 +93,20 @@ function App(): JSX.Element {
       console.log(error);
 
       console.log('here errror');
+    }
+  };
+  const getRangeCalendarEvents = async () => {
+    const options = {
+      startDate: dayjs().startOf('month').valueOf(),
+      endDate: dayjs().endOf('month').valueOf(),
+      entityType: EventKitEntityType.Event,
+    } satisfies RangeEventOptions;
+
+    try {
+      const events = await NitroEventKit.getCalendarEventsByRange(options);
+      console.log(events, 'events');
+    } catch (error) {
+      console.log(error, 'Error fetching events');
     }
   };
 
@@ -119,6 +144,17 @@ function App(): JSX.Element {
             )
           }
         />
+
+        <Button
+          title="Delete Event"
+          onPress={() =>
+            deleteEvent(
+              '4AAD3EF8-BA21-4AF1-8D4D-7977C4457FA9:B2F50C0D-10AB-4E7E-8ED9-257061C858CE',
+            )
+          }
+        />
+
+        <Button title="Get Range Events" onPress={getRangeCalendarEvents} />
 
         <Button title="Create Event" onPress={createEvent} />
 

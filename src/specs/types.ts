@@ -222,3 +222,9 @@ export interface CreateEventOptions {
   scheduleAlarm?: boolean
   scheduleAlarmMinutesBefore?: number
 }
+
+export interface RangeEventOptions {
+  startDate: number
+  endDate: number
+  entityType: EventKitEntityType
+}

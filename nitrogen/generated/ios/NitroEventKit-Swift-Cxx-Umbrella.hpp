@@ -52,6 +52,8 @@ namespace margelo::nitro::eventkit { struct EventKitStructuredLocation; }
 namespace margelo::nitro::eventkit { class HybridCalendarPermissionSpec; }
 // Forward declaration of `HybridEventKitSpec` to properly resolve imports.
 namespace margelo::nitro::eventkit { class HybridEventKitSpec; }
+// Forward declaration of `RangeEventOptions` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct RangeEventOptions; }
 
 // Include C++ defined types
 #include "CreateEventOptions.hpp"
@@ -76,6 +78,7 @@ namespace margelo::nitro::eventkit { class HybridEventKitSpec; }
 #include "EventKitStructuredLocation.hpp"
 #include "HybridCalendarPermissionSpec.hpp"
 #include "HybridEventKitSpec.hpp"
+#include "RangeEventOptions.hpp"
 #include <NitroModules/Promise.hpp>
 #include <NitroModules/Result.hpp>
 #include <exception>

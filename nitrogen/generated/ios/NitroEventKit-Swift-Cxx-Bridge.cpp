@@ -70,6 +70,14 @@ namespace margelo::nitro::eventkit::bridge::swift {
     };
   }
   
+  // pragma MARK: std::function<void(bool /* result */)>
+  Func_void_bool create_Func_void_bool(void* _Nonnull swiftClosureWrapper) {
+    auto swiftClosure = NitroEventKit::Func_void_bool::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](bool result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+  
   // pragma MARK: std::function<void()>
   Func_void create_Func_void(void* _Nonnull swiftClosureWrapper) {
     auto swiftClosure = NitroEventKit::Func_void::fromUnsafe(swiftClosureWrapper);

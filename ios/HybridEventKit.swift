@@ -42,6 +42,34 @@ class HybridEventKit: HybridEventKitSpec {
         return promise
     }
     
+    func getCalendarEventsByRange(options: RangeEventOptions) throws -> NitroModules.Promise<[EventKitEvent]> {
+        
+        guard EventKitManager.shared.isCalendarAccessAvailable else {
+            return Promise.rejected(withError: EventKitError.calendarAvailability.nsError)
+        }
+
+        let promise = Promise<[EventKitEvent]>()
+
+        let startDate = options.startDate.asDateFromMilliseconds
+        
+        let endDate = options.endDate.asDateFromMilliseconds
+
+        let calendars = self.eventStore.calendars(for: self.mapToEVKitEntityType(options.entityType))
+        
+        var allEvents: [EventKitEvent] = []
+        
+        for calendar in calendars {
+            let predicate = self.eventStore.predicateForEvents(withStart: startDate, end: endDate, calendars: [calendar])
+            let events = self.eventStore.events(matching: predicate).map(self.mapToNitroEvent)
+            
+            allEvents.append(contentsOf: events)
+        }
+
+        promise.resolve(withResult: allEvents)
+
+        return promise
+    }
+    
     func createEvent(options: CreateEventOptions) throws -> NitroModules.Promise<EventKitEvent> {
         guard EventKitManager.shared.isCalendarAccessAvailable else {
             return Promise.rejected(withError: EventKitError.calendarAvailability.nsError)
@@ -75,6 +103,27 @@ class HybridEventKit: HybridEventKitSpec {
         do {
             try eventStore.save(newEvent, span: .thisEvent)
             promise.resolve(withResult: mapToNitroEvent(newEvent))
+        } catch {
+            promise.reject(withError: error)
+        }
+
+        return promise
+    }
+    
+    func deleteEvent(eventIdentifier: String) -> NitroModules.Promise<Bool> {
+        guard EventKitManager.shared.isCalendarAccessAvailable else {
+            return Promise.rejected(withError: EventKitError.calendarAvailability.nsError)
+        }
+
+        let promise = Promise<Bool>()
+
+        guard let event = eventStore.event(withIdentifier: eventIdentifier) else {
+            return Promise.rejected(withError: EventKitError.eventIdentifierNotFound.nsError)
+        }
+
+        do {
+            try eventStore.remove(event, span: .thisEvent)
+            promise.resolve(withResult: true)
         } catch {
             promise.reject(withError: error)
         }
