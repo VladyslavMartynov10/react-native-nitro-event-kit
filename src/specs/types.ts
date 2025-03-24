@@ -235,3 +235,14 @@ export interface CreateCalendarOptions {
   entityType: EventKitEntityType
   sourceType?: EventKitSourceType
 }
+
+export interface EditEventOptions {
+  title?: string
+  startDate?: number
+  endDate?: number
+  location?: string
+  notes?: string
+  scheduleAlarm?: boolean
+  scheduleAlarmMinutesBefore?: number
+  calendarId?: string
+}

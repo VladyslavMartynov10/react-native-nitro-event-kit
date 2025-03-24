@@ -2,6 +2,7 @@ import { type HybridObject } from 'react-native-nitro-modules'
 import type {
   CreateCalendarOptions,
   CreateEventOptions,
+  EditEventOptions,
   EventKitCalendar,
   EventKitEntityType,
   EventKitEvent,
@@ -18,4 +19,8 @@ export interface EventKit extends HybridObject<{ ios: 'swift' }> {
   deleteEvent(eventIdentifier: string): Promise<boolean>
   openCalendarEvent(eventIdentifier: string): Promise<void>
   createCalendar(options: CreateCalendarOptions): Promise<EventKitCalendar>
+  editEvent(
+    eventIdentifier: string,
+    options: EditEventOptions
+  ): Promise<EventKitEvent>
 }

@@ -250,4 +250,23 @@ public class HybridEventKitSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_EventKitCalendar___(__exceptionPtr)
     }
   }
+  
+  @inline(__always)
+  public final func editEvent(eventIdentifier: std.string, options: EditEventOptions) -> bridge.Result_std__shared_ptr_Promise_EventKitEvent___ {
+    do {
+      let __result = try self.__implementation.editEvent(eventIdentifier: String(eventIdentifier), options: options)
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_EventKitEvent__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_EventKitEvent__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_EventKitEvent__(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve(__result) })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_EventKitEvent___(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_EventKitEvent___(__exceptionPtr)
+    }
+  }
 }
