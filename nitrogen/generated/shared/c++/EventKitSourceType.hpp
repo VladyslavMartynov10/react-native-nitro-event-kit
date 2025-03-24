@@ -41,7 +41,7 @@ namespace margelo::nitro {
 
   // C++ EventKitSourceType <> JS EventKitSourceType (enum)
   template <>
-  struct JSIConverter<EventKitSourceType> {
+  struct JSIConverter<EventKitSourceType> final {
     static inline EventKitSourceType fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       int enumValue = JSIConverter<int>::fromJSI(runtime, arg);
       return static_cast<EventKitSourceType>(enumValue);

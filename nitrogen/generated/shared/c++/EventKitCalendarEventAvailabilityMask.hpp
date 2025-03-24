@@ -35,6 +35,7 @@ namespace margelo::nitro::eventkit {
     std::optional<bool> Unavailable     SWIFT_PRIVATE;
 
   public:
+    EventKitCalendarEventAvailabilityMask() = default;
     explicit EventKitCalendarEventAvailabilityMask(std::optional<bool> Busy, std::optional<bool> Free, std::optional<bool> Tentative, std::optional<bool> Unavailable): Busy(Busy), Free(Free), Tentative(Tentative), Unavailable(Unavailable) {}
   };
 
@@ -46,7 +47,7 @@ namespace margelo::nitro {
 
   // C++ EventKitCalendarEventAvailabilityMask <> JS EventKitCalendarEventAvailabilityMask (object)
   template <>
-  struct JSIConverter<EventKitCalendarEventAvailabilityMask> {
+  struct JSIConverter<EventKitCalendarEventAvailabilityMask> final {
     static inline EventKitCalendarEventAvailabilityMask fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       jsi::Object obj = arg.asObject(runtime);
       return EventKitCalendarEventAvailabilityMask(

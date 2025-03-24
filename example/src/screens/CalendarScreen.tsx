@@ -1,20 +1,24 @@
-import React, { useState, useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
   FlatList,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 import {
-  NitroEventKit,
   EventKitCalendar,
   EventKitCalendarType,
+  EventKitEntityType,
   EventKitSourceType,
+  NitroEventKit,
 } from 'react-native-nitro-event-kit';
 
 export const CalendarScreen: React.FC = () => {
   const [calendars, setCalendars] = useState<EventKitCalendar[]>([]);
+
+  const [newCalendarName, setNewCalendarName] = useState('');
 
   const fetchCalendars = async () => {
     try {
@@ -22,6 +26,20 @@ export const CalendarScreen: React.FC = () => {
       setCalendars(data);
     } catch (error) {
       console.error('Error fetching calendars', error);
+    }
+  };
+
+  const addCalendar = async () => {
+    try {
+      const calendar = await NitroEventKit.createCalendar({
+        name: newCalendarName,
+        entityType: EventKitEntityType.Event,
+        sourceType: EventKitSourceType.CalDAV,
+        cgColor: '#d24747',
+      });
+      setCalendars(p => [...p, calendar]);
+    } catch (e) {
+      console.error('Error creating calendar', e);
     }
   };
 
@@ -96,6 +114,21 @@ export const CalendarScreen: React.FC = () => {
         <Text style={styles.buttonText}>Get Calendars</Text>
       </TouchableOpacity>
 
+      <View style={styles.newCalendarWrapper}>
+        <TextInput
+          onChangeText={setNewCalendarName}
+          style={styles.newCalendarInput}
+          value={newCalendarName}
+          placeholder="New Calendar Name"
+        />
+        <TouchableOpacity
+          style={styles.button}
+          onPress={addCalendar}
+          disabled={!newCalendarName}>
+          <Text style={styles.buttonText}>Add Calendar</Text>
+        </TouchableOpacity>
+      </View>
+
       {calendars.length > 0 ? (
         <FlatList
           data={calendars}
@@ -123,7 +156,6 @@ const styles = StyleSheet.create({
     padding: 12,
     borderRadius: 8,
     alignItems: 'center',
-    marginBottom: 16,
   },
   buttonText: { color: '#FFFFFF', fontSize: 16, fontWeight: 'bold' },
   listContainer: { paddingBottom: 20 },
@@ -147,4 +179,17 @@ const styles = StyleSheet.create({
   title: { fontSize: 16, fontWeight: 'bold', marginBottom: 6 },
   text: { fontSize: 14, color: '#333', marginBottom: 2 },
   label: { fontWeight: 'bold', color: '#555' },
+  newCalendarWrapper: {
+    flexDirection: 'row',
+    gap: 8,
+    alignItems: 'center',
+    marginVertical: 16,
+  },
+  newCalendarInput: {
+    flex: 1,
+    borderWidth: 1,
+    borderColor: 'black',
+    borderRadius: 8,
+    padding: 12,
+  },
 });

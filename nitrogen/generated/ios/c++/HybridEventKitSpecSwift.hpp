@@ -52,6 +52,8 @@ namespace margelo::nitro::eventkit { enum class EventKitEntityType; }
 namespace margelo::nitro::eventkit { struct RangeEventOptions; }
 // Forward declaration of `CreateEventOptions` to properly resolve imports.
 namespace margelo::nitro::eventkit { struct CreateEventOptions; }
+// Forward declaration of `CreateCalendarOptions` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct CreateCalendarOptions; }
 
 #include <NitroModules/Promise.hpp>
 #include <vector>
@@ -77,6 +79,7 @@ namespace margelo::nitro::eventkit { struct CreateEventOptions; }
 #include "EventKitEntityType.hpp"
 #include "RangeEventOptions.hpp"
 #include "CreateEventOptions.hpp"
+#include "CreateCalendarOptions.hpp"
 
 #include "NitroEventKit-Swift-Cxx-Umbrella.hpp"
 
@@ -159,6 +162,14 @@ namespace margelo::nitro::eventkit {
     }
     inline std::shared_ptr<Promise<void>> openCalendarEvent(const std::string& eventIdentifier) override {
       auto __result = _swiftPart.openCalendarEvent(eventIdentifier);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<EventKitCalendar>> createCalendar(const CreateCalendarOptions& options) override {
+      auto __result = _swiftPart.createCalendar(options);
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }

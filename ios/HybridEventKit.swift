@@ -148,4 +148,57 @@ class HybridEventKit: HybridEventKitSpec {
 
            return promise
     }
+    
+    func createCalendar(options: CreateCalendarOptions) throws -> NitroModules.Promise<EventKitCalendar> {
+        return Promise.async {
+            try self.checkCalendarAvailability()
+            
+            let calendar = EKCalendar(
+                for: self.mapToEVKitEntityType(options.entityType),
+                eventStore: self.eventStore
+            )
+            
+            calendar.title = options.name
+            
+            if let colorHex = options.cgColor,
+               let color = UIColor(hexString: colorHex) {
+                calendar.cgColor = color.cgColor
+            }
+            
+            if let sourceTypeRaw = options.sourceType {
+                let sourceType = self.mapToEVKitSourceType(sourceTypeRaw)
+                
+                if let matchedSource = self.eventStore.sources.first(
+                    where: { $0.sourceType == sourceType }
+                ) {
+                    calendar.source = matchedSource
+                } else {
+                    throw RuntimeError.error(
+                        withMessage: EventKitError.calendarSourceInvalid.message
+                    )
+                }
+            } else if let localSource = self.eventStore.sources.first(
+                where: { $0.sourceType == .local }
+            ) {
+                calendar.source = localSource
+            } else if let defaultSource = self.eventStore.defaultCalendarForNewEvents?.source {
+                calendar.source = defaultSource
+            } else {
+                throw RuntimeError.error(
+                    withMessage: EventKitError.calendarSourceNotFound.message
+                )
+            }
+
+            
+            do {
+                try self.eventStore.saveCalendar(calendar, commit: true)
+                
+                return self.mapToNitroCalendar(calendar)
+            } catch {
+                throw RuntimeError.error(
+                    withMessage: EventKitError.calendarSavingFailed.message
+                )
+            }
+        }
+    }
 }

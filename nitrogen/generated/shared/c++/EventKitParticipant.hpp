@@ -50,6 +50,7 @@ namespace margelo::nitro::eventkit {
     EventKitPredicate contactPredicate     SWIFT_PRIVATE;
 
   public:
+    EventKitParticipant() = default;
     explicit EventKitParticipant(std::string url, std::optional<std::string> name, EventKitParticipantStatus participantStatus, EventKitParticipantRole participantRole, EventKitParticipantType participantType, bool isCurrentUser, EventKitPredicate contactPredicate): url(url), name(name), participantStatus(participantStatus), participantRole(participantRole), participantType(participantType), isCurrentUser(isCurrentUser), contactPredicate(contactPredicate) {}
   };
 
@@ -61,7 +62,7 @@ namespace margelo::nitro {
 
   // C++ EventKitParticipant <> JS EventKitParticipant (object)
   template <>
-  struct JSIConverter<EventKitParticipant> {
+  struct JSIConverter<EventKitParticipant> final {
     static inline EventKitParticipant fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       jsi::Object obj = arg.asObject(runtime);
       return EventKitParticipant(

@@ -15,7 +15,8 @@ extension UIColor {
 
         let multiplier = CGFloat(255.999999)
 
-        guard self.getRed(&red, green: &green, blue: &blue, alpha: &alpha) else {
+        guard self.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        else {
             return nil
         }
 
@@ -34,6 +35,37 @@ extension UIColor {
                 Int(blue * multiplier),
                 Int(alpha * multiplier)
             )
+        }
+    }
+
+    convenience init?(hexString: String) {
+        var hex = hexString.trimmingCharacters(in: .whitespacesAndNewlines)
+            .uppercased()
+
+        if hex.hasPrefix("#") {
+            hex.removeFirst()
+        }
+
+        var rgbValue: UInt64 = 0
+        guard Scanner(string: hex).scanHexInt64(&rgbValue) else { return nil }
+
+        switch hex.count {
+        case 6:
+            self.init(
+                red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+                green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+                blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+                alpha: 1.0
+            )
+        case 8:
+            self.init(
+                red: CGFloat((rgbValue & 0xFF00_0000) >> 24) / 255.0,
+                green: CGFloat((rgbValue & 0x00FF_0000) >> 16) / 255.0,
+                blue: CGFloat((rgbValue & 0x0000_FF00) >> 8) / 255.0,
+                alpha: CGFloat(rgbValue & 0x0000_00FF) / 255.0
+            )
+        default:
+            return nil
         }
     }
 }

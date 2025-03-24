@@ -424,6 +424,49 @@ namespace margelo::nitro::eventkit::bridge::swift {
     return Func_void_Wrapper(std::move(value));
   }
   
+  // pragma MARK: std::shared_ptr<Promise<EventKitCalendar>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<EventKitCalendar>>`.
+   */
+  using std__shared_ptr_Promise_EventKitCalendar__ = std::shared_ptr<Promise<EventKitCalendar>>;
+  inline std::shared_ptr<Promise<EventKitCalendar>> create_std__shared_ptr_Promise_EventKitCalendar__() {
+    return Promise<EventKitCalendar>::create();
+  }
+  inline PromiseHolder<EventKitCalendar> wrap_std__shared_ptr_Promise_EventKitCalendar__(std::shared_ptr<Promise<EventKitCalendar>> promise) {
+    return PromiseHolder<EventKitCalendar>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const EventKitCalendar& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const EventKitCalendar&)>`.
+   */
+  using Func_void_EventKitCalendar = std::function<void(const EventKitCalendar& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const EventKitCalendar& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_EventKitCalendar_Wrapper final {
+  public:
+    explicit Func_void_EventKitCalendar_Wrapper(std::function<void(const EventKitCalendar& /* result */)>&& func): _function(std::make_shared<std::function<void(const EventKitCalendar& /* result */)>>(std::move(func))) {}
+    inline void call(EventKitCalendar result) const {
+      _function->operator()(result);
+    }
+  private:
+    std::shared_ptr<std::function<void(const EventKitCalendar& /* result */)>> _function;
+  };
+  Func_void_EventKitCalendar create_Func_void_EventKitCalendar(void* _Nonnull swiftClosureWrapper);
+  inline Func_void_EventKitCalendar_Wrapper wrap_Func_void_EventKitCalendar(Func_void_EventKitCalendar value) {
+    return Func_void_EventKitCalendar_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::optional<EventKitSourceType>
+  /**
+   * Specialized version of `std::optional<EventKitSourceType>`.
+   */
+  using std__optional_EventKitSourceType_ = std::optional<EventKitSourceType>;
+  inline std::optional<EventKitSourceType> create_std__optional_EventKitSourceType_(const EventKitSourceType& value) {
+    return std::optional<EventKitSourceType>(value);
+  }
+  
   // pragma MARK: std::shared_ptr<margelo::nitro::eventkit::HybridEventKitSpec>
   /**
    * Specialized version of `std::shared_ptr<margelo::nitro::eventkit::HybridEventKitSpec>`.
@@ -479,6 +522,15 @@ namespace margelo::nitro::eventkit::bridge::swift {
   }
   inline Result_std__shared_ptr_Promise_void___ create_Result_std__shared_ptr_Promise_void___(const std::exception_ptr& error) {
     return Result<std::shared_ptr<Promise<void>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<EventKitCalendar>>>
+  using Result_std__shared_ptr_Promise_EventKitCalendar___ = Result<std::shared_ptr<Promise<EventKitCalendar>>>;
+  inline Result_std__shared_ptr_Promise_EventKitCalendar___ create_Result_std__shared_ptr_Promise_EventKitCalendar___(const std::shared_ptr<Promise<EventKitCalendar>>& value) {
+    return Result<std::shared_ptr<Promise<EventKitCalendar>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_EventKitCalendar___ create_Result_std__shared_ptr_Promise_EventKitCalendar___(const std::exception_ptr& error) {
+    return Result<std::shared_ptr<Promise<EventKitCalendar>>>::withError(error);
   }
 
 } // namespace margelo::nitro::eventkit::bridge::swift

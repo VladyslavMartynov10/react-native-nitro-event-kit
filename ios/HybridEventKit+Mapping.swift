@@ -249,5 +249,24 @@ extension HybridEventKit {
         
         return EventKitParticipant(url: organizer.url.absoluteString, name: organizer.name, participantStatus: mapToNitroParticipantStatus(organizer.participantStatus), participantRole: maptToNitroParticipantRole(organizer.participantRole), participantType: mapToParticipantType(organizer.participantType), isCurrentUser: organizer.isCurrentUser, contactPredicate: contactPredicate)
     }
+    
+    func mapToEVKitSourceType(_ type: EventKitSourceType) -> EventKit.EKSourceType {
+        switch type {
+        case .local:
+            return .local
+        case .exchange:
+            return .exchange
+        case .caldav:
+            return .calDAV
+        case .mobileme:
+            return .mobileMe
+        case .subscribed:
+            return .subscribed
+        case .birthdays:
+            return .birthdays
+        @unknown default:
+            return .local
+        }
+    }
 }
 

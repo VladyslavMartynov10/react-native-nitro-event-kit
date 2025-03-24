@@ -33,6 +33,7 @@ namespace margelo::nitro::eventkit {
     std::optional<bool> Reminder     SWIFT_PRIVATE;
 
   public:
+    EventKitEntityMask() = default;
     explicit EventKitEntityMask(std::optional<bool> Event, std::optional<bool> Reminder): Event(Event), Reminder(Reminder) {}
   };
 
@@ -44,7 +45,7 @@ namespace margelo::nitro {
 
   // C++ EventKitEntityMask <> JS EventKitEntityMask (object)
   template <>
-  struct JSIConverter<EventKitEntityMask> {
+  struct JSIConverter<EventKitEntityMask> final {
     static inline EventKitEntityMask fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       jsi::Object obj = arg.asObject(runtime);
       return EventKitEntityMask(

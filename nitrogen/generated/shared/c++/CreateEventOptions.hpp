@@ -41,6 +41,7 @@ namespace margelo::nitro::eventkit {
     std::optional<double> scheduleAlarmMinutesBefore     SWIFT_PRIVATE;
 
   public:
+    CreateEventOptions() = default;
     explicit CreateEventOptions(double startDate, double endDate, std::string title, std::optional<std::string> location, std::optional<std::string> notes, std::string calendarIdentifier, bool isCalendarImmutable, std::optional<bool> scheduleAlarm, std::optional<double> scheduleAlarmMinutesBefore): startDate(startDate), endDate(endDate), title(title), location(location), notes(notes), calendarIdentifier(calendarIdentifier), isCalendarImmutable(isCalendarImmutable), scheduleAlarm(scheduleAlarm), scheduleAlarmMinutesBefore(scheduleAlarmMinutesBefore) {}
   };
 
@@ -52,7 +53,7 @@ namespace margelo::nitro {
 
   // C++ CreateEventOptions <> JS CreateEventOptions (object)
   template <>
-  struct JSIConverter<CreateEventOptions> {
+  struct JSIConverter<CreateEventOptions> final {
     static inline CreateEventOptions fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       jsi::Object obj = arg.asObject(runtime);
       return CreateEventOptions(
