@@ -54,6 +54,7 @@ namespace margelo::nitro::eventkit {
     std::optional<std::string> birthdayContactIdentifier     SWIFT_PRIVATE;
 
   public:
+    EventKitEvent() = default;
     explicit EventKitEvent(std::string eventIdentifier, bool isAllDay, double startDate, double endDate, std::optional<EventKitStructuredLocation> structuredLocation, std::optional<EventKitParticipant> organizer, EventKitAvailability availability, EventKitStatus status, bool isDetached, std::optional<double> occurrenceDate, std::optional<std::string> birthdayContactIdentifier): eventIdentifier(eventIdentifier), isAllDay(isAllDay), startDate(startDate), endDate(endDate), structuredLocation(structuredLocation), organizer(organizer), availability(availability), status(status), isDetached(isDetached), occurrenceDate(occurrenceDate), birthdayContactIdentifier(birthdayContactIdentifier) {}
   };
 
@@ -65,7 +66,7 @@ namespace margelo::nitro {
 
   // C++ EventKitEvent <> JS EventKitEvent (object)
   template <>
-  struct JSIConverter<EventKitEvent> {
+  struct JSIConverter<EventKitEvent> final {
     static inline EventKitEvent fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       jsi::Object obj = arg.asObject(runtime);
       return EventKitEvent(

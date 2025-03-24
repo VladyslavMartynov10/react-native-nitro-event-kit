@@ -53,6 +53,7 @@ namespace margelo::nitro::eventkit {
     EventKitSource source     SWIFT_PRIVATE;
 
   public:
+    EventKitCalendar() = default;
     explicit EventKitCalendar(std::string calendarIdentifier, std::string title, EventKitCalendarType type, bool allowsContentModifications, std::optional<bool> isSubscribed, std::optional<bool> isImmutable, std::optional<std::string> cgColor, EventKitCalendarEventAvailabilityMask supportedEventAvailabilities, EventKitEntityMask allowedEntityTypes, EventKitSource source): calendarIdentifier(calendarIdentifier), title(title), type(type), allowsContentModifications(allowsContentModifications), isSubscribed(isSubscribed), isImmutable(isImmutable), cgColor(cgColor), supportedEventAvailabilities(supportedEventAvailabilities), allowedEntityTypes(allowedEntityTypes), source(source) {}
   };
 
@@ -64,7 +65,7 @@ namespace margelo::nitro {
 
   // C++ EventKitCalendar <> JS EventKitCalendar (object)
   template <>
-  struct JSIConverter<EventKitCalendar> {
+  struct JSIConverter<EventKitCalendar> final {
     static inline EventKitCalendar fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       jsi::Object obj = arg.asObject(runtime);
       return EventKitCalendar(

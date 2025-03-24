@@ -20,6 +20,7 @@ namespace margelo::nitro::eventkit {
       prototype.registerHybridMethod("createEvent", &HybridEventKitSpec::createEvent);
       prototype.registerHybridMethod("deleteEvent", &HybridEventKitSpec::deleteEvent);
       prototype.registerHybridMethod("openCalendarEvent", &HybridEventKitSpec::openCalendarEvent);
+      prototype.registerHybridMethod("createCalendar", &HybridEventKitSpec::createCalendar);
     });
   }
 

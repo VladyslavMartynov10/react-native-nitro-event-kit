@@ -228,3 +228,10 @@ export interface RangeEventOptions {
   endDate: number
   entityType: EventKitEntityType
 }
+
+export interface CreateCalendarOptions {
+  name: string
+  cgColor?: string
+  entityType: EventKitEntityType
+  sourceType?: EventKitSourceType
+}

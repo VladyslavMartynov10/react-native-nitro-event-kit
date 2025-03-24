@@ -35,6 +35,7 @@ namespace margelo::nitro::eventkit {
     EventKitEntityType entityType     SWIFT_PRIVATE;
 
   public:
+    RangeEventOptions() = default;
     explicit RangeEventOptions(double startDate, double endDate, EventKitEntityType entityType): startDate(startDate), endDate(endDate), entityType(entityType) {}
   };
 
@@ -46,7 +47,7 @@ namespace margelo::nitro {
 
   // C++ RangeEventOptions <> JS RangeEventOptions (object)
   template <>
-  struct JSIConverter<RangeEventOptions> {
+  struct JSIConverter<RangeEventOptions> final {
     static inline RangeEventOptions fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       jsi::Object obj = arg.asObject(runtime);
       return RangeEventOptions(

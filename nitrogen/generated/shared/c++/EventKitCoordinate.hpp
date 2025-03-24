@@ -33,6 +33,7 @@ namespace margelo::nitro::eventkit {
     double longitude     SWIFT_PRIVATE;
 
   public:
+    EventKitCoordinate() = default;
     explicit EventKitCoordinate(double latitude, double longitude): latitude(latitude), longitude(longitude) {}
   };
 
@@ -44,7 +45,7 @@ namespace margelo::nitro {
 
   // C++ EventKitCoordinate <> JS EventKitCoordinate (object)
   template <>
-  struct JSIConverter<EventKitCoordinate> {
+  struct JSIConverter<EventKitCoordinate> final {
     static inline EventKitCoordinate fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       jsi::Object obj = arg.asObject(runtime);
       return EventKitCoordinate(

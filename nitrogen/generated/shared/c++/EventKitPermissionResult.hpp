@@ -45,7 +45,7 @@ namespace margelo::nitro {
 
   // C++ EventKitPermissionResult <> JS EventKitPermissionResult (union)
   template <>
-  struct JSIConverter<EventKitPermissionResult> {
+  struct JSIConverter<EventKitPermissionResult> final {
     static inline EventKitPermissionResult fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       std::string unionValue = JSIConverter<std::string>::fromJSI(runtime, arg);
       switch (hashString(unionValue.c_str(), unionValue.size())) {

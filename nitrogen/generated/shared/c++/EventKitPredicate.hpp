@@ -32,6 +32,7 @@ namespace margelo::nitro::eventkit {
     std::string predicateFormat     SWIFT_PRIVATE;
 
   public:
+    EventKitPredicate() = default;
     explicit EventKitPredicate(std::string predicateFormat): predicateFormat(predicateFormat) {}
   };
 
@@ -43,7 +44,7 @@ namespace margelo::nitro {
 
   // C++ EventKitPredicate <> JS EventKitPredicate (object)
   template <>
-  struct JSIConverter<EventKitPredicate> {
+  struct JSIConverter<EventKitPredicate> final {
     static inline EventKitPredicate fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       jsi::Object obj = arg.asObject(runtime);
       return EventKitPredicate(

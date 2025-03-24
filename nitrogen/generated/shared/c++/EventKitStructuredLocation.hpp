@@ -37,6 +37,7 @@ namespace margelo::nitro::eventkit {
     double radius     SWIFT_PRIVATE;
 
   public:
+    EventKitStructuredLocation() = default;
     explicit EventKitStructuredLocation(std::optional<std::string> title, std::optional<EventKitGeoLocation> geoLocation, double radius): title(title), geoLocation(geoLocation), radius(radius) {}
   };
 
@@ -48,7 +49,7 @@ namespace margelo::nitro {
 
   // C++ EventKitStructuredLocation <> JS EventKitStructuredLocation (object)
   template <>
-  struct JSIConverter<EventKitStructuredLocation> {
+  struct JSIConverter<EventKitStructuredLocation> final {
     static inline EventKitStructuredLocation fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       jsi::Object obj = arg.asObject(runtime);
       return EventKitStructuredLocation(

@@ -42,6 +42,7 @@ namespace margelo::nitro::eventkit {
     double timestamp     SWIFT_PRIVATE;
 
   public:
+    EventKitGeoLocation() = default;
     explicit EventKitGeoLocation(EventKitCoordinate coordinate, double altitude, double ellipsoidalAltitude, double horizontalAccuracy, double verticalAccuracy, double course, double courseAccuracy, double speed, double speedAccuracy, double timestamp): coordinate(coordinate), altitude(altitude), ellipsoidalAltitude(ellipsoidalAltitude), horizontalAccuracy(horizontalAccuracy), verticalAccuracy(verticalAccuracy), course(course), courseAccuracy(courseAccuracy), speed(speed), speedAccuracy(speedAccuracy), timestamp(timestamp) {}
   };
 
@@ -53,7 +54,7 @@ namespace margelo::nitro {
 
   // C++ EventKitGeoLocation <> JS EventKitGeoLocation (object)
   template <>
-  struct JSIConverter<EventKitGeoLocation> {
+  struct JSIConverter<EventKitGeoLocation> final {
     static inline EventKitGeoLocation fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       jsi::Object obj = arg.asObject(runtime);
       return EventKitGeoLocation(

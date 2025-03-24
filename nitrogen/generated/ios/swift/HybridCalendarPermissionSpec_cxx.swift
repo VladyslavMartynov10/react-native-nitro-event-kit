@@ -101,7 +101,7 @@ public class HybridCalendarPermissionSpec_cxx {
 
   // Methods
   @inline(__always)
-  public func getPermissionsStatus() -> bridge.Result_EventKitPermissionResult_ {
+  public final func getPermissionsStatus() -> bridge.Result_EventKitPermissionResult_ {
     do {
       let __result = try self.__implementation.getPermissionsStatus()
       let __resultCpp = __result
@@ -113,7 +113,7 @@ public class HybridCalendarPermissionSpec_cxx {
   }
   
   @inline(__always)
-  public func requestPermission() -> bridge.Result_std__shared_ptr_Promise_EventKitPermissionResult___ {
+  public final func requestPermission() -> bridge.Result_std__shared_ptr_Promise_EventKitPermissionResult___ {
     do {
       let __result = try self.__implementation.requestPermission()
       let __resultCpp = { () -> bridge.std__shared_ptr_Promise_EventKitPermissionResult__ in

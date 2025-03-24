@@ -8,6 +8,8 @@
 #pragma once
 
 // Forward declarations of C++ defined types
+// Forward declaration of `CreateCalendarOptions` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct CreateCalendarOptions; }
 // Forward declaration of `CreateEventOptions` to properly resolve imports.
 namespace margelo::nitro::eventkit { struct CreateEventOptions; }
 // Forward declaration of `EventKitAvailability` to properly resolve imports.
@@ -56,6 +58,7 @@ namespace margelo::nitro::eventkit { class HybridEventKitSpec; }
 namespace margelo::nitro::eventkit { struct RangeEventOptions; }
 
 // Include C++ defined types
+#include "CreateCalendarOptions.hpp"
 #include "CreateEventOptions.hpp"
 #include "EventKitAvailability.hpp"
 #include "EventKitCalendar.hpp"
@@ -93,7 +96,6 @@ namespace margelo::nitro::eventkit { struct RangeEventOptions; }
 // Common C++ types used in Swift
 #include <NitroModules/ArrayBufferHolder.hpp>
 #include <NitroModules/AnyMapHolder.hpp>
-#include <NitroModules/HybridContext.hpp>
 #include <NitroModules/RuntimeError.hpp>
 
 // Forward declarations of Swift defined types

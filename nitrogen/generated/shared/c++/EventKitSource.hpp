@@ -38,6 +38,7 @@ namespace margelo::nitro::eventkit {
     std::optional<bool> isDelegate     SWIFT_PRIVATE;
 
   public:
+    EventKitSource() = default;
     explicit EventKitSource(std::string sourceIdentifier, EventKitSourceType sourceType, std::string title, std::optional<bool> isDelegate): sourceIdentifier(sourceIdentifier), sourceType(sourceType), title(title), isDelegate(isDelegate) {}
   };
 
@@ -49,7 +50,7 @@ namespace margelo::nitro {
 
   // C++ EventKitSource <> JS EventKitSource (object)
   template <>
-  struct JSIConverter<EventKitSource> {
+  struct JSIConverter<EventKitSource> final {
     static inline EventKitSource fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       jsi::Object obj = arg.asObject(runtime);
       return EventKitSource(
