@@ -172,7 +172,24 @@ extension HybridEventKit {
         
         let coordinate = EventKitCoordinate(latitude: geolocation.coordinate.latitude, longitude: geolocation.coordinate.longitude)
         
-        return EventKitGeoLocation(coordinate: coordinate, altitude: geolocation.altitude, ellipsoidalAltitude: geolocation.ellipsoidalAltitude, horizontalAccuracy: geolocation.horizontalAccuracy, verticalAccuracy: geolocation.verticalAccuracy, course: geolocation.course, courseAccuracy: geolocation.courseAccuracy, speed: geolocation.speed, speedAccuracy: geolocation.speedAccuracy, timestamp:  timestamp)
+        return EventKitGeoLocation(
+            coordinate: coordinate,
+            altitude: geolocation.altitude,
+            ellipsoidalAltitude: {
+                if #available(iOS 15.0, *) {
+                    return geolocation.ellipsoidalAltitude
+                } else {
+                    return geolocation.altitude
+                }
+            }(),
+            horizontalAccuracy: geolocation.horizontalAccuracy,
+            verticalAccuracy: geolocation.verticalAccuracy,
+            course: geolocation.course,
+            courseAccuracy: geolocation.courseAccuracy,
+            speed: geolocation.speed,
+            speedAccuracy: geolocation.speedAccuracy,
+            timestamp:  timestamp
+        )
     }
     
     private func mapToNitroStructuredLocation (structuredLocation: EventKit.EKStructuredLocation?) -> EventKitStructuredLocation? {
