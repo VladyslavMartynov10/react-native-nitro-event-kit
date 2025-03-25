@@ -21,6 +21,7 @@ public protocol HybridEventKitSpec_protocol: HybridObject {
   func deleteEvent(eventIdentifier: String) throws -> Promise<Bool>
   func openCalendarEvent(eventIdentifier: String) throws -> Promise<Void>
   func createCalendar(options: CreateCalendarOptions) throws -> Promise<EventKitCalendar>
+  func editEvent(eventIdentifier: String, options: EditEventOptions) throws -> Promise<EventKitEvent>
 }
 
 /// See ``HybridEventKitSpec``

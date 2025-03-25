@@ -201,4 +201,64 @@ class HybridEventKit: HybridEventKitSpec {
             }
         }
     }
+    
+    
+    func editEvent(eventIdentifier: String, options: EditEventOptions) throws -> NitroModules.Promise<EventKitEvent> {
+        return Promise.async {
+            try self.checkCalendarAvailability()
+
+            guard let event = self.eventStore.event(withIdentifier: eventIdentifier) else {
+                throw RuntimeError.error(
+                    withMessage: EventKitError.eventIdentifierNotFound.message
+                )
+            }
+            
+            if let newTitle = options.title {
+                event.title = newTitle
+            }
+
+            if let newStartDate = options.startDate {
+                event.startDate = newStartDate.asDateFromMilliseconds
+            }
+
+            if let newEndDate = options.endDate {
+                event.endDate = newEndDate.asDateFromMilliseconds
+            }
+
+            if let newNotes = options.notes {
+                event.notes = newNotes
+            }
+
+            if let newLocation = options.location {
+                event.location = newLocation
+            }
+            
+            if let minutesBefore = options.scheduleAlarmMinutesBefore, let scheduleAlarm = options.scheduleAlarm, scheduleAlarm {
+                let secondsPerMinute: TimeInterval = 60
+                let alarm = EKAlarm(relativeOffset: TimeInterval(minutesBefore * -secondsPerMinute))
+                event.addAlarm(alarm)
+            }
+
+            if let newCalendarId = options.calendarId {
+                guard let targetCalendar = self.eventStore.calendars(for: .event).first(
+                    where: { $0.calendarIdentifier == newCalendarId }) else {
+                    throw RuntimeError
+                        .error(
+                            withMessage: EventKitError.calendarExistence.message
+                        )
+                }
+                
+                event.calendar = targetCalendar
+            }
+
+            do {
+                try self.eventStore.save(event, span: .thisEvent, commit: true)
+                return self.mapToNitroEvent(event)
+            } catch {
+                throw RuntimeError.error(
+                    withMessage: EventKitError.eventUpdateFailed.message
+                )
+            }
+        }
+    }
 }

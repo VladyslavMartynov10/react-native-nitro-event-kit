@@ -18,6 +18,7 @@ enum EventKitError: Int {
     case calendarSourceNotFound = 8
     case calendarSavingFailed = 9
     case calendarSourceInvalid = 10
+    case eventUpdateFailed = 11
 
     var message: String {
         switch self {
@@ -41,6 +42,8 @@ enum EventKitError: Int {
             return "Failed to save calendar"
         case .calendarSourceInvalid:
             return "Calendar source in invalid"
+        case .eventUpdateFailed:
+            return "Failed to update event"
         }
     }
 

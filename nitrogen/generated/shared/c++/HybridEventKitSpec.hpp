@@ -25,6 +25,8 @@ namespace margelo::nitro::eventkit { struct RangeEventOptions; }
 namespace margelo::nitro::eventkit { struct CreateEventOptions; }
 // Forward declaration of `CreateCalendarOptions` to properly resolve imports.
 namespace margelo::nitro::eventkit { struct CreateCalendarOptions; }
+// Forward declaration of `EditEventOptions` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct EditEventOptions; }
 
 #include <NitroModules/Promise.hpp>
 #include <vector>
@@ -35,6 +37,7 @@ namespace margelo::nitro::eventkit { struct CreateCalendarOptions; }
 #include "CreateEventOptions.hpp"
 #include <string>
 #include "CreateCalendarOptions.hpp"
+#include "EditEventOptions.hpp"
 
 namespace margelo::nitro::eventkit {
 
@@ -74,6 +77,7 @@ namespace margelo::nitro::eventkit {
       virtual std::shared_ptr<Promise<bool>> deleteEvent(const std::string& eventIdentifier) = 0;
       virtual std::shared_ptr<Promise<void>> openCalendarEvent(const std::string& eventIdentifier) = 0;
       virtual std::shared_ptr<Promise<EventKitCalendar>> createCalendar(const CreateCalendarOptions& options) = 0;
+      virtual std::shared_ptr<Promise<EventKitEvent>> editEvent(const std::string& eventIdentifier, const EditEventOptions& options) = 0;
 
     protected:
       // Hybrid Setup
