@@ -14,14 +14,16 @@ extension HybridEventKit {
         return EventKitEvent(
             eventIdentifier: event.eventIdentifier,
             isAllDay: event.isAllDay,
-            startDate: event.startDate.timeIntervalSince1970,
-            endDate: event.endDate.timeIntervalSince1970,
+            startDate: event.startDate.timeIntervalSince1970 * 1000,
+            endDate: event.endDate.timeIntervalSince1970 * 1000,
             structuredLocation: mapToNitroStructuredLocation(structuredLocation: event.structuredLocation),
             organizer: mapToNitroOrganizer(organizer: event.organizer),
             availability: mapToNitroAvailability(event.availability),
             status: mapToNitroStatus(event.status),
             isDetached: event.isDetached,
-            occurrenceDate: event.occurrenceDate?.timeIntervalSince1970,
+            occurrenceDate: (
+                event.occurrenceDate != nil
+            ) ? event.occurrenceDate.timeIntervalSince1970 * 1000 : nil,
             birthdayContactIdentifier: event.birthdayContactIdentifier
         )
     }
