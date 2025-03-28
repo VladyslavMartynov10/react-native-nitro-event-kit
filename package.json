@@ -39,7 +39,9 @@
   },
   "keywords": [
     "react-native",
-    "nitro"
+    "nitro",
+    "react-native-nitro-event-kit",
+    "react-native-calendar"
   ],
   "repository": {
     "type": "git",
@@ -58,6 +60,7 @@
     "@commitlint/cli": "^19.7.1",
     "@commitlint/config-conventional": "^19.7.1",
     "@react-native/eslint-config": "0.77.0",
+    "@release-it/conventional-changelog": "^10.0.0",
     "@types/jest": "^29.5.12",
     "@types/react": "^19.0.6",
     "eslint": "^8.57.0",
@@ -70,7 +73,25 @@
     "react-native": "0.77.0",
     "react-native-builder-bob": "^0.36.0",
     "react-native-nitro-modules": "*",
+    "release-it": "^18.1.2",
     "typescript": "^5.5.4"
+  },
+  "release-it": {
+    "git": {
+      "commitMessage": "feat: release ${version}",
+      "tagName": "v${version}"
+    },
+    "npm": {
+      "publish": true
+    },
+    "github": {
+      "release": true
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "preset": "angular"
+      }
+    }
   },
   "peerDependencies": {
     "react": "*",
