@@ -30,8 +30,10 @@ jobs:
       - name: 🛠 Build the Package
         run: yarn build
 
-      - name: 🔐 Verify NPM Auth
-        run: echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > ~/.npmrc
+      - name: 🔐 Setup .npmrc for release
+        run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 🚀 Release to NPM and GitHub
         env:
