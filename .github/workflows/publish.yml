@@ -35,6 +35,11 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+      - name: 🧑‍💻 Set Git identity for release commits
+        run: |
+          git config --global user.name "VladyslavMartynov10"
+          git config --global user.email "vladyslav.martynov.10@gmail.com"
+
       - name: 🚀 Release to NPM and GitHub
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
