@@ -1,4 +1,4 @@
-# 📅 React Native Nitro Event Kit
+# 📅 React Native Nitro Event Kit [![npm version](https://img.shields.io/npm/v/react-native-nitro-event-kit.svg)](https://www.npmjs.com/package/react-native-nitro-event-kit)
 
 🔹 **React Native Nitro Event Kit** enables seamless access to iOS calendar events in your React Native applications. Fetch local events efficiently using the power of Nitro Modules.
 
