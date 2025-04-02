@@ -36,17 +36,33 @@ class HybridEventKit: HybridEventKitSpec {
         return event
     }
 
-    func getMonthlyCalendarEvents(entityType: EventKitEntityType) throws -> NitroModules.Promise<[EventKitEvent]> {
+    func getMonthlyCalendarEvents(options: MonthlyEventOptions) throws -> NitroModules.Promise<[EventKitEvent]> {
         return Promise.async {
             try self.checkCalendarAvailability()
             
+            let entityType = options.entityType
+            
             let startDate = Date()
             let endDate = Calendar.current.date(byAdding: .day, value: 31, to: startDate) ?? Date()
-            let calendars = self.eventStore.calendars(for: self.mapToEVKitEntityType(entityType))
+            
+            let calendars: [EKCalendar]
+            if let calendarId = options.calendarId, let specificCalendar = self.eventStore.calendar(
+                withIdentifier: calendarId
+            ) {
+                calendars = [specificCalendar]
+            } else {
+                calendars = self.eventStore.calendars(for: self.mapToEVKitEntityType(entityType))
+            }
 
             return calendars.flatMap { calendar in
-                let predicate = self.eventStore.predicateForEvents(withStart: startDate, end: endDate, calendars: [calendar])
-                return self.eventStore.events(matching: predicate).map(self.mapToNitroEvent)
+                let predicate = self.eventStore.predicateForEvents(
+                    withStart: startDate,
+                    end: endDate,
+                    calendars: [calendar]
+                )
+                return self.eventStore
+                    .events(matching: predicate)
+                    .map(self.mapToNitroEvent)
             }
         }
     }
@@ -54,14 +70,30 @@ class HybridEventKit: HybridEventKitSpec {
     func getCalendarEventsByRange(options: RangeEventOptions) throws -> NitroModules.Promise<[EventKitEvent]> {
         return Promise.async {
             try self.checkCalendarAvailability()
+            
+            let entityType = options.entityType
 
             let startDate = options.startDate.asDateFromMilliseconds
             let endDate = options.endDate.asDateFromMilliseconds
-            let calendars = self.eventStore.calendars(for: self.mapToEVKitEntityType(options.entityType))
 
+            let calendars: [EKCalendar]
+            if let calendarId = options.calendarId, let specificCalendar = self.eventStore.calendar(
+                withIdentifier: calendarId
+            ) {
+                calendars = [specificCalendar]
+            } else {
+                calendars = self.eventStore.calendars(for: self.mapToEVKitEntityType(entityType))
+            }
+                    
             return calendars.flatMap { calendar in
-                let predicate = self.eventStore.predicateForEvents(withStart: startDate, end: endDate, calendars: [calendar])
-                return self.eventStore.events(matching: predicate).map(self.mapToNitroEvent)
+                let predicate = self.eventStore.predicateForEvents(
+                    withStart: startDate,
+                    end: endDate,
+                    calendars: [calendar]
+                )
+                return self.eventStore
+                    .events(matching: predicate)
+                    .map(self.mapToNitroEvent)
             }
         }
     }

@@ -46,6 +46,8 @@ namespace margelo::nitro::eventkit { struct EventKitPredicate; }
 namespace margelo::nitro::eventkit { enum class EventKitAvailability; }
 // Forward declaration of `EventKitStatus` to properly resolve imports.
 namespace margelo::nitro::eventkit { enum class EventKitStatus; }
+// Forward declaration of `MonthlyEventOptions` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct MonthlyEventOptions; }
 // Forward declaration of `EventKitEntityType` to properly resolve imports.
 namespace margelo::nitro::eventkit { enum class EventKitEntityType; }
 // Forward declaration of `RangeEventOptions` to properly resolve imports.
@@ -78,6 +80,7 @@ namespace margelo::nitro::eventkit { struct EditEventOptions; }
 #include "EventKitPredicate.hpp"
 #include "EventKitAvailability.hpp"
 #include "EventKitStatus.hpp"
+#include "MonthlyEventOptions.hpp"
 #include "EventKitEntityType.hpp"
 #include "RangeEventOptions.hpp"
 #include "CreateEventOptions.hpp"
@@ -131,8 +134,8 @@ namespace margelo::nitro::eventkit {
       auto __value = std::move(__result.value());
       return __value;
     }
-    inline std::shared_ptr<Promise<std::vector<EventKitEvent>>> getMonthlyCalendarEvents(EventKitEntityType entityType) override {
-      auto __result = _swiftPart.getMonthlyCalendarEvents(static_cast<int>(entityType));
+    inline std::shared_ptr<Promise<std::vector<EventKitEvent>>> getMonthlyCalendarEvents(const MonthlyEventOptions& options) override {
+      auto __result = _swiftPart.getMonthlyCalendarEvents(options);
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }

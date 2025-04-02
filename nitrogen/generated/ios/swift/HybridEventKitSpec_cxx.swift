@@ -126,9 +126,9 @@ public class HybridEventKitSpec_cxx {
   }
   
   @inline(__always)
-  public final func getMonthlyCalendarEvents(entityType: Int32) -> bridge.Result_std__shared_ptr_Promise_std__vector_EventKitEvent____ {
+  public final func getMonthlyCalendarEvents(options: MonthlyEventOptions) -> bridge.Result_std__shared_ptr_Promise_std__vector_EventKitEvent____ {
     do {
-      let __result = try self.__implementation.getMonthlyCalendarEvents(entityType: margelo.nitro.eventkit.EventKitEntityType(rawValue: entityType)!)
+      let __result = try self.__implementation.getMonthlyCalendarEvents(options: options)
       let __resultCpp = { () -> bridge.std__shared_ptr_Promise_std__vector_EventKitEvent___ in
         let __promise = bridge.create_std__shared_ptr_Promise_std__vector_EventKitEvent___()
         let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_std__vector_EventKitEvent___(__promise)
