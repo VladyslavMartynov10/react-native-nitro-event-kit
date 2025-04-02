@@ -8,6 +8,8 @@
 #pragma once
 
 // Forward declarations of C++ defined types
+// Forward declaration of `CreateEventLocation` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct CreateEventLocation; }
 // Forward declaration of `EventKitAvailability` to properly resolve imports.
 namespace margelo::nitro::eventkit { enum class EventKitAvailability; }
 // Forward declaration of `EventKitCalendarEventAvailabilityMask` to properly resolve imports.
@@ -56,6 +58,7 @@ namespace NitroEventKit { class HybridCalendarPermissionSpec_cxx; }
 namespace NitroEventKit { class HybridEventKitSpec_cxx; }
 
 // Include C++ defined types
+#include "CreateEventLocation.hpp"
 #include "EventKitAvailability.hpp"
 #include "EventKitCalendar.hpp"
 #include "EventKitCalendarEventAvailabilityMask.hpp"
@@ -354,6 +357,15 @@ namespace margelo::nitro::eventkit::bridge::swift {
   Func_void_EventKitEvent create_Func_void_EventKitEvent(void* _Nonnull swiftClosureWrapper);
   inline Func_void_EventKitEvent_Wrapper wrap_Func_void_EventKitEvent(Func_void_EventKitEvent value) {
     return Func_void_EventKitEvent_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::optional<CreateEventLocation>
+  /**
+   * Specialized version of `std::optional<CreateEventLocation>`.
+   */
+  using std__optional_CreateEventLocation_ = std::optional<CreateEventLocation>;
+  inline std::optional<CreateEventLocation> create_std__optional_CreateEventLocation_(const CreateEventLocation& value) {
+    return std::optional<CreateEventLocation>(value);
   }
   
   // pragma MARK: std::shared_ptr<Promise<bool>>

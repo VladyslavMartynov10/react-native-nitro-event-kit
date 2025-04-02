@@ -10,6 +10,8 @@
 // Forward declarations of C++ defined types
 // Forward declaration of `CreateCalendarOptions` to properly resolve imports.
 namespace margelo::nitro::eventkit { struct CreateCalendarOptions; }
+// Forward declaration of `CreateEventLocation` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct CreateEventLocation; }
 // Forward declaration of `CreateEventOptions` to properly resolve imports.
 namespace margelo::nitro::eventkit { struct CreateEventOptions; }
 // Forward declaration of `EditEventOptions` to properly resolve imports.
@@ -61,6 +63,7 @@ namespace margelo::nitro::eventkit { struct RangeEventOptions; }
 
 // Include C++ defined types
 #include "CreateCalendarOptions.hpp"
+#include "CreateEventLocation.hpp"
 #include "CreateEventOptions.hpp"
 #include "EditEventOptions.hpp"
 #include "EventKitAvailability.hpp"
