@@ -1,6 +1,6 @@
 {
   "name": "react-native-nitro-event-kit",
-  "version": "1.7.3",
+  "version": "1.7.4",
   "description": "react-native-nitro-event-kit",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
