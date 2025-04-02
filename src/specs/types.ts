@@ -233,6 +233,12 @@ export interface RangeEventOptions {
   startDate: number
   endDate: number
   entityType: EventKitEntityType
+  calendarId?: string
+}
+
+export interface MonthlyEventOptions {
+  entityType: EventKitEntityType
+  calendarId?: string
 }
 
 export interface CreateCalendarOptions {

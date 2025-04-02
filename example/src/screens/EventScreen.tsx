@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   FlatList,
+  TextInput,
 } from 'react-native';
 import {
   NitroEventKit,
@@ -17,11 +18,14 @@ import dayjs from 'dayjs';
 export const EventsScreen: React.FC = () => {
   const [events, setEvents] = useState<EventKitEvent[]>([]);
 
+  const [calendarId, setCalendarId] = useState('');
+
   const fetchEvents = async () => {
     const options: RangeEventOptions = {
       startDate: dayjs().startOf('month').valueOf(),
       endDate: dayjs().endOf('month').valueOf(),
       entityType: EventKitEntityType.Event,
+      calendarId: calendarId || undefined,
     };
 
     try {
@@ -82,6 +86,15 @@ export const EventsScreen: React.FC = () => {
         <Text style={styles.buttonText}>Fetch Events</Text>
       </TouchableOpacity>
 
+      <View>
+        <TextInput
+          onChangeText={setCalendarId}
+          style={styles.calendarIdInput}
+          value={calendarId}
+          placeholder="Calendar ID"
+        />
+      </View>
+
       {events.length > 0 ? (
         <FlatList
           data={events}
@@ -133,4 +146,12 @@ const styles = StyleSheet.create({
   title: { fontSize: 16, fontWeight: 'bold', marginBottom: 6 },
   text: { fontSize: 14, color: '#333', marginBottom: 2 },
   label: { fontWeight: 'bold', color: '#555' },
+  calendarIdInput: {
+    width: '100%',
+    padding: 12,
+    marginVertical: 8,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 8,
+  },
 });
