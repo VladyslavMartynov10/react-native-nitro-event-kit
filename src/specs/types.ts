@@ -211,11 +211,17 @@ export interface EventKitCalendar {
   source: EventKitSource
 }
 
+export interface CreateEventLocation {
+  title?: string
+  latitude: number
+  longitude: number
+}
+
 export interface CreateEventOptions {
   startDate: number
   endDate: number
   title: string
-  location?: string
+  location?: CreateEventLocation
   notes?: string
   calendarIdentifier: string
   isCalendarImmutable: boolean

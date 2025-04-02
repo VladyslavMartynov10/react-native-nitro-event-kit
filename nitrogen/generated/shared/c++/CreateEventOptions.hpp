@@ -18,10 +18,12 @@
 #error NitroModules cannot be found! Are you sure you installed NitroModules properly?
 #endif
 
-
+// Forward declaration of `CreateEventLocation` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct CreateEventLocation; }
 
 #include <string>
 #include <optional>
+#include "CreateEventLocation.hpp"
 
 namespace margelo::nitro::eventkit {
 
@@ -33,7 +35,7 @@ namespace margelo::nitro::eventkit {
     double startDate     SWIFT_PRIVATE;
     double endDate     SWIFT_PRIVATE;
     std::string title     SWIFT_PRIVATE;
-    std::optional<std::string> location     SWIFT_PRIVATE;
+    std::optional<CreateEventLocation> location     SWIFT_PRIVATE;
     std::optional<std::string> notes     SWIFT_PRIVATE;
     std::string calendarIdentifier     SWIFT_PRIVATE;
     bool isCalendarImmutable     SWIFT_PRIVATE;
@@ -42,7 +44,7 @@ namespace margelo::nitro::eventkit {
 
   public:
     CreateEventOptions() = default;
-    explicit CreateEventOptions(double startDate, double endDate, std::string title, std::optional<std::string> location, std::optional<std::string> notes, std::string calendarIdentifier, bool isCalendarImmutable, std::optional<bool> scheduleAlarm, std::optional<double> scheduleAlarmMinutesBefore): startDate(startDate), endDate(endDate), title(title), location(location), notes(notes), calendarIdentifier(calendarIdentifier), isCalendarImmutable(isCalendarImmutable), scheduleAlarm(scheduleAlarm), scheduleAlarmMinutesBefore(scheduleAlarmMinutesBefore) {}
+    explicit CreateEventOptions(double startDate, double endDate, std::string title, std::optional<CreateEventLocation> location, std::optional<std::string> notes, std::string calendarIdentifier, bool isCalendarImmutable, std::optional<bool> scheduleAlarm, std::optional<double> scheduleAlarmMinutesBefore): startDate(startDate), endDate(endDate), title(title), location(location), notes(notes), calendarIdentifier(calendarIdentifier), isCalendarImmutable(isCalendarImmutable), scheduleAlarm(scheduleAlarm), scheduleAlarmMinutesBefore(scheduleAlarmMinutesBefore) {}
   };
 
 } // namespace margelo::nitro::eventkit
@@ -60,7 +62,7 @@ namespace margelo::nitro {
         JSIConverter<double>::fromJSI(runtime, obj.getProperty(runtime, "startDate")),
         JSIConverter<double>::fromJSI(runtime, obj.getProperty(runtime, "endDate")),
         JSIConverter<std::string>::fromJSI(runtime, obj.getProperty(runtime, "title")),
-        JSIConverter<std::optional<std::string>>::fromJSI(runtime, obj.getProperty(runtime, "location")),
+        JSIConverter<std::optional<CreateEventLocation>>::fromJSI(runtime, obj.getProperty(runtime, "location")),
         JSIConverter<std::optional<std::string>>::fromJSI(runtime, obj.getProperty(runtime, "notes")),
         JSIConverter<std::string>::fromJSI(runtime, obj.getProperty(runtime, "calendarIdentifier")),
         JSIConverter<bool>::fromJSI(runtime, obj.getProperty(runtime, "isCalendarImmutable")),
@@ -73,7 +75,7 @@ namespace margelo::nitro {
       obj.setProperty(runtime, "startDate", JSIConverter<double>::toJSI(runtime, arg.startDate));
       obj.setProperty(runtime, "endDate", JSIConverter<double>::toJSI(runtime, arg.endDate));
       obj.setProperty(runtime, "title", JSIConverter<std::string>::toJSI(runtime, arg.title));
-      obj.setProperty(runtime, "location", JSIConverter<std::optional<std::string>>::toJSI(runtime, arg.location));
+      obj.setProperty(runtime, "location", JSIConverter<std::optional<CreateEventLocation>>::toJSI(runtime, arg.location));
       obj.setProperty(runtime, "notes", JSIConverter<std::optional<std::string>>::toJSI(runtime, arg.notes));
       obj.setProperty(runtime, "calendarIdentifier", JSIConverter<std::string>::toJSI(runtime, arg.calendarIdentifier));
       obj.setProperty(runtime, "isCalendarImmutable", JSIConverter<bool>::toJSI(runtime, arg.isCalendarImmutable));
@@ -89,7 +91,7 @@ namespace margelo::nitro {
       if (!JSIConverter<double>::canConvert(runtime, obj.getProperty(runtime, "startDate"))) return false;
       if (!JSIConverter<double>::canConvert(runtime, obj.getProperty(runtime, "endDate"))) return false;
       if (!JSIConverter<std::string>::canConvert(runtime, obj.getProperty(runtime, "title"))) return false;
-      if (!JSIConverter<std::optional<std::string>>::canConvert(runtime, obj.getProperty(runtime, "location"))) return false;
+      if (!JSIConverter<std::optional<CreateEventLocation>>::canConvert(runtime, obj.getProperty(runtime, "location"))) return false;
       if (!JSIConverter<std::optional<std::string>>::canConvert(runtime, obj.getProperty(runtime, "notes"))) return false;
       if (!JSIConverter<std::string>::canConvert(runtime, obj.getProperty(runtime, "calendarIdentifier"))) return false;
       if (!JSIConverter<bool>::canConvert(runtime, obj.getProperty(runtime, "isCalendarImmutable"))) return false;

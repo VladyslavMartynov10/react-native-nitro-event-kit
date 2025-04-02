@@ -23,6 +23,10 @@ export const CreateEventScreen: React.FC = () => {
   const [scheduleAlarmMinutesBefore, setScheduleAlarmMinutesBefore] =
     useState(10);
 
+  const [locationTitle, setLocationTitle] = useState('');
+  const [longitudeLocation, setLongitudeLocation] = useState('');
+  const [latitudeLocation, setLatitudeLocation] = useState('');
+
   const createEvent = async () => {
     if (!title || !calendarIdentifier) {
       Alert.alert('Error', 'Title and Calendar ID are required!');
@@ -40,6 +44,17 @@ export const CreateEventScreen: React.FC = () => {
       scheduleAlarmMinutesBefore: scheduleAlarm
         ? scheduleAlarmMinutesBefore
         : undefined,
+      location:
+        longitudeLocation &&
+        latitudeLocation &&
+        !isNaN(+latitudeLocation) &&
+        !isNaN(+longitudeLocation)
+          ? {
+              title: locationTitle,
+              latitude: +latitudeLocation,
+              longitude: +longitudeLocation,
+            }
+          : undefined,
     };
 
     try {
@@ -75,6 +90,29 @@ export const CreateEventScreen: React.FC = () => {
         placeholder="Calendar ID"
         value={calendarIdentifier}
         onChangeText={setCalendarIdentifier}
+      />
+
+      <TextInput
+        style={styles.input}
+        placeholder="Location Title"
+        value={locationTitle}
+        onChangeText={setLocationTitle}
+      />
+
+      <TextInput
+        style={styles.input}
+        placeholder="Location Latitude"
+        value={latitudeLocation}
+        onChangeText={setLatitudeLocation}
+        keyboardType="numeric"
+      />
+
+      <TextInput
+        style={styles.input}
+        placeholder="Location Longitude"
+        value={longitudeLocation}
+        onChangeText={setLongitudeLocation}
+        keyboardType="numeric"
       />
 
       <Text style={styles.label}>

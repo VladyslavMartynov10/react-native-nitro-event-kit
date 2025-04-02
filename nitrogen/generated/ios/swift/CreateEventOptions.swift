@@ -18,10 +18,10 @@ public extension CreateEventOptions {
   /**
    * Create a new instance of `CreateEventOptions`.
    */
-  init(startDate: Double, endDate: Double, title: String, location: String?, notes: String?, calendarIdentifier: String, isCalendarImmutable: Bool, scheduleAlarm: Bool?, scheduleAlarmMinutesBefore: Double?) {
-    self.init(startDate, endDate, std.string(title), { () -> bridge.std__optional_std__string_ in
+  init(startDate: Double, endDate: Double, title: String, location: CreateEventLocation?, notes: String?, calendarIdentifier: String, isCalendarImmutable: Bool, scheduleAlarm: Bool?, scheduleAlarmMinutesBefore: Double?) {
+    self.init(startDate, endDate, std.string(title), { () -> bridge.std__optional_CreateEventLocation_ in
       if let __unwrappedValue = location {
-        return bridge.create_std__optional_std__string_(std.string(__unwrappedValue))
+        return bridge.create_std__optional_CreateEventLocation_(__unwrappedValue)
       } else {
         return .init()
       }
@@ -79,12 +79,12 @@ public extension CreateEventOptions {
     }
   }
   
-  var location: String? {
+  var location: CreateEventLocation? {
     @inline(__always)
     get {
-      return { () -> String? in
+      return { () -> CreateEventLocation? in
         if let __unwrapped = self.__location.value {
-          return String(__unwrapped)
+          return __unwrapped
         } else {
           return nil
         }
@@ -92,9 +92,9 @@ public extension CreateEventOptions {
     }
     @inline(__always)
     set {
-      self.__location = { () -> bridge.std__optional_std__string_ in
+      self.__location = { () -> bridge.std__optional_CreateEventLocation_ in
         if let __unwrappedValue = newValue {
-          return bridge.create_std__optional_std__string_(std.string(__unwrappedValue))
+          return bridge.create_std__optional_CreateEventLocation_(__unwrappedValue)
         } else {
           return .init()
         }

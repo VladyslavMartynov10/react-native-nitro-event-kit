@@ -8,7 +8,7 @@ PODS:
   - hermes-engine (0.77.0):
     - hermes-engine/Pre-built (= 0.77.0)
   - hermes-engine/Pre-built (0.77.0)
-  - NitroEventKit (0.0.1):
+  - NitroEventKit (1.7.2):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1913,7 +1913,7 @@ SPEC CHECKSUMS:
   fmt: a40bb5bd0294ea969aaaba240a927bd33d878cdd
   glog: eb93e2f488219332457c3c4eafd2738ddc7e80b8
   hermes-engine: 1f783c3d53940aed0d2c84586f0b7a85ab7827ef
-  NitroEventKit: 8534a153faa951d355ce60d1beb7be9e4566cbfa
+  NitroEventKit: 719babee4eedd9dbc492925b6241b63e440c98bd
   NitroModules: 4848808c6de6715dc749293f9307b5f00106a9f8
   RCT-Folly: e78785aa9ba2ed998ea4151e314036f6c49e6d82
   RCTDeprecation: f5c19ebdb8804b53ed029123eb69914356192fc8

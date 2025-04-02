@@ -84,6 +84,20 @@ class HybridEventKit: HybridEventKitSpec {
             
             newEvent.title = options.title
             
+            if let location = options.location {
+                let structuredLocation = EKStructuredLocation(
+                    title: location.title ?? ""
+                )
+                
+                structuredLocation.geoLocation = CLLocation(
+                    latitude: location.latitude,
+                    longitude: location.longitude
+                )
+                
+                newEvent.location = location.title
+                newEvent.structuredLocation = structuredLocation
+            }
+            
             if let minutesBefore = options.scheduleAlarmMinutesBefore, let scheduleAlarm = options.scheduleAlarm, scheduleAlarm {
                 let secondsPerMinute: TimeInterval = 60
                 let alarm = EKAlarm(relativeOffset: TimeInterval(minutesBefore * -secondsPerMinute))
