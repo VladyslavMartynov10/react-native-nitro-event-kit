@@ -49,6 +49,12 @@ export const EventsScreen: React.FC = () => {
     const formattedEndDate = item.endDate
       ? dayjs(item.endDate).format('DD MMM YYYY, HH:mm')
       : 'N/A';
+    const formattedCreationDate = item.createdAt
+      ? dayjs(item.createdAt).format('DD MMM YYYY, HH:mm')
+      : 'N/A';
+    const formattedUpdatedDate = item.updatedAt
+      ? dayjs(item.updatedAt).format('DD MMM YYYY, HH:mm')
+      : 'N/A';
 
     return (
       <View style={styles.card}>
@@ -66,6 +72,18 @@ export const EventsScreen: React.FC = () => {
             End:
           </Text>{' '}
           {formattedEndDate}
+        </Text>
+        <Text style={styles.text} selectable={true}>
+          <Text style={styles.label} selectable={true}>
+            Created At:
+          </Text>{' '}
+          {formattedCreationDate}
+        </Text>
+        <Text style={styles.text} selectable={true}>
+          <Text style={styles.label} selectable={true}>
+            Updated At:
+          </Text>{' '}
+          {formattedUpdatedDate}
         </Text>
         {item.isAllDay && (
           <Text style={styles.text} selectable={true}>
