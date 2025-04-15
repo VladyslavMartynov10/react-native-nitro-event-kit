@@ -18,6 +18,12 @@ jobs:
       - name: ⬇️ Checkout Repository
         uses: actions/checkout@v4
 
+      - name: ⚙️ Enable Corepack and Use Correct Yarn Version
+        run: |
+          corepack enable
+          corepack prepare yarn@4.7.0 --activate
+          yarn --version
+
       - name: ⚙️ Set up Node.js
         uses: actions/setup-node@v4
         with:
