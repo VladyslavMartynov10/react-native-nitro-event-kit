@@ -188,6 +188,8 @@ export interface EventKitEvent {
   isDetached: boolean
   occurrenceDate?: number
   birthdayContactIdentifier?: string
+  createdAt: number
+  updatedAt: number
 }
 
 export type EventKitPermissionResult =

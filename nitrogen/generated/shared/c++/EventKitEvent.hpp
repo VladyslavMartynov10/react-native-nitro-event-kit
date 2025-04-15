@@ -52,10 +52,12 @@ namespace margelo::nitro::eventkit {
     bool isDetached     SWIFT_PRIVATE;
     std::optional<double> occurrenceDate     SWIFT_PRIVATE;
     std::optional<std::string> birthdayContactIdentifier     SWIFT_PRIVATE;
+    double createdAt     SWIFT_PRIVATE;
+    double updatedAt     SWIFT_PRIVATE;
 
   public:
     EventKitEvent() = default;
-    explicit EventKitEvent(std::string eventIdentifier, bool isAllDay, double startDate, double endDate, std::optional<EventKitStructuredLocation> structuredLocation, std::optional<EventKitParticipant> organizer, EventKitAvailability availability, EventKitStatus status, bool isDetached, std::optional<double> occurrenceDate, std::optional<std::string> birthdayContactIdentifier): eventIdentifier(eventIdentifier), isAllDay(isAllDay), startDate(startDate), endDate(endDate), structuredLocation(structuredLocation), organizer(organizer), availability(availability), status(status), isDetached(isDetached), occurrenceDate(occurrenceDate), birthdayContactIdentifier(birthdayContactIdentifier) {}
+    explicit EventKitEvent(std::string eventIdentifier, bool isAllDay, double startDate, double endDate, std::optional<EventKitStructuredLocation> structuredLocation, std::optional<EventKitParticipant> organizer, EventKitAvailability availability, EventKitStatus status, bool isDetached, std::optional<double> occurrenceDate, std::optional<std::string> birthdayContactIdentifier, double createdAt, double updatedAt): eventIdentifier(eventIdentifier), isAllDay(isAllDay), startDate(startDate), endDate(endDate), structuredLocation(structuredLocation), organizer(organizer), availability(availability), status(status), isDetached(isDetached), occurrenceDate(occurrenceDate), birthdayContactIdentifier(birthdayContactIdentifier), createdAt(createdAt), updatedAt(updatedAt) {}
   };
 
 } // namespace margelo::nitro::eventkit
@@ -80,7 +82,9 @@ namespace margelo::nitro {
         JSIConverter<EventKitStatus>::fromJSI(runtime, obj.getProperty(runtime, "status")),
         JSIConverter<bool>::fromJSI(runtime, obj.getProperty(runtime, "isDetached")),
         JSIConverter<std::optional<double>>::fromJSI(runtime, obj.getProperty(runtime, "occurrenceDate")),
-        JSIConverter<std::optional<std::string>>::fromJSI(runtime, obj.getProperty(runtime, "birthdayContactIdentifier"))
+        JSIConverter<std::optional<std::string>>::fromJSI(runtime, obj.getProperty(runtime, "birthdayContactIdentifier")),
+        JSIConverter<double>::fromJSI(runtime, obj.getProperty(runtime, "createdAt")),
+        JSIConverter<double>::fromJSI(runtime, obj.getProperty(runtime, "updatedAt"))
       );
     }
     static inline jsi::Value toJSI(jsi::Runtime& runtime, const EventKitEvent& arg) {
@@ -96,6 +100,8 @@ namespace margelo::nitro {
       obj.setProperty(runtime, "isDetached", JSIConverter<bool>::toJSI(runtime, arg.isDetached));
       obj.setProperty(runtime, "occurrenceDate", JSIConverter<std::optional<double>>::toJSI(runtime, arg.occurrenceDate));
       obj.setProperty(runtime, "birthdayContactIdentifier", JSIConverter<std::optional<std::string>>::toJSI(runtime, arg.birthdayContactIdentifier));
+      obj.setProperty(runtime, "createdAt", JSIConverter<double>::toJSI(runtime, arg.createdAt));
+      obj.setProperty(runtime, "updatedAt", JSIConverter<double>::toJSI(runtime, arg.updatedAt));
       return obj;
     }
     static inline bool canConvert(jsi::Runtime& runtime, const jsi::Value& value) {
@@ -114,6 +120,8 @@ namespace margelo::nitro {
       if (!JSIConverter<bool>::canConvert(runtime, obj.getProperty(runtime, "isDetached"))) return false;
       if (!JSIConverter<std::optional<double>>::canConvert(runtime, obj.getProperty(runtime, "occurrenceDate"))) return false;
       if (!JSIConverter<std::optional<std::string>>::canConvert(runtime, obj.getProperty(runtime, "birthdayContactIdentifier"))) return false;
+      if (!JSIConverter<double>::canConvert(runtime, obj.getProperty(runtime, "createdAt"))) return false;
+      if (!JSIConverter<double>::canConvert(runtime, obj.getProperty(runtime, "updatedAt"))) return false;
       return true;
     }
   };
