@@ -64,7 +64,7 @@ export const ManageEventScreen: React.FC = () => {
         notes: newNotes || undefined,
         startDate: newStartDate || undefined,
         endDate: newEndDate || undefined,
-        location: newLocation || undefined,
+        location: { title: newLocation || undefined },
         calendarId: newCalendarId || undefined,
       });
 

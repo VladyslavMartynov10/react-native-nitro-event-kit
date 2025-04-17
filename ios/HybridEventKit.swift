@@ -276,7 +276,20 @@ class HybridEventKit: HybridEventKitSpec {
             }
 
             if let newLocation = options.location {
-                event.location = newLocation
+                let structuredLocation = EKStructuredLocation(
+                    title: newLocation.title ?? ""
+                )
+                
+                if let newLatitude = newLocation.latitude, let newLongitude = newLocation.longitude {
+                    structuredLocation.geoLocation = CLLocation(
+                        latitude: newLatitude,
+                        longitude: newLongitude
+                    )
+                }
+                
+                
+                event.location = newLocation.title
+                event.structuredLocation = structuredLocation
             }
             
             if let minutesBefore = options.scheduleAlarmMinutesBefore, let scheduleAlarm = options.scheduleAlarm, scheduleAlarm {
