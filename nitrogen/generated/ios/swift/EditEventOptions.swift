@@ -18,7 +18,7 @@ public extension EditEventOptions {
   /**
    * Create a new instance of `EditEventOptions`.
    */
-  init(title: String?, startDate: Double?, endDate: Double?, location: String?, notes: String?, scheduleAlarm: Bool?, scheduleAlarmMinutesBefore: Double?, calendarId: String?) {
+  init(title: String?, startDate: Double?, endDate: Double?, location: EditEventLocation?, notes: String?, scheduleAlarm: Bool?, scheduleAlarmMinutesBefore: Double?, calendarId: String?) {
     self.init({ () -> bridge.std__optional_std__string_ in
       if let __unwrappedValue = title {
         return bridge.create_std__optional_std__string_(std.string(__unwrappedValue))
@@ -37,9 +37,9 @@ public extension EditEventOptions {
       } else {
         return .init()
       }
-    }(), { () -> bridge.std__optional_std__string_ in
+    }(), { () -> bridge.std__optional_EditEventLocation_ in
       if let __unwrappedValue = location {
-        return bridge.create_std__optional_std__string_(std.string(__unwrappedValue))
+        return bridge.create_std__optional_EditEventLocation_(__unwrappedValue)
       } else {
         return .init()
       }
@@ -127,12 +127,12 @@ public extension EditEventOptions {
     }
   }
   
-  var location: String? {
+  var location: EditEventLocation? {
     @inline(__always)
     get {
-      return { () -> String? in
+      return { () -> EditEventLocation? in
         if let __unwrapped = self.__location.value {
-          return String(__unwrapped)
+          return __unwrapped
         } else {
           return nil
         }
@@ -140,9 +140,9 @@ public extension EditEventOptions {
     }
     @inline(__always)
     set {
-      self.__location = { () -> bridge.std__optional_std__string_ in
+      self.__location = { () -> bridge.std__optional_EditEventLocation_ in
         if let __unwrappedValue = newValue {
-          return bridge.create_std__optional_std__string_(std.string(__unwrappedValue))
+          return bridge.create_std__optional_EditEventLocation_(__unwrappedValue)
         } else {
           return .init()
         }

@@ -250,11 +250,17 @@ export interface CreateCalendarOptions {
   sourceType?: EventKitSourceType
 }
 
+export interface EditEventLocation {
+  title?: string
+  latitude?: number
+  longitude?: number
+}
+
 export interface EditEventOptions {
   title?: string
   startDate?: number
   endDate?: number
-  location?: string
+  location?: EditEventLocation
   notes?: string
   scheduleAlarm?: boolean
   scheduleAlarmMinutesBefore?: number

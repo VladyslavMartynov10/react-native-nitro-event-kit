@@ -14,6 +14,8 @@ namespace margelo::nitro::eventkit { struct CreateCalendarOptions; }
 namespace margelo::nitro::eventkit { struct CreateEventLocation; }
 // Forward declaration of `CreateEventOptions` to properly resolve imports.
 namespace margelo::nitro::eventkit { struct CreateEventOptions; }
+// Forward declaration of `EditEventLocation` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct EditEventLocation; }
 // Forward declaration of `EditEventOptions` to properly resolve imports.
 namespace margelo::nitro::eventkit { struct EditEventOptions; }
 // Forward declaration of `EventKitAvailability` to properly resolve imports.
@@ -67,6 +69,7 @@ namespace margelo::nitro::eventkit { struct RangeEventOptions; }
 #include "CreateCalendarOptions.hpp"
 #include "CreateEventLocation.hpp"
 #include "CreateEventOptions.hpp"
+#include "EditEventLocation.hpp"
 #include "EditEventOptions.hpp"
 #include "EventKitAvailability.hpp"
 #include "EventKitCalendar.hpp"

@@ -18,10 +18,12 @@
 #error NitroModules cannot be found! Are you sure you installed NitroModules properly?
 #endif
 
-
+// Forward declaration of `EditEventLocation` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct EditEventLocation; }
 
 #include <optional>
 #include <string>
+#include "EditEventLocation.hpp"
 
 namespace margelo::nitro::eventkit {
 
@@ -33,7 +35,7 @@ namespace margelo::nitro::eventkit {
     std::optional<std::string> title     SWIFT_PRIVATE;
     std::optional<double> startDate     SWIFT_PRIVATE;
     std::optional<double> endDate     SWIFT_PRIVATE;
-    std::optional<std::string> location     SWIFT_PRIVATE;
+    std::optional<EditEventLocation> location     SWIFT_PRIVATE;
     std::optional<std::string> notes     SWIFT_PRIVATE;
     std::optional<bool> scheduleAlarm     SWIFT_PRIVATE;
     std::optional<double> scheduleAlarmMinutesBefore     SWIFT_PRIVATE;
@@ -41,7 +43,7 @@ namespace margelo::nitro::eventkit {
 
   public:
     EditEventOptions() = default;
-    explicit EditEventOptions(std::optional<std::string> title, std::optional<double> startDate, std::optional<double> endDate, std::optional<std::string> location, std::optional<std::string> notes, std::optional<bool> scheduleAlarm, std::optional<double> scheduleAlarmMinutesBefore, std::optional<std::string> calendarId): title(title), startDate(startDate), endDate(endDate), location(location), notes(notes), scheduleAlarm(scheduleAlarm), scheduleAlarmMinutesBefore(scheduleAlarmMinutesBefore), calendarId(calendarId) {}
+    explicit EditEventOptions(std::optional<std::string> title, std::optional<double> startDate, std::optional<double> endDate, std::optional<EditEventLocation> location, std::optional<std::string> notes, std::optional<bool> scheduleAlarm, std::optional<double> scheduleAlarmMinutesBefore, std::optional<std::string> calendarId): title(title), startDate(startDate), endDate(endDate), location(location), notes(notes), scheduleAlarm(scheduleAlarm), scheduleAlarmMinutesBefore(scheduleAlarmMinutesBefore), calendarId(calendarId) {}
   };
 
 } // namespace margelo::nitro::eventkit
@@ -59,7 +61,7 @@ namespace margelo::nitro {
         JSIConverter<std::optional<std::string>>::fromJSI(runtime, obj.getProperty(runtime, "title")),
         JSIConverter<std::optional<double>>::fromJSI(runtime, obj.getProperty(runtime, "startDate")),
         JSIConverter<std::optional<double>>::fromJSI(runtime, obj.getProperty(runtime, "endDate")),
-        JSIConverter<std::optional<std::string>>::fromJSI(runtime, obj.getProperty(runtime, "location")),
+        JSIConverter<std::optional<EditEventLocation>>::fromJSI(runtime, obj.getProperty(runtime, "location")),
         JSIConverter<std::optional<std::string>>::fromJSI(runtime, obj.getProperty(runtime, "notes")),
         JSIConverter<std::optional<bool>>::fromJSI(runtime, obj.getProperty(runtime, "scheduleAlarm")),
         JSIConverter<std::optional<double>>::fromJSI(runtime, obj.getProperty(runtime, "scheduleAlarmMinutesBefore")),
@@ -71,7 +73,7 @@ namespace margelo::nitro {
       obj.setProperty(runtime, "title", JSIConverter<std::optional<std::string>>::toJSI(runtime, arg.title));
       obj.setProperty(runtime, "startDate", JSIConverter<std::optional<double>>::toJSI(runtime, arg.startDate));
       obj.setProperty(runtime, "endDate", JSIConverter<std::optional<double>>::toJSI(runtime, arg.endDate));
-      obj.setProperty(runtime, "location", JSIConverter<std::optional<std::string>>::toJSI(runtime, arg.location));
+      obj.setProperty(runtime, "location", JSIConverter<std::optional<EditEventLocation>>::toJSI(runtime, arg.location));
       obj.setProperty(runtime, "notes", JSIConverter<std::optional<std::string>>::toJSI(runtime, arg.notes));
       obj.setProperty(runtime, "scheduleAlarm", JSIConverter<std::optional<bool>>::toJSI(runtime, arg.scheduleAlarm));
       obj.setProperty(runtime, "scheduleAlarmMinutesBefore", JSIConverter<std::optional<double>>::toJSI(runtime, arg.scheduleAlarmMinutesBefore));
@@ -86,7 +88,7 @@ namespace margelo::nitro {
       if (!JSIConverter<std::optional<std::string>>::canConvert(runtime, obj.getProperty(runtime, "title"))) return false;
       if (!JSIConverter<std::optional<double>>::canConvert(runtime, obj.getProperty(runtime, "startDate"))) return false;
       if (!JSIConverter<std::optional<double>>::canConvert(runtime, obj.getProperty(runtime, "endDate"))) return false;
-      if (!JSIConverter<std::optional<std::string>>::canConvert(runtime, obj.getProperty(runtime, "location"))) return false;
+      if (!JSIConverter<std::optional<EditEventLocation>>::canConvert(runtime, obj.getProperty(runtime, "location"))) return false;
       if (!JSIConverter<std::optional<std::string>>::canConvert(runtime, obj.getProperty(runtime, "notes"))) return false;
       if (!JSIConverter<std::optional<bool>>::canConvert(runtime, obj.getProperty(runtime, "scheduleAlarm"))) return false;
       if (!JSIConverter<std::optional<double>>::canConvert(runtime, obj.getProperty(runtime, "scheduleAlarmMinutesBefore"))) return false;

@@ -60,6 +60,8 @@ namespace margelo::nitro::eventkit { struct CreateEventLocation; }
 namespace margelo::nitro::eventkit { struct CreateCalendarOptions; }
 // Forward declaration of `EditEventOptions` to properly resolve imports.
 namespace margelo::nitro::eventkit { struct EditEventOptions; }
+// Forward declaration of `EditEventLocation` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct EditEventLocation; }
 
 #include <NitroModules/Promise.hpp>
 #include <vector>
@@ -89,6 +91,7 @@ namespace margelo::nitro::eventkit { struct EditEventOptions; }
 #include "CreateEventLocation.hpp"
 #include "CreateCalendarOptions.hpp"
 #include "EditEventOptions.hpp"
+#include "EditEventLocation.hpp"
 
 #include "NitroEventKit-Swift-Cxx-Umbrella.hpp"
 
