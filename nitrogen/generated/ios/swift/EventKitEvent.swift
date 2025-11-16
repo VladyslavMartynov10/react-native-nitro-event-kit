@@ -18,7 +18,7 @@ public extension EventKitEvent {
   /**
    * Create a new instance of `EventKitEvent`.
    */
-  init(eventIdentifier: String, isAllDay: Bool, startDate: Double, endDate: Double, structuredLocation: EventKitStructuredLocation?, organizer: EventKitParticipant?, availability: EventKitAvailability, status: EventKitStatus, isDetached: Bool, occurrenceDate: Double?, birthdayContactIdentifier: String?) {
+  init(eventIdentifier: String, isAllDay: Bool, startDate: Double, endDate: Double, structuredLocation: EventKitStructuredLocation?, organizer: EventKitParticipant?, availability: EventKitAvailability, status: EventKitStatus, isDetached: Bool, occurrenceDate: Double?, birthdayContactIdentifier: String?, createdAt: Double, updatedAt: Double) {
     self.init(std.string(eventIdentifier), isAllDay, startDate, endDate, { () -> bridge.std__optional_EventKitStructuredLocation_ in
       if let __unwrappedValue = structuredLocation {
         return bridge.create_std__optional_EventKitStructuredLocation_(__unwrappedValue)
@@ -43,7 +43,7 @@ public extension EventKitEvent {
       } else {
         return .init()
       }
-    }())
+    }(), createdAt, updatedAt)
   }
 
   var eventIdentifier: String {
@@ -206,6 +206,28 @@ public extension EventKitEvent {
           return .init()
         }
       }()
+    }
+  }
+  
+  var createdAt: Double {
+    @inline(__always)
+    get {
+      return self.__createdAt
+    }
+    @inline(__always)
+    set {
+      self.__createdAt = newValue
+    }
+  }
+  
+  var updatedAt: Double {
+    @inline(__always)
+    get {
+      return self.__updatedAt
+    }
+    @inline(__always)
+    set {
+      self.__updatedAt = newValue
     }
   }
 }

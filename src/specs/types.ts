@@ -188,6 +188,8 @@ export interface EventKitEvent {
   isDetached: boolean
   occurrenceDate?: number
   birthdayContactIdentifier?: string
+  createdAt: number
+  updatedAt: number
 }
 
 export type EventKitPermissionResult =
@@ -211,11 +213,17 @@ export interface EventKitCalendar {
   source: EventKitSource
 }
 
+export interface CreateEventLocation {
+  title?: string
+  latitude: number
+  longitude: number
+}
+
 export interface CreateEventOptions {
   startDate: number
   endDate: number
   title: string
-  location?: string
+  location?: CreateEventLocation
   notes?: string
   calendarIdentifier: string
   isCalendarImmutable: boolean
@@ -227,6 +235,12 @@ export interface RangeEventOptions {
   startDate: number
   endDate: number
   entityType: EventKitEntityType
+  calendarId?: string
+}
+
+export interface MonthlyEventOptions {
+  entityType: EventKitEntityType
+  calendarId?: string
 }
 
 export interface CreateCalendarOptions {
@@ -236,11 +250,17 @@ export interface CreateCalendarOptions {
   sourceType?: EventKitSourceType
 }
 
+export interface EditEventLocation {
+  title?: string
+  latitude?: number
+  longitude?: number
+}
+
 export interface EditEventOptions {
   title?: string
   startDate?: number
   endDate?: number
-  location?: string
+  location?: EditEventLocation
   notes?: string
   scheduleAlarm?: boolean
   scheduleAlarmMinutesBefore?: number

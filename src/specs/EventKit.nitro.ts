@@ -4,15 +4,15 @@ import type {
   CreateEventOptions,
   EditEventOptions,
   EventKitCalendar,
-  EventKitEntityType,
   EventKitEvent,
+  MonthlyEventOptions,
   RangeEventOptions,
 } from './types'
 
 export interface EventKit extends HybridObject<{ ios: 'swift' }> {
   getActiveCalendars(): Promise<EventKitCalendar[]>
   getMonthlyCalendarEvents(
-    entityType: EventKitEntityType
+    options: MonthlyEventOptions
   ): Promise<EventKitEvent[]>
   getCalendarEventsByRange(options: RangeEventOptions): Promise<EventKitEvent[]>
   createEvent(options: CreateEventOptions): Promise<EventKitEvent>

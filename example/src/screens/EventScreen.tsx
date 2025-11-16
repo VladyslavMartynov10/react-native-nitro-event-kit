@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   FlatList,
+  TextInput,
 } from 'react-native';
 import {
   NitroEventKit,
@@ -17,11 +18,14 @@ import dayjs from 'dayjs';
 export const EventsScreen: React.FC = () => {
   const [events, setEvents] = useState<EventKitEvent[]>([]);
 
+  const [calendarId, setCalendarId] = useState('');
+
   const fetchEvents = async () => {
     const options: RangeEventOptions = {
       startDate: dayjs().startOf('month').valueOf(),
       endDate: dayjs().endOf('month').valueOf(),
       entityType: EventKitEntityType.Event,
+      calendarId: calendarId || undefined,
     };
 
     try {
@@ -45,6 +49,12 @@ export const EventsScreen: React.FC = () => {
     const formattedEndDate = item.endDate
       ? dayjs(item.endDate).format('DD MMM YYYY, HH:mm')
       : 'N/A';
+    const formattedCreationDate = item.createdAt
+      ? dayjs(item.createdAt).format('DD MMM YYYY, HH:mm')
+      : 'N/A';
+    const formattedUpdatedDate = item.updatedAt
+      ? dayjs(item.updatedAt).format('DD MMM YYYY, HH:mm')
+      : 'N/A';
 
     return (
       <View style={styles.card}>
@@ -62,6 +72,18 @@ export const EventsScreen: React.FC = () => {
             End:
           </Text>{' '}
           {formattedEndDate}
+        </Text>
+        <Text style={styles.text} selectable={true}>
+          <Text style={styles.label} selectable={true}>
+            Created At:
+          </Text>{' '}
+          {formattedCreationDate}
+        </Text>
+        <Text style={styles.text} selectable={true}>
+          <Text style={styles.label} selectable={true}>
+            Updated At:
+          </Text>{' '}
+          {formattedUpdatedDate}
         </Text>
         {item.isAllDay && (
           <Text style={styles.text} selectable={true}>
@@ -81,6 +103,15 @@ export const EventsScreen: React.FC = () => {
       <TouchableOpacity style={styles.button} onPress={fetchEvents}>
         <Text style={styles.buttonText}>Fetch Events</Text>
       </TouchableOpacity>
+
+      <View>
+        <TextInput
+          onChangeText={setCalendarId}
+          style={styles.calendarIdInput}
+          value={calendarId}
+          placeholder="Calendar ID"
+        />
+      </View>
 
       {events.length > 0 ? (
         <FlatList
@@ -133,4 +164,12 @@ const styles = StyleSheet.create({
   title: { fontSize: 16, fontWeight: 'bold', marginBottom: 6 },
   text: { fontSize: 14, color: '#333', marginBottom: 2 },
   label: { fontWeight: 'bold', color: '#555' },
+  calendarIdInput: {
+    width: '100%',
+    padding: 12,
+    marginVertical: 8,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 8,
+  },
 });

@@ -24,7 +24,9 @@ extension HybridEventKit {
             occurrenceDate: (
                 event.occurrenceDate != nil
             ) ? event.occurrenceDate.timeIntervalSince1970 * 1000 : nil,
-            birthdayContactIdentifier: event.birthdayContactIdentifier
+            birthdayContactIdentifier: event.birthdayContactIdentifier,
+            createdAt: (event.creationDate?.timeIntervalSince1970 ?? 0) * 1000,
+            updatedAt: (event.lastModifiedDate?.timeIntervalSince1970 ?? 0) * 1000
         )
     }
     

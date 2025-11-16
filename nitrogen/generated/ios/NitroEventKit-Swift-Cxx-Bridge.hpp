@@ -8,6 +8,10 @@
 #pragma once
 
 // Forward declarations of C++ defined types
+// Forward declaration of `CreateEventLocation` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct CreateEventLocation; }
+// Forward declaration of `EditEventLocation` to properly resolve imports.
+namespace margelo::nitro::eventkit { struct EditEventLocation; }
 // Forward declaration of `EventKitAvailability` to properly resolve imports.
 namespace margelo::nitro::eventkit { enum class EventKitAvailability; }
 // Forward declaration of `EventKitCalendarEventAvailabilityMask` to properly resolve imports.
@@ -56,6 +60,8 @@ namespace NitroEventKit { class HybridCalendarPermissionSpec_cxx; }
 namespace NitroEventKit { class HybridEventKitSpec_cxx; }
 
 // Include C++ defined types
+#include "CreateEventLocation.hpp"
+#include "EditEventLocation.hpp"
 #include "EventKitAvailability.hpp"
 #include "EventKitCalendar.hpp"
 #include "EventKitCalendarEventAvailabilityMask.hpp"
@@ -356,6 +362,15 @@ namespace margelo::nitro::eventkit::bridge::swift {
     return Func_void_EventKitEvent_Wrapper(std::move(value));
   }
   
+  // pragma MARK: std::optional<CreateEventLocation>
+  /**
+   * Specialized version of `std::optional<CreateEventLocation>`.
+   */
+  using std__optional_CreateEventLocation_ = std::optional<CreateEventLocation>;
+  inline std::optional<CreateEventLocation> create_std__optional_CreateEventLocation_(const CreateEventLocation& value) {
+    return std::optional<CreateEventLocation>(value);
+  }
+  
   // pragma MARK: std::shared_ptr<Promise<bool>>
   /**
    * Specialized version of `std::shared_ptr<Promise<bool>>`.
@@ -465,6 +480,15 @@ namespace margelo::nitro::eventkit::bridge::swift {
   using std__optional_EventKitSourceType_ = std::optional<EventKitSourceType>;
   inline std::optional<EventKitSourceType> create_std__optional_EventKitSourceType_(const EventKitSourceType& value) {
     return std::optional<EventKitSourceType>(value);
+  }
+  
+  // pragma MARK: std::optional<EditEventLocation>
+  /**
+   * Specialized version of `std::optional<EditEventLocation>`.
+   */
+  using std__optional_EditEventLocation_ = std::optional<EditEventLocation>;
+  inline std::optional<EditEventLocation> create_std__optional_EditEventLocation_(const EditEventLocation& value) {
+    return std::optional<EditEventLocation>(value);
   }
   
   // pragma MARK: std::shared_ptr<margelo::nitro::eventkit::HybridEventKitSpec>

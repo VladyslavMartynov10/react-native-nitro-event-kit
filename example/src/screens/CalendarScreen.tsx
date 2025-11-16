@@ -38,6 +38,7 @@ export const CalendarScreen: React.FC = () => {
         cgColor: '#d24747',
       });
       setCalendars(p => [...p, calendar]);
+      console.log(calendar);
     } catch (e) {
       console.error('Error creating calendar', e);
     }
