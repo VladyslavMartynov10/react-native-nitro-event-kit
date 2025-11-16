@@ -21,14 +21,14 @@ jobs:
       - name: ⚙️ Enable Corepack and Use Correct Yarn Version
         run: |
           corepack enable
-          corepack prepare yarn@4.7.0 --activate
+          corepack prepare yarn@4.10.3 --activate
           yarn --version
 
       - name: ⚙️ Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 'lts/*'
-          cache: 'yarn'
+          node-version: "lts/*"
+          cache: "yarn"
 
       - name: 📦 Install Dependencies
         run: yarn install --immutable
