@@ -9,6 +9,7 @@ permissions:
   contents: write
   issues: write
   pull-requests: write
+  id-token: write
 
 jobs:
   release:
@@ -36,18 +37,13 @@ jobs:
       - name: 🛠 Build the Package
         run: yarn build
 
-      - name: 🔐 Setup .npmrc for release
-        run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: 🧑‍💻 Set Git identity for release commits
-        run: |
-          git config --global user.name "VladyslavMartynov10"
-          git config --global user.email "vladyslav.martynov.10@gmail.com"
-
       - name: 🚀 Release to NPM and GitHub
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npx release-it
+          NPM_CONFIG_PROVENANCE: true
+          GIT_AUTHOR_NAME: ${{ github.actor }}
+          GIT_AUTHOR_EMAIL: "${{ github.actor }}@users.noreply.github.com"
+          GIT_COMMITTER_NAME: ${{ github.actor }}
+          GIT_COMMITTER_EMAIL: "${{ github.actor }}@users.noreply.github.com"
+        run: yarn release
