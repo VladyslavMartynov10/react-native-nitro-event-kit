@@ -34,7 +34,7 @@ jobs:
         run: yarn install --immutable
 
       - name: 🛠 Build the Package
-        run: yarn build 2>&1 || (echo "Build failed, running tsc directly for diagnostics:" && npx tsc --project tsconfig.json --noEmit && exit 1)
+        run: yarn build 2>&1 || (echo "Build failed, running tsc directly for diagnostics:" && yarn tsc --project tsconfig.json --noEmit && exit 1)
 
       # - name: 🔐 Setup .npmrc for release
       #   run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
