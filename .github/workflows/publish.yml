@@ -31,7 +31,7 @@ jobs:
           cache: "yarn"
 
       - name: 📦 Install Dependencies
-        run: yarn install --immutable
+        run: yarn install
 
       - name: 🛠 Build the Package
         run: yarn build 2>&1 || (echo "Build failed, running tsc directly for diagnostics:" && yarn tsc --project tsconfig.json --noEmit && exit 1)
