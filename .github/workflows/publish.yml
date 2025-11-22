@@ -33,8 +33,11 @@ jobs:
       - name: 📦 Install Dependencies
         run: yarn install
 
+      - name: 🔍 TypeScript Check
+        run: yarn exec tsc --project tsconfig.json --declaration --emitDeclarationOnly --outDir /tmp/tsc-test
+
       - name: 🛠 Build the Package
-        run: yarn build 2>&1 || (echo "Build failed, running tsc directly for diagnostics:" && ./node_modules/.bin/tsc --project tsconfig.json --noEmit && exit 1)
+        run: yarn build
 
       # - name: 🔐 Setup .npmrc for release
       #   run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
