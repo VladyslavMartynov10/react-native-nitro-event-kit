@@ -4,7 +4,7 @@
   "description": "react-native-nitro-event-kit",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
-  "types": "lib/typescript/commonjs/index.d.ts",
+  "types": "lib/typescript/src/index.d.ts",
   "react-native": "src/index",
   "source": "src/index",
   "files": [
@@ -133,30 +133,16 @@
     "useTabs": false,
     "semi": false
   },
-  "directories": {
-    "lib": "lib"
-  },
   "react-native-builder-bob": {
     "source": "src",
     "output": "lib",
     "targets": [
-      [
-        "commonjs",
-        {
-          "esm": true
-        }
-      ],
-      [
-        "module",
-        {
-          "esm": true
-        }
-      ],
+      "commonjs",
+      "module",
       [
         "typescript",
         {
-          "esm": true,
-          "tsc": "./node_modules/.bin/tsc"
+          "project": "tsconfig.json"
         }
       ]
     ]
