@@ -31,7 +31,7 @@ jobs:
           cache: "yarn"
 
       - name: 📦 Install Dependencies
-        run: yarn install --immutable
+        run: yarn install
 
       - name: 🛠 Build the Package
         run: yarn build
