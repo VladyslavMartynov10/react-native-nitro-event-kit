@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     branches:
-      - test/pipe-flow
+      - main
 
 permissions:
   contents: write
@@ -33,24 +33,21 @@ jobs:
       - name: 📦 Install Dependencies
         run: yarn install
 
-      - name: 🔍 TypeScript Check
-        run: yarn exec tsc --project tsconfig.json --declaration --emitDeclarationOnly --outDir /tmp/tsc-test
-
       - name: 🛠 Build the Package
         run: yarn build
 
-      # - name: 🔐 Setup .npmrc for release
-      #   run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
-      #   env:
-      #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: 🔐 Setup .npmrc for release
+        run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      # - name: 🧑‍💻 Set Git identity for release commits
-      #   run: |
-      #     git config --global user.name "VladyslavMartynov10"
-      #     git config --global user.email "vladyslav.martynov.10@gmail.com"
+      - name: 🧑‍💻 Set Git identity for release commits
+        run: |
+          git config --global user.name "VladyslavMartynov10"
+          git config --global user.email "vladyslav.martynov.10@gmail.com"
 
-      # - name: 🚀 Release to NPM and GitHub
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      #   run: npx release-it
+      - name: 🚀 Release to NPM and GitHub
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npx release-it
